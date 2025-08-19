@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: IA ¡Tu Mejor Aliada!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #F8B229, #E43358);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .formula-card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .formula-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #F8B229;
+            line-height: 1;
+        }
+        .prompt-part-card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .prompt-icon {
+            flex-shrink: 0;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-[#34495E] text-white text-center py-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Inteligencia Artificial:</h1>
+            <h2 class="text-4xl md:text-6xl font-bold gradient-text">¡Conviértela en tu mejor aliada!</h2>
+            <p class="mt-6 text-lg md:text-xl text-gray-300">Aprende a darle las instrucciones correctas para sacarle el máximo provecho en tus estudios.</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-6 md:p-12">
+
+        <section id="intro" class="mb-20">
+            <div class="text-center max-w-3xl mx-auto">
+                <h3 class="text-3xl font-bold mb-4 text-[#00A6ED]">¿Con quién estamos hablando?</h3>
+                <p class="text-lg text-gray-600 mb-8">Piensa en la Inteligencia Artificial (IA) como un asistente súper inteligente en tu computadora o celular. Puede entender lo que le pides para crear textos, darte ideas, resumir y ayudarte a estudiar. La clave para que te entienda bien es el **"Prompt"**: la instrucción o pregunta que le escribes.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="text-5xl mb-4">📖</div>
+                    <h4 class="text-xl font-semibold mb-2">Resumir Textos</h4>
+                    <p class="text-gray-600">Extrae las ideas principales de artículos largos en segundos.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="text-5xl mb-4">💡</div>
+                    <h4 class="text-xl font-semibold mb-2">Generar Ideas</h4>
+                    <p class="text-gray-600">Te ayuda a empezar cuando tienes la mente en blanco.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="text-5xl mb-4">📊</div>
+                    <h4 class="text-xl font-semibold mb-2">Analizar Datos</h4>
+                    <p class="text-gray-600">Encuentra patrones o información clave para tus trabajos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="formulas" class="mb-20">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h3 class="text-3xl font-bold mb-4 text-[#00A6ED]">No adivines: ¡Usa una fórmula!</h3>
+                <p class="text-lg text-gray-600">Para que la IA te dé respuestas geniales, no tienes que empezar de cero. Existen "fórmulas" o esquemas para crear prompts claros y efectivos. ¡Vamos a ver las más importantes para tus trabajos del cole!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="formula-card">
+                    <h4 class="text-2xl font-bold mb-2 text-[#E43358]">Fórmula 1: R-T-F</h4>
+                    <p class="font-semibold text-gray-500 mb-4">(Rol - Tarea - Formato)</p>
+                    <p class="mb-6 flex-grow">Ideal para pedirle a la IA que actúe como una experta en un tema. Le das un papel, una misión y le dices cómo quieres la respuesta.</p>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <div class="space-y-2 text-sm mb-4 flex-grow">
+                        <p><span class="font-bold text-[#E43358]">🔹 ROLE:</span> Asigna un rol ("Eres un psicólogo…")</p>
+                        <p><span class="font-bold text-[#E43358]">🔹 TASK:</span> Define qué debe hacer ("…y necesitas dar consejos…")</p>
+                        <p><span class="font-bold text-[#E43358]">🔹 FORMAT:</span> Pide el resultado en formato claro ("…en una lista de 3 pasos").</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-lg mt-auto">
+                        <p class="font-semibold text-gray-800 mb-2">Ejemplo:</p>
+                        <blockquote class="text-sm text-gray-600 italic border-l-4 border-gray-300 pl-3">
+                            "Eres un career coach. Da un plan de 5 pasos para cambiar de industria en formato lista."
+                        </blockquote>
+                    </div>
+                        <div class="flex items-center justify-around text-center">
+                            <div class="flex-1">
+                                <p class="font-bold">ROL 🎭</p>
+                                <p class="text-sm text-gray-600">Guía turístico</p>
+                            </div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flex-1">
+                                <p class="font-bold">TAREA 📝</p>
+                                <p class="text-sm text-gray-600">Explicar algo</p>
+                            </div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flex-1">
+                                <p class="font-bold">FORMATO 📄</p>
+                                <p class="text-sm text-gray-600">Párrafo corto</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <h4 class="text-2xl font-bold mb-2 text-[#72D148]">Fórmula 2: B-A-B</h4>
+                    <p class="font-semibold text-gray-500 mb-4">(Antes - Después - Puente)</p>
+                    <p class="mb-6 flex-grow">Perfecto para encontrar soluciones a un problema. Describes tu dificultad (Antes), tu objetivo (Después) y pides la ayuda para conectar ambos (Puente).</p>
+                     <div class="bg-gray-100 p-4 rounded-lg">
+                        <div class="space-y-2 text-sm mb-4 flex-grow">
+                        <p><span class="font-bold text-[#72D148]">🔹 BEFORE:</span> Describe el problema actual.</p>
+                        <p><span class="font-bold text-[#72D148]">🔹 AFTER:</span> Muestra cómo sería la solución ideal.</p>
+                        <p><span class="font-bold text-[#72D148]">🔹 BRIDGE:</span> Explica cómo lograrlo.</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-lg mt-auto">
+                        <p class="font-semibold text-gray-800 mb-2">Ejemplo:</p>
+                        <blockquote class="text-sm text-gray-600 italic border-l-4 border-gray-300 pl-3">
+                            "Siempre me quedo mirando la pantalla en blanco. Quiero escribir con facilidad, con las ideas fluyendo. Ayúdame a crear una rutina diaria de escritura para superar el bloqueo creativo."
+                        </blockquote>
+                    </div>
+                        <div class="flex items-center justify-between text-center">
+                            <div class="flex-1">
+                                <p class="text-4xl">❓</p>
+                                <p class="font-bold">ANTES</p>
+                                <p class="text-sm text-gray-600">El problema</p>
+                            </div>
+                            <div class="flex-1 text-[#72D148]">
+                                <p class="font-bold text-lg">PUENTE</p>
+                                <div class="w-full h-1 bg-current rounded-full"></div>
+                                <p class="text-sm">La ayuda</p>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-4xl">💡</p>
+                                <p class="font-bold">DESPUÉS</p>
+                                <p class="text-sm text-gray-600">La solución</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formula-card">
+                    <h4 class="text-2xl font-bold mb-2 text-[#F8B229]">Fórmula 3: T-A-O</h4>
+                    <p class="font-semibold text-gray-500 mb-4">(Tarea - Acción - Objetivo)</p>
+                    <p class="mb-6 flex-grow">Ideal para resúmenes y análisis con una intención clara. Cada parte es clave para que la IA entienda no solo qué hacer, sino para qué lo necesitas.</p>
+                    <div class="space-y-2 text-sm mb-4 flex-grow">
+                        <p><span class="font-bold text-[#F8B229]">🔹 TASK:</span> Lo que necesita hacerse.</p>
+                        <p><span class="font-bold text-[#F8B229]">🔹 ACTION:</span> Qué tipo de respuesta debe dar.</p>
+                        <p><span class="font-bold text-[#F8B229]">🔹 GOAL:</span> Para qué lo necesitas.</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-lg mt-auto">
+                        <p class="font-semibold text-gray-800 mb-2">Ejemplo:</p>
+                        <blockquote class="text-sm text-gray-600 italic border-l-4 border-gray-300 pl-3">
+                            "Resume este artículo en 3 frases. El objetivo es destacar las ideas clave."
+                        </blockquote>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="taoChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="formula-card">
+                    <h4 class="text-2xl font-bold mb-2 text-[#00A6ED]">Fórmula 4: C-A-R-E</h4>
+                    <p class="font-semibold text-gray-500 mb-4">(Contexto - Acción - Resultado - Ejemplo)</p>
+                    <p class="mb-6 flex-grow">La más completa, úsala para las tareas más complejas. Al darle todos estos elementos, la respuesta será mucho más precisa y útil para tus trabajos prácticos.</p>
+                    <div class="space-y-2 text-sm mb-4 flex-grow">
+                        <p><span class="font-bold text-[#00A6ED]">🔹 CONTEXT:</span> Sitúa el problema o necesidad.</p>
+                        <p><span class="font-bold text-[#00A6ED]">🔹 ACTION:</span> Qué debe hacer ChatGPT.</p>
+                        <p><span class="font-bold text-[#00A6ED]">🔹 RESULT:</span> Qué resultado esperas.</p>
+                        <p><span class="font-bold text-[#00A6ED]">🔹 EXAMPLE:</span> Un ejemplo que aclare todo.</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-lg mt-auto">
+                        <p class="font-semibold text-gray-800 mb-2">Ejemplo:</p>
+                        <blockquote class="text-sm text-gray-600 italic border-l-4 border-gray-300 pl-3">"Quiero entender los puntos clave del artículo adjunto.<br>Resume el contenido en 3 frases.<br>Necesito destacar las ideas principales sin entrar en detalles técnicos.<br>Por ejemplo: 'La postura influye en la altura' o 'Dormir bien ayuda al crecimiento'."</blockquote>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="careChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section id="new-methodology" class="mb-20">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h3 class="text-3xl font-bold mb-4 text-[#00A6ED]">La Anatomía de un Prompt de Nivel Superior</h3>
+                <p class="text-lg text-gray-600">Para obtener resultados que se sienten como magia, necesitas un prompt bien estructurado. Olvídate de las preguntas simples y aprende a darle a la IA una instrucción completa con todos estos componentes.</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Rol -->
+                <div class="prompt-part-card">
+                    <div class="prompt-icon bg-red-100 text-red-600">🎭</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-red-600">Rol</h4>
+                        <p class="text-gray-600">Asígnale un papel específico. Dile a la IA quién quieres que sea. <br><em>Ej: "Actúa como un coach personal de productividad enfocado en recomendar métodos de aprendizaje."</em></p>
+                    </div>
+                </div>
+                <!-- Tarea -->
+                <div class="prompt-part-card">
+                    <div class="prompt-icon bg-blue-100 text-blue-600">📝</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-blue-600">Tarea</h4>
+                        <p class="text-gray-600">Define claramente qué debe hacer, paso a paso. <br><em>Ej: "Comienza con una lista de 3 a 7 viñetas de los pasos a seguir, enfocándote en la planificación conceptual."</em></p>
+                    </div>
+                </div>
+                <!-- Contexto -->
+                <div class="prompt-part-card">
+                    <div class="prompt-icon bg-yellow-100 text-yellow-600">🌍</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-yellow-600">Contexto</h4>
+                        <p class="text-gray-600">Dale información de fondo y establece los límites. ¿Qué debe evitar? <br><em>Ej: "Excluye métodos comunes como tutoriales de YouTube o MOOCs. Prioriza la precisión de los nombres y asegúrate que cada método tenga un resumen breve."</em></p>
+                    </div>
+                </div>
+                 <!-- Razonamiento -->
+                <div class="prompt-part-card">
+                    <div class="prompt-icon bg-green-100 text-green-600">🧠</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-green-600">Razonamiento</h4>
+                        <p class="text-gray-600">Pídele que "piense" antes de responder, que verifique y contraste la información. <br><em>Ej: "Verifica internamente los métodos para asegurar que sean reales y útiles. Contrasta los datos y resultados con fuentes confiables."</em></p>
+                    </div>
+                </div>
+                <!-- Formato de Salida -->
+                <div class="prompt-part-card">
+                    <div class="prompt-icon bg-purple-100 text-purple-600">📄</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-purple-600">Formato de Salida</h4>
+                        <p class="text-gray-600">Especifica exactamente cómo quieres recibir la respuesta. <br><em>Ej: "Quiero los resultados como una tabla en formato Markdown con estas columnas: [Nombre del método], [Recursos principales], [Tiempo semanal]."</em></p>
+                    </div>
+                </div>
+                <!-- Condición de Finalización -->
+                <div class="prompt-part-card">
+                    <div class="prompt-icon bg-pink-100 text-pink-600">🏁</div>
+                    <div>
+                        <h4 class="text-xl font-bold text-pink-600">Condición de Finalización</h4>
+                        <p class="text-gray-600">Dile cuándo se considera que la tarea está completa. <br><em>Ej: "La tarea se completa cuando se entregan tres métodos únicos, verificados y de compromiso medio en el formato especificado."</em></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="responsabilidad" class="mb-20">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h3 class="text-3xl font-bold mb-4 text-[#E43358]">Genial, pero... ¡Úsala bien!</h3>
+                <p class="text-lg text-gray-600">La IA es una herramienta increíble, pero como todo poder, conlleva una gran responsabilidad. Entender sus beneficios y sus límites es clave para que de verdad te ayude a aprender.</p>
+            </div>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                 <p class="text-center font-semibold text-lg mb-4">Comparativa: Beneficios vs. Responsabilidades</p>
+                 <div class="chart-container" style="height: 300px; max-height: 300px;">
+                    <canvas id="benefitsChart"></canvas>
+                </div>
+                 <div class="mt-8 text-center text-gray-700 p-4 bg-yellow-100 border-l-4 border-yellow-400">
+                    <p><span class="font-bold">¡MUY IMPORTANTE!</span> La IA es una HERRAMIENTA, no un reemplazo de tu cerebro. Úsala como punto de partida, no como punto final. ¡El objetivo es que APRENDAS!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" class="bg-[#34495E] text-white rounded-2xl p-6 md:p-12">
+            <div class="text-center mb-8">
+                <h3 class="text-4xl font-bold mb-4">🚀 ¿ChatGPT, Gemini, Copilot o Perplexity?</h3>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">¡Elige la IA según lo que necesitas! Aquí tienes una guía rápida para empezar a experimentar.</p>
+            </div>
+        
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
+                
+                <!-- ChatGPT Card -->
+                <div class="bg-black bg-opacity-20 p-4 rounded-lg flex flex-col space-y-4">
+                    <h4 class="text-xl font-bold text-center border-b border-gray-600 pb-2">CHATGPT</h4>
+                    <div>
+                        <h5 class="font-bold text-blue-300">LO MEJOR PARA</h5>
+                        <p>Crear, escribir, aprender</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-blue-300">DESTACA EN</h5>
+                        <p>Creatividad y conversación</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-blue-300">ÚSALO SI QUIERES</h5>
+                        <p>Escribir contenido, aprender algo nuevo, practicar ideas</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-blue-300">LO ENCUENTRAS</h5>
+                        <p>Web, App, Escritorio (Versión Plus: GPT-4)</p>
+                    </div>
+                </div>
+
+                <!-- Gemini Card -->
+                <div class="bg-black bg-opacity-20 p-4 rounded-lg flex flex-col space-y-4">
+                    <h4 class="text-xl font-bold text-center border-b border-gray-600 pb-2">GEMINI</h4>
+                    <div>
+                        <h5 class="font-bold text-blue-300">LO MEJOR PARA</h5>
+                        <p>Asistente móvil e integración con Google</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-blue-300">DESTACA EN</h5>
+                        <p>Organización personal y búsquedas</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-blue-300">ÚSALO SI QUIERES</h5>
+                        <p>Revisar tu calendario, buscar lugares, usar Drive o Gmail</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-blue-300">LO ENCUENTRAS</h5>
+                        <p>App (Android/iOS), Gmail, Chrome</p>
+                    </div>
+                </div>
+
+                <!-- Copilot Card -->
+                <div class="bg-black bg-opacity-20 p-4 rounded-lg flex flex-col space-y-4">
+                    <h4 class="text-xl font-bold text-center border-b border-gray-600 pb-2">COPILOT</h4>
+                    <div>
+                        <h5 class="font-bold text-blue-300">LO MEJOR PARA</h5>
+                        <p>Trabajar en Word, Excel, PowerPoint</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-blue-300">DESTACA EN</h5>
+                        <p>Automatización de oficina</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-blue-300">ÚSALO SI QUIERES</h5>
+                        <p>Resumir documentos, crear informes, automatizar tareas</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-blue-300">LO ENCUENTRAS</h5>
+                        <p>Office 365, Apps de Microsoft</p>
+                    </div>
+                </div>
+
+                <!-- Perplexity Card -->
+                <div class="bg-black bg-opacity-20 p-4 rounded-lg flex flex-col space-y-4">
+                    <h4 class="text-xl font-bold text-center border-b border-gray-600 pb-2">PERPLEXITY</h4>
+                    <div>
+                        <h5 class="font-bold text-blue-300">LO MEJOR PARA</h5>
+                        <p>Buscar con fuentes reales</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-blue-300">DESTACA EN</h5>
+                        <p>Precisión y citas</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-blue-300">ÚSALO SI QUIERES</h5>
+                        <p>Investigar y leer fuentes confiables</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-blue-300">LO ENCUENTRAS</h5>
+                        <p>Web (Gratuito y sin cuenta)</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const wrapLabel = (label, maxLength = 16) => {
+                if (label.length <= maxLength) return label;
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).length > maxLength) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = currentLine ? currentLine + ' ' + word : word;
+                    }
+                }
+                lines.push(currentLine);
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+
+            const defaultChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: '#374151',
+                            font: {
+                                size: 14,
+                                family: 'Poppins'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        backgroundColor: '#34495E',
+                        titleFont: { size: 16, family: 'Poppins' },
+                        bodyFont: { size: 14, family: 'Poppins' },
+                        padding: 12,
+                        cornerRadius: 8
+                    }
+                }
+            };
+
+            const createTaoChart = () => {
+                const ctx = document.getElementById('taoChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Tarea', 'Acción', 'Objetivo'],
+                        datasets: [{
+                            label: 'Importancia en el Prompt',
+                            data: [30, 40, 30],
+                            backgroundColor: ['#F8B229', '#FABE58', '#FCD087'],
+                            borderColor: '#E7A217',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        plugins: {
+                            ...defaultChartOptions.plugins,
+                            tooltip: {
+                                enabled: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                display: false
+                            },
+                            x: {
+                                ticks: { color: '#374151', font: { size: 14, family: 'Poppins' } }
+                            }
+                        }
+                    }
+                });
+            };
+
+            const createCareChart = () => {
+                const ctx = document.getElementById('careChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Contexto', 'Acción', 'Resultado', 'Ejemplo'],
+                        datasets: [{
+                            label: 'Componentes de CARE',
+                            data: [25, 25, 25, 25],
+                            backgroundColor: ['#00A6ED', '#72D148', '#F8B229', '#E43358'],
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        plugins: {
+                            ...defaultChartOptions.plugins,
+                            tooltip: {
+                                enabled: false
+                            }
+                        },
+                        cutout: '50%'
+                    }
+                });
+            };
+
+            const createBenefitsChart = () => {
+                const ctx = document.getElementById('benefitsChart').getContext('2d');
+                const labels = [
+                    wrapLabel('Ahorrar tiempo en investigar'),
+                    wrapLabel('Desbloquear tu creatividad'),
+                    wrapLabel('Aprender a tu propio ritmo'),
+                    wrapLabel('NO copiar y pegar (Aprender)'),
+                    wrapLabel('SIEMPRE revisar la información'),
+                    wrapLabel('Usar como punto de partida')
+                ];
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Beneficios',
+                                data: [90, 85, 80, 0, 0, 0],
+                                backgroundColor: '#72D148',
+                            },
+                            {
+                                label: 'Responsabilidades',
+                                data: [0, 0, 0, 95, 88, 75],
+                                backgroundColor: '#E43358',
+                            }
+                        ]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                stacked: true,
+                                display: false,
+                            },
+                            y: {
+                                stacked: true,
+                                ticks: { color: '#374151', font: { size: 12, family: 'Poppins' } }
+                            }
+                        },
+                        plugins: {
+                           ...defaultChartOptions.plugins,
+                           tooltip:{
+                            enabled: false
+                           },
+                           legend: {
+                                position: 'bottom'
+                           }
+                        }
+                    }
+                });
+            };
+
+            createTaoChart();
+            createCareChart();
+            createBenefitsChart();
+        });
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+
+</body>
+</html>
