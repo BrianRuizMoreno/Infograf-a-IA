@@ -1,586 +1,1382 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infografía: IA ¡Tu Mejor Aliada!</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>RAVA S.A. | Inteligencia Artificial</title>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 350px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-                max-height: 400px;
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: '#0F172A',
+                        slate: {
+                            50: '#F8FAFC',
+                            100: '#F1F5F9',
+                            200: '#E2E8F0',
+                            300: '#CBD5E1',
+                            400: '#94A3B8',
+                            500: '#64748B',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1E293B',
+                            900: '#0F172A',
+                        },
+                        brand: {
+                            blue: '#2563EB',
+                            emerald: '#10B981',
+                            amber: '#F59E0B',
+                            coral: '#EF4444',
+                        }
+                    }
+                }
             }
         }
-        .gradient-text {
-            background: linear-gradient(90deg, #F8B229, #E43358);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
+    </script>
+
+    <style>
+        /* Custom Utilities */
+        body {
+            background-color: #F8FAFC;
         }
-        .formula-card {
-            background-color: white;
-            border-radius: 1rem;
-            padding: 1.5rem;
+        
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-link.active {
+            border-bottom-color: #2563EB;
+            color: #2563EB;
+            font-weight: 600;
+        }
+
+        .tab-button.active {
+            border-bottom-color: #2563EB;
+            color: #2563EB;
+            font-weight: 600;
+        }
+
+        /* Hide scrollbar for nav */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
         }
-        .formula-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+        /* ========== SCROLL REVEAL ANIMATIONS ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .flow-arrow {
-            font-size: 2rem;
-            color: #F8B229;
-            line-height: 1;
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .prompt-part-card {
-            background-color: white;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .prompt-icon {
-            flex-shrink: 0;
-            width: 4rem;
-            height: 4rem;
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        /* Stagger delays for children */
+        .stagger > *:nth-child(1) { transition-delay: 0ms; }
+        .stagger > *:nth-child(2) { transition-delay: 100ms; }
+        .stagger > *:nth-child(3) { transition-delay: 200ms; }
+        .stagger > *:nth-child(4) { transition-delay: 300ms; }
+        .stagger > *:nth-child(5) { transition-delay: 400ms; }
+        .stagger > *:nth-child(6) { transition-delay: 500ms; }
+
+        /* ========== ENHANCED ACCORDION ========== */
+        .accordion-card {
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .accordion-card.accordion-open {
+            box-shadow: 0 4px 20px -4px rgba(37, 99, 235, 0.12);
+            border-color: #CBD5E1;
+        }
+        .accordion-card.accordion-open .accordion-trigger {
+            background-color: #F8FAFC;
+        }
+        .accordion-card .accordion-trigger:hover {
+            background-color: #F1F5F9;
+        }
+
+        .accordion-content {
+            transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.35s ease-in-out,
+                        padding 0.35s ease;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        
+        .accordion-content.open {
+            max-height: 1200px;
+            opacity: 1;
+            padding-top: 1rem;
+        }
+
+        .accordion-icon {
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                        color 0.2s ease;
+        }
+        .accordion-icon.open {
+            transform: rotate(180deg);
+            color: #2563EB;
+        }
+
+        /* Colored accent bars for each accordion */
+        .accordion-card:nth-child(1) { border-left: 4px solid #2563EB; }
+        .accordion-card:nth-child(2) { border-left: 4px solid #10B981; }
+        .accordion-card:nth-child(3) { border-left: 4px solid #F59E0B; }
+        .accordion-card:nth-child(4) { border-left: 4px solid #EF4444; }
+
+        /* Toast */
+        #toast {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(1rem);
+            pointer-events: none;
+        }
+        #toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Smooth section transitions */
+        section {
+            overflow: hidden;
+        }
+
+        /* Prefers reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal, .reveal-left, .reveal-right, .reveal-scale {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .stagger > * { transition-delay: 0ms !important; }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="font-inter text-slate-600 antialiased relative">
 
-    <header class="bg-[#34495E] text-white text-center py-16 px-6">
+    <!-- MODULE 1: HEADER + INTRO -->
+    <header class="bg-navy text-white pt-20 pb-16 px-6 text-center">
         <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4">Inteligencia Artificial:</h1>
-            <h2 class="text-4xl md:text-6xl font-bold gradient-text">¡Conviértela en tu mejor aliada!</h2>
-            <p class="mt-6 text-lg md:text-xl text-gray-300">Aprende a darle las instrucciones correctas para sacarle el máximo provecho en tus estudios.</p>
+            <h1 class="font-poppins font-bold text-4xl md:text-5xl leading-tight tracking-tight text-white mb-2">
+                Inteligencia Artificial:
+            </h1>
+            <h2 class="font-poppins font-semibold text-2xl md:text-3xl text-blue-300">
+                Prompt Engineering Aplicado al Entorno Corporativo
+            </h2>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto p-6 md:p-12">
+    <!-- Sticky Navigation -->
+    <nav id="sticky-nav" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <ul class="flex space-x-6 sm:space-x-8 overflow-x-auto no-scrollbar whitespace-nowrap py-4 text-sm md:text-base font-medium text-slate-500">
+                <li><a href="#intro" class="nav-link text-slate-700 active">Intro</a></li>
+                <li><a href="#anatomia" class="nav-link hover:text-slate-900">Anatomía</a></li>
+                <li><a href="#frameworks" class="nav-link hover:text-slate-900">Frameworks</a></li>
+                <li><a href="#tecnicas" class="nav-link hover:text-slate-900">Técnicas</a></li>
+                <li><a href="#antes-despues" class="nav-link hover:text-slate-900">Antes vs Después</a></li>
+                <li><a href="#generador" class="nav-link hover:text-slate-900">Generador</a></li>
+                <li><a href="#seguridad" class="nav-link hover:text-slate-900">Seguridad</a></li>
+            </ul>
+        </div>
+    </nav>
 
-        <section id="intro" class="mb-20">
-            <div class="text-center max-w-3xl mx-auto">
-                <h3 class="text-3xl font-bold mb-4 text-[#00A6ED]">¿Con quién estamos hablando?</h3>
-                <p class="text-lg text-gray-600 mb-8">Piensa en la Inteligencia Artificial (IA) como un asistente súper inteligente en tu computadora o celular. Puede entender lo que le pides para crear textos, darte ideas, resumir y ayudarte a estudiar. La clave para que te entienda bien es el **"Prompt"**: la instrucción o pregunta que le escribes.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="bg-white p-8 rounded-xl shadow-lg">
-                    <div class="text-5xl mb-4">📖</div>
-                    <h4 class="text-xl font-semibold mb-2">Resumir Textos</h4>
-                    <p class="text-gray-600">Extrae las ideas principales de artículos largos en segundos.</p>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-lg">
-                    <div class="text-5xl mb-4">💡</div>
-                    <h4 class="text-xl font-semibold mb-2">Generar Ideas</h4>
-                    <p class="text-gray-600">Te ayuda a empezar cuando tienes la mente en blanco.</p>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-lg">
-                    <div class="text-5xl mb-4">📊</div>
-                    <h4 class="text-xl font-semibold mb-2">Analizar Datos</h4>
-                    <p class="text-gray-600">Encuentra patrones o información clave para tus trabajos.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="formulas" class="mb-20">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <h3 class="text-3xl font-bold mb-4 text-[#00A6ED]">No adivines: ¡Usa una fórmula!</h3>
-                <p class="text-lg text-gray-600">Para que la IA te dé respuestas geniales, no tienes que empezar de cero. Existen "fórmulas" o esquemas para crear prompts claros y efectivos. ¡Vamos a ver las más importantes para tus trabajos del cole!</p>
+    <!-- Intro Section -->
+    <section id="intro" class="py-16 md:py-24 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="max-w-3xl mb-12 reveal">
+                <h3 class="font-poppins font-semibold text-3xl text-brand-blue mb-6">¿Con quién estamos hablando?</h3>
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    Pensá en la Inteligencia Artificial (IA) como un asistente súper capaz en tu computadora o celular. Puede entender lo que le pedís para crear textos, estructurar informes, analizar datos y ayudarte a ser más productivo. La clave para que te entienda bien es el <strong>Prompt</strong>: la instrucción o pregunta que le escribís.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger">
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm card-hover reveal">
+                    <div class="text-3xl mb-4">📖</div>
+                    <h4 class="font-poppins font-semibold text-slate-900 text-xl mb-3">Resumir Pliegos y Documentos</h4>
+                    <p class="text-slate-600">Extraé las ideas principales de pliegos técnicos, normativas y contratos extensos en segundos.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm card-hover reveal">
+                    <div class="text-3xl mb-4">💡</div>
+                    <h4 class="font-poppins font-semibold text-slate-900 text-xl mb-3">Estructurar Informes</h4>
+                    <p class="text-slate-600">Convertí datos dispersos en informes claros, minutas ejecutivas y análisis operativos.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm card-hover reveal">
+                    <div class="text-3xl mb-4">📊</div>
+                    <h4 class="font-poppins font-semibold text-slate-900 text-xl mb-3">Detectar Inconsistencias</h4>
+                    <p class="text-slate-600">Cruzá datos de facturación, remitos y órdenes de compra para encontrar desvíos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="formula-card">
-                    <h4 class="text-2xl font-bold mb-2 text-[#E43358]">Fórmula 1: R-T-F</h4>
-                    <p class="font-semibold text-gray-500 mb-4">(Rol - Tarea - Formato)</p>
-                    <p class="mb-6 flex-grow">Ideal para pedirle a la IA que actúe como una experta en un tema. Le das un papel, una misión y le dices cómo quieres la respuesta.</p>
-                    <div class="bg-gray-100 p-4 rounded-lg">
-                        <div class="space-y-2 text-sm mb-4 flex-grow">
-                        <p><span class="font-bold text-[#E43358]">🔹 ROLE:</span> Asigna un rol ("Eres un psicólogo…")</p>
-                        <p><span class="font-bold text-[#E43358]">🔹 TASK:</span> Define qué debe hacer ("…y necesitas dar consejos…")</p>
-                        <p><span class="font-bold text-[#E43358]">🔹 FORMAT:</span> Pide el resultado en formato claro ("…en una lista de 3 pasos").</p>
+    <!-- MODULE 2: LA ANATOMÍA DE UN PROMPT DE NIVEL SUPERIOR -->
+    <section id="anatomia" class="py-16 md:py-24 bg-white border-t border-slate-200 px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-12 reveal">
+                <h3 class="font-poppins font-semibold text-3xl text-brand-blue mb-4">La Anatomía de un Prompt de Nivel Superior</h3>
+                <p class="text-lg text-slate-600">Para obtener resultados que se sienten como magia, necesitás un prompt bien estructurado. Olvidate de las preguntas simples y aprendé a darle a la IA una instrucción completa con todos estos componentes.</p>
+            </div>
+
+            <div class="flex flex-col space-y-4 stagger">
+                <!-- Anatomy Card 1 -->
+                <div class="flex flex-col sm:flex-row bg-slate-50 border border-slate-200 rounded-xl p-5 shadow-sm reveal">
+                    <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-red-100 text-red-600 text-2xl mb-4 sm:mb-0 sm:mr-6">🎭</div>
+                    <div>
+                        <h4 class="font-poppins font-semibold text-red-600 text-lg mb-1">Rol</h4>
+                        <p class="text-slate-700 mb-2">Asignale un papel específico. Decile a la IA quién querés que sea.</p>
+                        <p class="text-sm text-slate-500 italic border-l-2 border-slate-300 pl-3">"Actuá como un Auditor de Facturación Vial especializado en control de remitos de áridos."</p>
                     </div>
-                    <div class="bg-gray-100 p-4 rounded-lg mt-auto">
-                        <p class="font-semibold text-gray-800 mb-2">Ejemplo:</p>
-                        <blockquote class="text-sm text-gray-600 italic border-l-4 border-gray-300 pl-3">
-                            "Eres un career coach. Da un plan de 5 pasos para cambiar de industria en formato lista."
-                        </blockquote>
+                </div>
+
+                <!-- Anatomy Card 2 -->
+                <div class="flex flex-col sm:flex-row bg-slate-50 border border-slate-200 rounded-xl p-5 shadow-sm reveal">
+                    <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 text-2xl mb-4 sm:mb-0 sm:mr-6">📝</div>
+                    <div>
+                        <h4 class="font-poppins font-semibold text-blue-600 text-lg mb-1">Tarea</h4>
+                        <p class="text-slate-700 mb-2">Definí claramente qué debe hacer, paso a paso.</p>
+                        <p class="text-sm text-slate-500 italic border-l-2 border-slate-300 pl-3">"Cruzá los remitos de piedra con las órdenes de compra y detectá inconsistencias en las cantidades facturadas vs. recibidas."</p>
                     </div>
-                        <div class="flex items-center justify-around text-center">
-                            <div class="flex-1">
-                                <p class="font-bold">ROL 🎭</p>
-                                <p class="text-sm text-gray-600">Guía turístico</p>
+                </div>
+
+                <!-- Anatomy Card 3 -->
+                <div class="flex flex-col sm:flex-row bg-slate-50 border border-slate-200 rounded-xl p-5 shadow-sm reveal">
+                    <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-amber-100 text-amber-600 text-2xl mb-4 sm:mb-0 sm:mr-6">🌍</div>
+                    <div>
+                        <h4 class="font-poppins font-semibold text-amber-600 text-lg mb-1">Contexto</h4>
+                        <p class="text-slate-700 mb-2">Dale información de fondo y establecé los límites. ¿Qué debe evitar?</p>
+                        <p class="text-sm text-slate-500 italic border-l-2 border-slate-300 pl-3">"Los remitos son de 3 proveedores distintos, período marzo 2026. Hay una tolerancia aceptada del 2% en peso."</p>
+                    </div>
+                </div>
+
+                <!-- Anatomy Card 4 -->
+                <div class="flex flex-col sm:flex-row bg-slate-50 border border-slate-200 rounded-xl p-5 shadow-sm reveal">
+                    <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 text-2xl mb-4 sm:mb-0 sm:mr-6">🧠</div>
+                    <div>
+                        <h4 class="font-poppins font-semibold text-emerald-600 text-lg mb-1">Razonamiento</h4>
+                        <p class="text-slate-700 mb-2">Pedile que 'piense' antes de responder, que verifique y contraste la información.</p>
+                        <p class="text-sm text-slate-500 italic border-l-2 border-slate-300 pl-3">"Verificá internamente cada cruce de datos. Si un desvío supera el 2%, marcalo como alerta."</p>
+                    </div>
+                </div>
+
+                <!-- Anatomy Card 5 -->
+                <div class="flex flex-col sm:flex-row bg-slate-50 border border-slate-200 rounded-xl p-5 shadow-sm reveal">
+                    <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 text-purple-600 text-2xl mb-4 sm:mb-0 sm:mr-6">📄</div>
+                    <div>
+                        <h4 class="font-poppins font-semibold text-purple-600 text-lg mb-1">Formato de Salida</h4>
+                        <p class="text-slate-700 mb-2">Especificá exactamente cómo querés recibir la respuesta.</p>
+                        <p class="text-sm text-slate-500 italic border-l-2 border-slate-300 pl-3">"Tabla Markdown con columnas: Proveedor, Remito #, OC #, Cantidad Remito, Cantidad OC, Desvío %, Alerta."</p>
+                    </div>
+                </div>
+
+                <!-- Anatomy Card 6 -->
+                <div class="flex flex-col sm:flex-row bg-slate-50 border border-slate-200 rounded-xl p-5 shadow-sm reveal">
+                    <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-pink-100 text-pink-600 text-2xl mb-4 sm:mb-0 sm:mr-6">🏁</div>
+                    <div>
+                        <h4 class="font-poppins font-semibold text-pink-600 text-lg mb-1">Condición de Finalización</h4>
+                        <p class="text-slate-700 mb-2">Decile cuándo se considera que la tarea está completa.</p>
+                        <p class="text-sm text-slate-500 italic border-l-2 border-slate-300 pl-3">"La tarea se completa cuando todos los remitos del período estén cruzados y los desvíos >2% tengan alerta."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULE 3: FRAMEWORKS PROFESIONALES -->
+    <section id="frameworks" class="py-16 md:py-24 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12 text-center max-w-3xl mx-auto reveal">
+                <h3 class="font-poppins font-semibold text-3xl text-brand-blue mb-4">No Adivines: ¡Usá una Fórmula Profesional!</h3>
+                <p class="text-lg text-slate-600">Existen esquemas probados para crear prompts claros y efectivos. Estos son los 3 estándares de la industria para el entorno corporativo.</p>
+            </div>
+
+            <!-- Decision Flowchart (HTML structure) -->
+            <div class="mb-16 bg-white border border-slate-200 rounded-2xl p-6 md:p-10 shadow-sm reveal-scale">
+                <h4 class="font-poppins font-semibold text-slate-900 text-center mb-8 text-xl">¿QUÉ FRAMEWORK USO?</h4>
+                
+                <div class="flex flex-col items-center max-w-xl mx-auto space-y-4">
+                    <!-- Flow Step 1 -->
+                    <div class="w-full">
+                        <div class="flex flex-col md:flex-row items-center justify-between bg-slate-50 border border-slate-200 rounded-lg p-4">
+                            <span class="font-medium text-slate-700 text-center md:text-left mb-3 md:mb-0">¿Es una tarea rápida, interna, sin matices?</span>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-sm font-semibold text-slate-400">→ SÍ →</span>
+                                <span class="bg-blue-100 text-blue-700 font-semibold px-3 py-1 rounded">RTF</span>
                             </div>
-                            <div class="flow-arrow">→</div>
-                            <div class="flex-1">
-                                <p class="font-bold">TAREA 📝</p>
-                                <p class="text-sm text-gray-600">Explicar algo</p>
+                        </div>
+                        <div class="text-center text-slate-300 font-bold my-2 text-xl">↓ NO</div>
+                    </div>
+                    
+                    <!-- Flow Step 2 -->
+                    <div class="w-full">
+                        <div class="flex flex-col md:flex-row items-center justify-between bg-slate-50 border border-slate-200 rounded-lg p-4">
+                            <span class="font-medium text-slate-700 text-center md:text-left mb-3 md:mb-0">¿Tiene pasos ordenados y restricciones?</span>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-sm font-semibold text-slate-400">→ SÍ →</span>
+                                <span class="bg-amber-100 text-amber-700 font-semibold px-3 py-1 rounded">RISEN</span>
                             </div>
-                            <div class="flow-arrow">→</div>
-                            <div class="flex-1">
-                                <p class="font-bold">FORMATO 📄</p>
-                                <p class="text-sm text-gray-600">Párrafo corto</p>
+                        </div>
+                        <div class="text-center text-slate-300 font-bold my-2 text-xl">↓ NO</div>
+                    </div>
+
+                    <!-- Flow Step 3 -->
+                    <div class="w-full">
+                        <div class="flex flex-col md:flex-row items-center justify-between bg-slate-50 border border-slate-200 rounded-lg p-4">
+                            <span class="font-medium text-slate-700 text-center md:text-left mb-3 md:mb-0">¿Es comunicación de alto impacto?</span>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-sm font-semibold text-slate-400">→ SÍ →</span>
+                                <span class="bg-emerald-100 text-emerald-700 font-semibold px-3 py-1 rounded">CO-STAR</span>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="formula-card">
-                    <h4 class="text-2xl font-bold mb-2 text-[#72D148]">Fórmula 2: B-A-B</h4>
-                    <p class="font-semibold text-gray-500 mb-4">(Antes - Después - Puente)</p>
-                    <p class="mb-6 flex-grow">Perfecto para encontrar soluciones a un problema. Describes tu dificultad (Antes), tu objetivo (Después) y pides la ayuda para conectar ambos (Puente).</p>
-                     <div class="bg-gray-100 p-4 rounded-lg">
-                        <div class="space-y-2 text-sm mb-4 flex-grow">
-                        <p><span class="font-bold text-[#72D148]">🔹 BEFORE:</span> Describe el problema actual.</p>
-                        <p><span class="font-bold text-[#72D148]">🔹 AFTER:</span> Muestra cómo sería la solución ideal.</p>
-                        <p><span class="font-bold text-[#72D148]">🔹 BRIDGE:</span> Explica cómo lograrlo.</p>
+            <!-- Frameworks Grid -->
+            <div class="space-y-8">
+                <!-- CO-STAR -->
+                <div class="bg-white border-l-4 border-l-brand-emerald border border-slate-200 rounded-xl p-6 md:p-8 shadow-sm relative overflow-hidden reveal-left">
+                    <div class="mb-6">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <h4 class="font-poppins font-semibold text-2xl text-slate-900">CO-STAR</h4>
+                            <span class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-1 rounded">Estándar de Oro — Tareas de Alto Impacto</span>
+                        </div>
+                        <p class="text-sm text-slate-500 mb-4">Creado por GovTech Singapore (Sheila Teo, 2023)</p>
+                        <p class="text-slate-700"><strong>Cuándo usarlo:</strong> Comunicaciones ejecutivas, informes para Dirección, cualquier entregable donde el tono, la audiencia y el estilo importan.</p>
                     </div>
-                    <div class="bg-gray-100 p-4 rounded-lg mt-auto">
-                        <p class="font-semibold text-gray-800 mb-2">Ejemplo:</p>
-                        <blockquote class="text-sm text-gray-600 italic border-l-4 border-gray-300 pl-3">
-                            "Siempre me quedo mirando la pantalla en blanco. Quiero escribir con facilidad, con las ideas fluyendo. Ayúdame a crear una rutina diaria de escritura para superar el bloqueo creativo."
-                        </blockquote>
-                    </div>
-                        <div class="flex items-center justify-between text-center">
-                            <div class="flex-1">
-                                <p class="text-4xl">❓</p>
-                                <p class="font-bold">ANTES</p>
-                                <p class="text-sm text-gray-600">El problema</p>
-                            </div>
-                            <div class="flex-1 text-[#72D148]">
-                                <p class="font-bold text-lg">PUENTE</p>
-                                <div class="w-full h-1 bg-current rounded-full"></div>
-                                <p class="text-sm">La ayuda</p>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-4xl">💡</p>
-                                <p class="font-bold">DESPUÉS</p>
-                                <p class="text-sm text-gray-600">La solución</p>
-                            </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <table class="w-full text-sm text-left text-slate-600 border border-slate-200 rounded-lg overflow-hidden">
+                                <thead class="text-xs text-slate-700 uppercase bg-slate-50">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-3 border-b">Letra</th>
+                                        <th scope="col" class="px-4 py-3 border-b">English</th>
+                                        <th scope="col" class="px-4 py-3 border-b">Español</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-white border-b"><td class="px-4 py-2 font-semibold text-emerald-600">C</td><td class="px-4 py-2">Context</td><td class="px-4 py-2">Contexto</td></tr>
+                                    <tr class="bg-slate-50 border-b"><td class="px-4 py-2 font-semibold text-emerald-600">O</td><td class="px-4 py-2">Objective</td><td class="px-4 py-2">Objetivo</td></tr>
+                                    <tr class="bg-white border-b"><td class="px-4 py-2 font-semibold text-emerald-600">S</td><td class="px-4 py-2">Style</td><td class="px-4 py-2">Estilo</td></tr>
+                                    <tr class="bg-slate-50 border-b"><td class="px-4 py-2 font-semibold text-emerald-600">T</td><td class="px-4 py-2">Tone</td><td class="px-4 py-2">Tono</td></tr>
+                                    <tr class="bg-white border-b"><td class="px-4 py-2 font-semibold text-emerald-600">A</td><td class="px-4 py-2">Audience</td><td class="px-4 py-2">Audiencia</td></tr>
+                                    <tr class="bg-slate-50"><td class="px-4 py-2 font-semibold text-emerald-600">R</td><td class="px-4 py-2">Response</td><td class="px-4 py-2">Respuesta</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-5">
+                            <pre class="text-sm font-mono text-slate-700 whitespace-pre-wrap overflow-x-auto">CONTEXTO (C): Soy comprador técnico senior en RAVA S.A. Necesito cotizar repuestos pesados (cuchillas de motoniveladora y dientes de excavadora) a 3 distribuidores. Los plazos no pueden superar 15 días hábiles porque hay un frente de obra activo.
+
+OBJETIVO (O): Redactá un comparativo de precios unitarios y plazos de entrega para presentar al jefe de compras.
+
+ESTILO (S): Informe técnico-comercial conciso, orientado a decisiones.
+
+TONO (T): Profesional, objetivo, sin adjetivos innecesarios.
+
+AUDIENCIA (A): Jefe de Compras de RAVA S.A. — le interesa precio final, plazo y confiabilidad del proveedor.
+
+RESPUESTA (R): Matriz de decisión en tabla con columnas:
+[Proveedor | Repuesto | Precio Unit. | Plazo | Garantía | Recomendación]
+Incluir recomendación final en máximo 3 líneas.</pre>
                         </div>
                     </div>
                 </div>
 
-                <div class="formula-card">
-                    <h4 class="text-2xl font-bold mb-2 text-[#F8B229]">Fórmula 3: T-A-O</h4>
-                    <p class="font-semibold text-gray-500 mb-4">(Tarea - Acción - Objetivo)</p>
-                    <p class="mb-6 flex-grow">Ideal para resúmenes y análisis con una intención clara. Cada parte es clave para que la IA entienda no solo qué hacer, sino para qué lo necesitas.</p>
-                    <div class="space-y-2 text-sm mb-4 flex-grow">
-                        <p><span class="font-bold text-[#F8B229]">🔹 TASK:</span> Lo que necesita hacerse.</p>
-                        <p><span class="font-bold text-[#F8B229]">🔹 ACTION:</span> Qué tipo de respuesta debe dar.</p>
-                        <p><span class="font-bold text-[#F8B229]">🔹 GOAL:</span> Para qué lo necesitas.</p>
+                <!-- RTF -->
+                <div class="bg-white border-l-4 border-l-brand-blue border border-slate-200 rounded-xl p-6 md:p-8 shadow-sm reveal-right">
+                    <div class="mb-6">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <h4 class="font-poppins font-semibold text-2xl text-slate-900">RTF</h4>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">Fórmula Rápida — Tareas Operativas del Día a Día</span>
+                        </div>
+                        <p class="text-slate-700 mt-4"><strong>Cuándo usarlo:</strong> Tareas de bajo riesgo donde la velocidad importa. Transformaciones de datos, consultas rápidas, tareas internas.</p>
                     </div>
-                    <div class="bg-gray-100 p-4 rounded-lg mt-auto">
-                        <p class="font-semibold text-gray-800 mb-2">Ejemplo:</p>
-                        <blockquote class="text-sm text-gray-600 italic border-l-4 border-gray-300 pl-3">
-                            "Resume este artículo en 3 frases. El objetivo es destacar las ideas clave."
-                        </blockquote>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="taoChart"></canvas>
-                    </div>
-                </div>
-                
-                <div class="formula-card">
-                    <h4 class="text-2xl font-bold mb-2 text-[#00A6ED]">Fórmula 4: C-A-R-E</h4>
-                    <p class="font-semibold text-gray-500 mb-4">(Contexto - Acción - Resultado - Ejemplo)</p>
-                    <p class="mb-6 flex-grow">La más completa, úsala para las tareas más complejas. Al darle todos estos elementos, la respuesta será mucho más precisa y útil para tus trabajos prácticos.</p>
-                    <div class="space-y-2 text-sm mb-4 flex-grow">
-                        <p><span class="font-bold text-[#00A6ED]">🔹 CONTEXT:</span> Sitúa el problema o necesidad.</p>
-                        <p><span class="font-bold text-[#00A6ED]">🔹 ACTION:</span> Qué debe hacer ChatGPT.</p>
-                        <p><span class="font-bold text-[#00A6ED]">🔹 RESULT:</span> Qué resultado esperas.</p>
-                        <p><span class="font-bold text-[#00A6ED]">🔹 EXAMPLE:</span> Un ejemplo que aclare todo.</p>
-                    </div>
-                    <div class="bg-gray-100 p-4 rounded-lg mt-auto">
-                        <p class="font-semibold text-gray-800 mb-2">Ejemplo:</p>
-                        <blockquote class="text-sm text-gray-600 italic border-l-4 border-gray-300 pl-3">"Quiero entender los puntos clave del artículo adjunto.<br>Resume el contenido en 3 frases.<br>Necesito destacar las ideas principales sin entrar en detalles técnicos.<br>Por ejemplo: 'La postura influye en la altura' o 'Dormir bien ayuda al crecimiento'."</blockquote>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="careChart"></canvas>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <table class="w-full text-sm text-left text-slate-600 border border-slate-200 rounded-lg overflow-hidden">
+                                <thead class="text-xs text-slate-700 uppercase bg-slate-50">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-3 border-b">Letra</th>
+                                        <th scope="col" class="px-4 py-3 border-b">English</th>
+                                        <th scope="col" class="px-4 py-3 border-b">Español</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-white border-b"><td class="px-4 py-2 font-semibold text-blue-600">R</td><td class="px-4 py-2">Role</td><td class="px-4 py-2">Rol</td></tr>
+                                    <tr class="bg-slate-50 border-b"><td class="px-4 py-2 font-semibold text-blue-600">T</td><td class="px-4 py-2">Task</td><td class="px-4 py-2">Tarea</td></tr>
+                                    <tr class="bg-white"><td class="px-4 py-2 font-semibold text-blue-600">F</td><td class="px-4 py-2">Format</td><td class="px-4 py-2">Formato</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-5">
+                            <pre class="text-sm font-mono text-slate-700 whitespace-pre-wrap overflow-x-auto">ROL (R): Jefe de Mantenimiento Mecánico especializado en maquinaria vial pesada.
+
+TAREA (T): Clasificá estas averías de motoniveladoras por criticidad (Alta/Media/Baja) y listá los repuestos requeridos para cada una.
+
+FORMATO (F): Lista estructurada agrupada por código de falla, con columna de criticidad y repuestos necesarios.</pre>
+                        </div>
                     </div>
                 </div>
 
-            </div>
-        </section>
+                <!-- RISEN -->
+                <div class="bg-white border-l-4 border-l-brand-amber border border-slate-200 rounded-xl p-6 md:p-8 shadow-sm reveal-left">
+                    <div class="mb-6">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <h4 class="font-poppins font-semibold text-2xl text-slate-900">RISEN</h4>
+                            <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-1 rounded">Procesos Técnicos Secuenciales</span>
+                        </div>
+                        <p class="text-sm text-slate-500 mb-4">Creado por Kyle Balmer (Prompt Entrepreneur). También conocido como RISE o RISE-M.</p>
+                        <p class="text-slate-700"><strong>Cuándo usarlo:</strong> Procesos donde el orden de los pasos importa y hay restricciones que no se pueden violar. Auditorías, análisis técnicos, flujos de aprobación.</p>
+                    </div>
 
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <table class="w-full text-sm text-left text-slate-600 border border-slate-200 rounded-lg overflow-hidden">
+                                <thead class="text-xs text-slate-700 uppercase bg-slate-50">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-3 border-b">Letra</th>
+                                        <th scope="col" class="px-4 py-3 border-b">English</th>
+                                        <th scope="col" class="px-4 py-3 border-b">Español</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-white border-b"><td class="px-4 py-2 font-semibold text-amber-600">R</td><td class="px-4 py-2">Role</td><td class="px-4 py-2">Rol</td></tr>
+                                    <tr class="bg-slate-50 border-b"><td class="px-4 py-2 font-semibold text-amber-600">I</td><td class="px-4 py-2">Instructions</td><td class="px-4 py-2">Instrucciones</td></tr>
+                                    <tr class="bg-white border-b"><td class="px-4 py-2 font-semibold text-amber-600">S</td><td class="px-4 py-2">Steps</td><td class="px-4 py-2">Secuencia de pasos</td></tr>
+                                    <tr class="bg-slate-50 border-b"><td class="px-4 py-2 font-semibold text-amber-600">E</td><td class="px-4 py-2">End Goal</td><td class="px-4 py-2">Entregable final</td></tr>
+                                    <tr class="bg-white"><td class="px-4 py-2 font-semibold text-amber-600">N</td><td class="px-4 py-2">Narrowing</td><td class="px-4 py-2">Negativas / Restricciones</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-5">
+                            <pre class="text-sm font-mono text-slate-700 whitespace-pre-wrap overflow-x-auto">ROL (R): Auditor de Facturación Vial con experiencia en control de documentación de proveedores de áridos.
 
-        <section id="new-methodology" class="mb-20">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <h3 class="text-3xl font-bold mb-4 text-[#00A6ED]">La Anatomía de un Prompt de Nivel Superior</h3>
-                <p class="text-lg text-gray-600">Para obtener resultados que se sienten como magia, necesitas un prompt bien estructurado. Olvídate de las preguntas simples y aprende a darle a la IA una instrucción completa con todos estos componentes.</p>
-            </div>
+INSTRUCCIONES (I): Realizá un cruce completo entre los remitos de piedra recibidos y las órdenes de compra emitidas para el período marzo 2026.
 
-            <div class="space-y-6">
-                <!-- Rol -->
-                <div class="prompt-part-card">
-                    <div class="prompt-icon bg-red-100 text-red-600">🎭</div>
-                    <div>
-                        <h4 class="text-xl font-bold text-red-600">Rol</h4>
-                        <p class="text-gray-600">Asígnale un papel específico. Dile a la IA quién quieres que sea. <br><em>Ej: "Actúa como un coach personal de productividad enfocado en recomendar métodos de aprendizaje."</em></p>
-                    </div>
-                </div>
-                <!-- Tarea -->
-                <div class="prompt-part-card">
-                    <div class="prompt-icon bg-blue-100 text-blue-600">📝</div>
-                    <div>
-                        <h4 class="text-xl font-bold text-blue-600">Tarea</h4>
-                        <p class="text-gray-600">Define claramente qué debe hacer, paso a paso. <br><em>Ej: "Comienza con una lista de 3 a 7 viñetas de los pasos a seguir, enfocándote en la planificación conceptual."</em></p>
-                    </div>
-                </div>
-                <!-- Contexto -->
-                <div class="prompt-part-card">
-                    <div class="prompt-icon bg-yellow-100 text-yellow-600">🌍</div>
-                    <div>
-                        <h4 class="text-xl font-bold text-yellow-600">Contexto</h4>
-                        <p class="text-gray-600">Dale información de fondo y establece los límites. ¿Qué debe evitar? <br><em>Ej: "Excluye métodos comunes como tutoriales de YouTube o MOOCs. Prioriza la precisión de los nombres y asegúrate que cada método tenga un resumen breve."</em></p>
-                    </div>
-                </div>
-                 <!-- Razonamiento -->
-                <div class="prompt-part-card">
-                    <div class="prompt-icon bg-green-100 text-green-600">🧠</div>
-                    <div>
-                        <h4 class="text-xl font-bold text-green-600">Razonamiento</h4>
-                        <p class="text-gray-600">Pídele que "piense" antes de responder, que verifique y contraste la información. <br><em>Ej: "Verifica internamente los métodos para asegurar que sean reales y útiles. Contrasta los datos y resultados con fuentes confiables."</em></p>
-                    </div>
-                </div>
-                <!-- Formato de Salida -->
-                <div class="prompt-part-card">
-                    <div class="prompt-icon bg-purple-100 text-purple-600">📄</div>
-                    <div>
-                        <h4 class="text-xl font-bold text-purple-600">Formato de Salida</h4>
-                        <p class="text-gray-600">Especifica exactamente cómo quieres recibir la respuesta. <br><em>Ej: "Quiero los resultados como una tabla en formato Markdown con estas columnas: [Nombre del método], [Recursos principales], [Tiempo semanal]."</em></p>
-                    </div>
-                </div>
-                <!-- Condición de Finalización -->
-                <div class="prompt-part-card">
-                    <div class="prompt-icon bg-pink-100 text-pink-600">🏁</div>
-                    <div>
-                        <h4 class="text-xl font-bold text-pink-600">Condición de Finalización</h4>
-                        <p class="text-gray-600">Dile cuándo se considera que la tarea está completa. <br><em>Ej: "La tarea se completa cuando se entregan tres métodos únicos, verificados y de compromiso medio en el formato especificado."</em></p>
+SECUENCIA DE PASOS (S):
+1. Listar todos los remitos recibidos con sus cantidades.
+2. Asociar cada remito con su orden de compra correspondiente.
+3. Calcular el desvío porcentual entre cantidad remitida y ordenada.
+4. Marcar como "ALERTA" todo desvío superior al 2%.
+5. Generar resumen con total de inconsistencias detectadas.
+
+ENTREGABLE FINAL (E): Tabla comparativa con columnas:
+[Proveedor | Remito # | OC # | Cant. Remito (tn) | Cant. OC (tn) | Desvío % | Estado]
+Incluir párrafo de resumen con cantidad total de alertas.
+
+NEGATIVAS / RESTRICCIONES (N):
+- NO asumas datos que no estén en los documentos.
+- NO redondees las cantidades; usá los decimales originales.
+- Si falta un dato, marcalo como "SIN COINCIDENCIA" en vez de inventar.
+- Tolerancia aceptada: 2%. Solo alerta por encima de ese umbral.</pre>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <section id="responsabilidad" class="mb-20">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <h3 class="text-3xl font-bold mb-4 text-[#E43358]">Genial, pero... ¡Úsala bien!</h3>
-                <p class="text-lg text-gray-600">La IA es una herramienta increíble, pero como todo poder, conlleva una gran responsabilidad. Entender sus beneficios y sus límites es clave para que de verdad te ayude a aprender.</p>
+        </div>
+    </section>
+
+    <!-- MODULE 4: TÉCNICAS AVANZADAS -->
+    <section id="tecnicas" class="py-16 md:py-24 bg-white border-t border-slate-200 px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-12 text-center reveal">
+                <h3 class="font-poppins font-semibold text-3xl text-brand-blue mb-4">Técnicas Avanzadas de Prompt Engineering</h3>
+                <p class="text-lg text-slate-600">Herramientas complementarias que potencian cualquier framework. Dominá estas 4 técnicas para llevar tus prompts al siguiente nivel.</p>
             </div>
-            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
-                 <p class="text-center font-semibold text-lg mb-4">Comparativa: Beneficios vs. Responsabilidades</p>
-                 <div class="chart-container" style="height: 300px; max-height: 300px;">
-                    <canvas id="benefitsChart"></canvas>
+
+            <div class="space-y-4 stagger">
+                <!-- Acc 1 -->
+                <div class="accordion-card border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm reveal">
+                    <button class="accordion-trigger w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-slate-50 transition-colors focus:outline-none">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-2xl">🏷️</span>
+                            <span class="font-poppins font-semibold text-lg text-slate-900">Delimitadores XML <span class="text-brand-blue font-normal text-sm ml-2">— XML Delimiters</span></span>
+                        </div>
+                        <svg class="accordion-icon w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content px-5 md:px-6 pb-6 bg-slate-50 border-t border-slate-100">
+                        <p class="text-slate-700 mb-4 font-medium">Separar instrucciones de datos con etiquetas como &lt;contexto&gt;, &lt;datos&gt;, &lt;instrucciones&gt;. La base de todo prompt profesional: que la IA distinga entre lo que tiene que hacer y los datos que tiene que procesar.</p>
+                        <div class="bg-white border border-slate-200 rounded-lg p-4">
+                            <pre class="text-sm font-mono text-slate-600 whitespace-pre-wrap">&lt;sistema&gt;
+Sos un asistente de compras de RAVA S.A.
+&lt;/sistema&gt;
+
+&lt;politica_empresa&gt;
+Toda compra mayor a $500.000 requiere 3 cotizaciones comparativas.
+&lt;/politica_empresa&gt;
+
+&lt;datos_proveedor&gt;
+Proveedor A: Cuchillas Cat $180.000 c/u — Plazo 10 días
+Proveedor B: Cuchillas Cat $165.000 c/u — Plazo 22 días
+Proveedor C: Cuchillas genéricas $120.000 c/u — Plazo 5 días
+&lt;/datos_proveedor&gt;
+
+&lt;instrucciones&gt;
+Analizá las cotizaciones y generá una recomendación fundamentada considerando precio, plazo y calidad.
+&lt;/instrucciones&gt;</pre>
+                        </div>
+                    </div>
                 </div>
-                 <div class="mt-8 text-center text-gray-700 p-4 bg-yellow-100 border-l-4 border-yellow-400">
-                    <p><span class="font-bold">¡MUY IMPORTANTE!</span> La IA es una HERRAMIENTA, no un reemplazo de tu cerebro. Úsala como punto de partida, no como punto final. ¡El objetivo es que APRENDAS!</p>
+
+                <!-- Acc 2 -->
+                <div class="accordion-card border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm reveal">
+                    <button class="accordion-trigger w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-slate-50 transition-colors focus:outline-none">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-2xl">🎯</span>
+                            <span class="font-poppins font-semibold text-lg text-slate-900">Few-Shot Prompting <span class="text-brand-emerald font-normal text-sm ml-2">— Aprendizaje por Ejemplos</span></span>
+                        </div>
+                        <svg class="accordion-icon w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content px-5 md:px-6 pb-6 bg-slate-50 border-t border-slate-100">
+                        <p class="text-slate-700 mb-4 font-medium">Darle 2-3 ejemplos de entrada → salida antes de la consulta real, para que la IA imite el patrón exacto. Ideal cuando la salida debe seguir un formato muy específico.</p>
+                        <div class="bg-white border border-slate-200 rounded-lg p-4">
+                            <pre class="text-sm font-mono text-slate-600 whitespace-pre-wrap">EJEMPLO 1:
+Entrada: "Falla en sistema hidráulico de la hoja - MN-03"
+Salida: {Equipo: MN-03, Sistema: Hidráulico, Criticidad: ALTA, Repuestos: [Cilindro hidráulico, Sellos, Manguera HP]}
+
+EJEMPLO 2:
+Entrada: "Luz de tablero encendida en cabina - MN-07"
+Salida: {Equipo: MN-07, Sistema: Eléctrico, Criticidad: BAJA, Repuestos: [Sensor de tablero, Fusible 15A]}
+
+AHORÁ CLASIFICÁ:
+Entrada: "Vibración excesiva en diferencial trasero - MN-01"</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acc 3 -->
+                <div class="accordion-card border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm reveal">
+                    <button class="accordion-trigger w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-slate-50 transition-colors focus:outline-none">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-2xl">🧠</span>
+                            <span class="font-poppins font-semibold text-lg text-slate-900">Chain-of-Thought <span class="text-brand-amber font-normal text-sm ml-2">— Razonamiento Paso a Paso</span></span>
+                        </div>
+                        <svg class="accordion-icon w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content px-5 md:px-6 pb-6 bg-slate-50 border-t border-slate-100">
+                        <p class="text-slate-700 mb-4 font-medium">Pedirle a la IA que 'piense paso a paso' y muestre su razonamiento intermedio antes de dar la respuesta final. Para cálculos, auditorías y análisis donde necesitás ver CÓMO llegó a la conclusión.</p>
+                        <div class="bg-white border border-slate-200 rounded-lg p-4">
+                            <pre class="text-sm font-mono text-slate-600 whitespace-pre-wrap">Antes de dar tu conclusión, mostrá tu razonamiento paso a paso:
+1. Primero identificá cada remito y su OC asociada
+2. Luego calculá el desvío porcentual de cada par
+3. Después clasificá los desvíos en "Normal" (≤2%) o "Alerta" (>2%)
+4. Finalmente, presentá la tabla completa y el resumen de hallazgos</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acc 4 -->
+                <div class="accordion-card border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm reveal">
+                    <button class="accordion-trigger w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-slate-50 transition-colors focus:outline-none">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-2xl">✅</span>
+                            <span class="font-poppins font-semibold text-lg text-slate-900">Self-Verification <span class="text-brand-coral font-normal text-sm ml-2">— Auto-Verificación</span></span>
+                        </div>
+                        <svg class="accordion-icon w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content px-5 md:px-6 pb-6 bg-slate-50 border-t border-slate-100">
+                        <p class="text-slate-700 mb-4 font-medium">Pedirle a la IA que verifique su propia respuesta contra un checklist antes de entregarla. Reduce errores y 'alucinaciones' en tareas críticas.</p>
+                        <div class="bg-white border border-slate-200 rounded-lg p-4">
+                            <pre class="text-sm font-mono text-slate-600 whitespace-pre-wrap">Después de generar la ficha técnica, verificala contra este checklist:
+- [ ] ¿Todas las tolerancias de compactación tienen unidades (%, mm)?
+- [ ] ¿Los ensayos obligatorios corresponden a la normativa vigente?
+- [ ] ¿No inventé datos que no estaban en el pliego original?
+- [ ] ¿La ficha tiene el formato de viñetas solicitado?
+Si encontrás errores, corregí y emití la versión final.</pre>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="cta" class="bg-[#34495E] text-white rounded-2xl p-6 md:p-12">
-            <div class="text-center mb-8">
-                <h3 class="text-4xl font-bold mb-4">🚀 ¿ChatGPT, Gemini, Copilot o Perplexity?</h3>
-                <p class="text-lg text-gray-300 max-w-3xl mx-auto">¡Elige la IA según lo que necesitas! Aquí tienes una guía rápida para empezar a experimentar.</p>
+    <!-- MODULE 5: COMPARADOR "ANTES VS. DESPUÉS" -->
+    <section id="antes-despues" class="py-16 md:py-24 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12 text-center">
+                <h3 class="font-poppins font-semibold text-3xl text-brand-blue mb-4">De Prompt Vago a Prompt Profesional</h3>
+                <p class="text-lg text-slate-600">Mirá la diferencia radical entre un prompt sin estructura y uno con framework aplicado. Elegí tu área para ver el ejemplo.</p>
             </div>
-        
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
-                
-                <!-- ChatGPT Card -->
-                <div class="bg-black bg-opacity-20 p-4 rounded-lg flex flex-col space-y-4">
-                    <h4 class="text-xl font-bold text-center border-b border-gray-600 pb-2">CHATGPT</h4>
-                    <div>
-                        <h5 class="font-bold text-blue-300">LO MEJOR PARA</h5>
-                        <p>Crear, escribir, aprender</p>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-blue-300">DESTACA EN</h5>
-                        <p>Creatividad y conversación</p>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-blue-300">ÚSALO SI QUIERES</h5>
-                        <p>Escribir contenido, aprender algo nuevo, practicar ideas</p>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-blue-300">LO ENCUENTRAS</h5>
-                        <p>Web, App, Escritorio (Versión Plus: GPT-4)</p>
-                    </div>
-                </div>
 
-                <!-- Gemini Card -->
-                <div class="bg-black bg-opacity-20 p-4 rounded-lg flex flex-col space-y-4">
-                    <h4 class="text-xl font-bold text-center border-b border-gray-600 pb-2">GEMINI</h4>
-                    <div>
-                        <h5 class="font-bold text-blue-300">LO MEJOR PARA</h5>
-                        <p>Asistente móvil e integración con Google</p>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-blue-300">DESTACA EN</h5>
-                        <p>Organización personal y búsquedas</p>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-blue-300">ÚSALO SI QUIERES</h5>
-                        <p>Revisar tu calendario, buscar lugares, usar Drive o Gmail</p>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-blue-300">LO ENCUENTRAS</h5>
-                        <p>App (Android/iOS), Gmail, Chrome</p>
-                    </div>
+            <!-- Tab Navigation -->
+            <div class="border-b border-slate-200 mb-8 overflow-x-auto no-scrollbar">
+                <div class="flex space-x-6 min-w-max px-2">
+                    <button class="bva-tab active pb-3 font-medium text-slate-600 border-b-2 border-transparent hover:text-slate-900 transition-colors" data-target="tab-admin">Administración</button>
+                    <button class="bva-tab pb-3 font-medium text-slate-600 border-b-2 border-transparent hover:text-slate-900 transition-colors" data-target="tab-compras">Compras</button>
+                    <button class="bva-tab pb-3 font-medium text-slate-600 border-b-2 border-transparent hover:text-slate-900 transition-colors" data-target="tab-rrhh">RRHH</button>
+                    <button class="bva-tab pb-3 font-medium text-slate-600 border-b-2 border-transparent hover:text-slate-900 transition-colors" data-target="tab-taller">Taller</button>
+                    <button class="bva-tab pb-3 font-medium text-slate-600 border-b-2 border-transparent hover:text-slate-900 transition-colors" data-target="tab-tecnicos">Técnicos</button>
+                    <button class="bva-tab pb-3 font-medium text-slate-600 border-b-2 border-transparent hover:text-slate-900 transition-colors" data-target="tab-direccion">Dirección</button>
                 </div>
-
-                <!-- Copilot Card -->
-                <div class="bg-black bg-opacity-20 p-4 rounded-lg flex flex-col space-y-4">
-                    <h4 class="text-xl font-bold text-center border-b border-gray-600 pb-2">COPILOT</h4>
-                    <div>
-                        <h5 class="font-bold text-blue-300">LO MEJOR PARA</h5>
-                        <p>Trabajar en Word, Excel, PowerPoint</p>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-blue-300">DESTACA EN</h5>
-                        <p>Automatización de oficina</p>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-blue-300">ÚSALO SI QUIERES</h5>
-                        <p>Resumir documentos, crear informes, automatizar tareas</p>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-blue-300">LO ENCUENTRAS</h5>
-                        <p>Office 365, Apps de Microsoft</p>
-                    </div>
-                </div>
-
-                <!-- Perplexity Card -->
-                <div class="bg-black bg-opacity-20 p-4 rounded-lg flex flex-col space-y-4">
-                    <h4 class="text-xl font-bold text-center border-b border-gray-600 pb-2">PERPLEXITY</h4>
-                    <div>
-                        <h5 class="font-bold text-blue-300">LO MEJOR PARA</h5>
-                        <p>Buscar con fuentes reales</p>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-blue-300">DESTACA EN</h5>
-                        <p>Precisión y citas</p>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-blue-300">ÚSALO SI QUIERES</h5>
-                        <p>Investigar y leer fuentes confiables</p>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-blue-300">LO ENCUENTRAS</h5>
-                        <p>Web (Gratuito y sin cuenta)</p>
-                    </div>
-                </div>
-
             </div>
-        </section>
 
-    </main>
+            <!-- Tab Contents Container -->
+            <div id="bva-content-container">
+                <!-- Injected via JS to keep HTML clean, or hardcoded here -->
+            </div>
+        </div>
+    </section>
 
+    <!-- MODULE 6: GENERADOR DE PROMPTS + BIBLIOTECA -->
+    <section id="generador" class="py-16 md:py-24 bg-white border-t border-slate-200 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+            
+            <!-- Module 6 Tabs -->
+            <div class="flex justify-center mb-12">
+                <div class="bg-slate-100 p-1 rounded-lg flex space-x-1">
+                    <button id="btn-tab-generador" class="module6-tab px-6 py-2 rounded-md font-medium text-sm transition-colors bg-white text-brand-blue shadow-sm">Generador</button>
+                    <button id="btn-tab-biblioteca" class="module6-tab px-6 py-2 rounded-md font-medium text-sm text-slate-500 hover:text-slate-700 transition-colors">Biblioteca</button>
+                </div>
+            </div>
+
+            <!-- 6.1 GENERADOR INTERACTIVO -->
+            <div id="view-generador" class="block">
+                <div class="mb-10 text-center">
+                    <h3 class="font-poppins font-semibold text-3xl text-slate-900 mb-2">Generador de Prompts</h3>
+                    <p class="text-slate-500">Armá tu prompt profesional en segundos</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Form Side -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <!-- Area Selection -->
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">1. Seleccioná el Área</label>
+                            <select id="gen-area" class="w-full bg-slate-50 border border-slate-200 text-slate-700 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-shadow">
+                                <option value="admin">Administración</option>
+                                <option value="compras">Compras</option>
+                                <option value="rrhh">RRHH</option>
+                                <option value="taller">Taller</option>
+                                <option value="tecnicos">Técnicos</option>
+                                <option value="direccion">Dirección</option>
+                            </select>
+                        </div>
+
+                        <!-- Framework Selection -->
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">2. Elegí el Framework</label>
+                            <div class="flex space-x-2">
+                                <button class="gen-framework-btn flex-1 py-2 rounded-md border text-sm font-medium transition-colors border-brand-blue bg-blue-50 text-brand-blue" data-fw="costar">CO-STAR</button>
+                                <button class="gen-framework-btn flex-1 py-2 rounded-md border text-sm font-medium transition-colors border-slate-200 bg-white text-slate-600 hover:bg-slate-50" data-fw="rtf">RTF</button>
+                                <button class="gen-framework-btn flex-1 py-2 rounded-md border text-sm font-medium transition-colors border-slate-200 bg-white text-slate-600 hover:bg-slate-50" data-fw="risen">RISEN</button>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Inputs Container -->
+                        <div id="gen-inputs" class="space-y-4">
+                            <!-- Injected via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Preview Side -->
+                    <div class="lg:col-span-7">
+                        <div class="sticky top-24 bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-sm h-full flex flex-col">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="font-poppins font-semibold text-slate-800">Vista Previa</h4>
+                                <button id="btn-copy-gen" class="text-sm flex items-center space-x-2 bg-white border border-slate-300 text-slate-700 px-3 py-1.5 rounded hover:bg-slate-50 transition-colors">
+                                    <span>📋</span> <span>Copiar Prompt</span>
+                                </button>
+                            </div>
+                            <div class="flex-grow bg-white border border-slate-200 rounded-lg p-4 overflow-y-auto">
+                                <pre id="gen-preview" class="text-sm font-mono text-slate-700 whitespace-pre-wrap"></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6.2 BIBLIOTECA DE PROMPTS -->
+            <div id="view-biblioteca" class="hidden">
+                <div class="mb-10 text-center">
+                    <h3 class="font-poppins font-semibold text-3xl text-slate-900 mb-2">Biblioteca de Prompts Listos</h3>
+                    <p class="text-slate-500">Copiá y adaptá estos prompts validados para tu trabajo diario</p>
+                </div>
+
+                <!-- Filter -->
+                <div class="flex flex-wrap justify-center gap-2 mb-10">
+                    <button class="lib-filter px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-white transition-colors" data-filter="all">Todos</button>
+                    <button class="lib-filter px-4 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors" data-filter="admin">Administración</button>
+                    <button class="lib-filter px-4 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors" data-filter="compras">Compras</button>
+                    <button class="lib-filter px-4 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors" data-filter="rrhh">RRHH</button>
+                    <button class="lib-filter px-4 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors" data-filter="taller">Taller</button>
+                    <button class="lib-filter px-4 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors" data-filter="tecnicos">Técnicos</button>
+                    <button class="lib-filter px-4 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors" data-filter="direccion">Dirección</button>
+                </div>
+
+                <!-- Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="lib-grid">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULE 7: GOBERNANZA Y REGLAS DE ORO -->
+    <section id="seguridad" class="py-16 md:py-24 border-t border-slate-200 px-4 sm:px-6 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="mb-12 text-center">
+                <h3 class="font-poppins font-semibold text-3xl text-brand-coral mb-4">Genial, pero... ¡Usala con Responsabilidad!</h3>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">La IA es una herramienta increíble, pero como todo poder, conlleva una gran responsabilidad. Entender sus beneficios y sus límites es clave.</p>
+            </div>
+
+            <!-- 3 Golden Rules -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-6 shadow-sm">
+                    <div class="text-3xl mb-4">🗑️</div>
+                    <h4 class="font-poppins font-semibold text-slate-900 text-lg mb-2">Garbage In = Garbage Out</h4>
+                    <p class="text-slate-700 text-sm">Prompt vago = respuesta inútil. La calidad de lo que recibís depende directamente de la calidad y estructura de lo que pedís.</p>
+                </div>
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 shadow-sm">
+                    <div class="text-3xl mb-4">👁️</div>
+                    <h4 class="font-poppins font-semibold text-slate-900 text-lg mb-2">Human-in-the-Loop</h4>
+                    <p class="text-slate-700 text-sm">La IA sugiere, vos decidís. Siempre validá técnicamente antes de usar cualquier respuesta. La responsabilidad profesional es tuya.</p>
+                </div>
+                <div class="bg-red-50 border border-red-200 rounded-xl p-6 shadow-sm">
+                    <div class="text-3xl mb-4">🔒</div>
+                    <h4 class="font-poppins font-semibold text-slate-900 text-lg mb-2">Confidencialidad</h4>
+                    <p class="text-slate-700 text-sm">Nunca subas datos sensibles sin anonimizar. Nombres de clientes, montos de contratos, datos de empleados deben enmascararse antes.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- Interactive Checklist -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm">
+                    <h4 class="font-poppins font-semibold text-xl text-slate-900 mb-2">✅ Checklist Anti-Alucinaciones</h4>
+                    <p class="text-sm text-slate-500 mb-6">Antes de usar cualquier respuesta de IA, verificá estos 4 puntos:</p>
+                    
+                    <div class="space-y-4" id="checklist-container">
+                        <label class="flex items-start space-x-3 cursor-pointer group">
+                            <input type="checkbox" class="checklist-item mt-1 w-5 h-5 rounded border-slate-300 text-brand-emerald focus:ring-brand-emerald cursor-pointer">
+                            <span class="text-slate-700 group-hover:text-slate-900 transition-colors">¿Verifiqué los datos/números con la fuente original?</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer group">
+                            <input type="checkbox" class="checklist-item mt-1 w-5 h-5 rounded border-slate-300 text-brand-emerald focus:ring-brand-emerald cursor-pointer">
+                            <span class="text-slate-700 group-hover:text-slate-900 transition-colors">¿La respuesta tiene sentido con mi experiencia en el tema?</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer group">
+                            <input type="checkbox" class="checklist-item mt-1 w-5 h-5 rounded border-slate-300 text-brand-emerald focus:ring-brand-emerald cursor-pointer">
+                            <span class="text-slate-700 group-hover:text-slate-900 transition-colors">¿Anonimicé datos sensibles antes de pegar en la IA?</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer group">
+                            <input type="checkbox" class="checklist-item mt-1 w-5 h-5 rounded border-slate-300 text-brand-emerald focus:ring-brand-emerald cursor-pointer">
+                            <span class="text-slate-700 group-hover:text-slate-900 transition-colors">¿Revisé que no haya inventado información que yo no le di?</span>
+                        </label>
+                    </div>
+
+                    <div id="checklist-success" class="mt-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg text-sm font-semibold hidden transition-all">
+                        ✅ ¡Listo! Podés usar la respuesta con confianza.
+                    </div>
+                </div>
+
+                <!-- Anonymization Guide -->
+                <div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm h-full">
+                        <h4 class="font-poppins font-semibold text-xl text-slate-900 mb-6">Guía Rápida de Anonimización</h4>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left text-slate-600">
+                                <thead class="text-xs text-slate-500 uppercase border-b border-slate-200">
+                                    <tr>
+                                        <th class="py-3 px-2">Dato real</th>
+                                        <th class="py-3 px-2 text-right">Dato anonimizado</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100">
+                                    <tr>
+                                        <td class="py-3 px-2 font-medium">Proveedor: Hormigón Córdoba S.A.</td>
+                                        <td class="py-3 px-2 text-right text-slate-400">Proveedor A</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-2 font-medium">Cliente: Municipalidad de X</td>
+                                        <td class="py-3 px-2 text-right text-slate-400">Organismo Público A</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-2 font-medium">Monto: $4.500.000</td>
+                                        <td class="py-3 px-2 text-right text-slate-400">$X.XXX.XXX (o prop.)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-2 font-medium">DNI: 30.555.123</td>
+                                        <td class="py-3 px-2 text-right text-slate-400">[REDACTADO]</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-2 font-medium">Patente: AA 123 BB</td>
+                                        <td class="py-3 px-2 text-right text-slate-400">[REDACTADO]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Callout -->
+            <div class="mt-12 bg-amber-100 border-l-4 border-amber-500 p-6 rounded-r-lg">
+                <p class="text-amber-900 font-medium">
+                    <strong class="font-bold">¡MUY IMPORTANTE!</strong> La IA es una HERRAMIENTA, no un reemplazo de tu criterio profesional. Usala como punto de partida, no como punto final. El objetivo es que seas más productivo, no que dejes de pensar.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy py-10 px-6 text-center text-slate-400 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto">
+            <p class="font-poppins font-medium text-slate-300 mb-2">RAVA S.A. — Capacitación en Nuevas Tecnologías e IA — 2026</p>
+            <p class="text-sm">Material desarrollado por Brian Ruiz Moreno y Leon Schwegler</p>
+        </div>
+    </footer>
+
+    <!-- Toast Component -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-4 py-3 rounded-lg shadow-lg flex items-center space-x-3 z-50">
+        <span>✅</span>
+        <span class="font-medium text-sm">¡Prompt copiado al portapapeles!</span>
+    </div>
+
+    <!-- MAIN JAVASCRIPT -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            const wrapLabel = (label, maxLength = 16) => {
-                if (label.length <= maxLength) return label;
-                const words = label.split(' ');
-                let lines = [];
-                let currentLine = '';
-                for (const word of words) {
-                    if ((currentLine + ' ' + word).length > maxLength) {
-                        lines.push(currentLine);
-                        currentLine = word;
+            /* 1. Smooth Scroll & Sticky Nav Highlighting */
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active', 'text-brand-blue');
+                    link.classList.add('hover:text-slate-900');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active', 'text-brand-blue');
+                        link.classList.remove('hover:text-slate-900');
+                    }
+                });
+            });
+
+            /* 2. Expandable Cards (Técnicas Avanzadas) */
+            const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+            accordionTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const card = trigger.closest('.accordion-card');
+                    const content = trigger.nextElementSibling;
+                    const icon = trigger.querySelector('.accordion-icon');
+                    
+                    // Close others first
+                    accordionTriggers.forEach(otherTrigger => {
+                        if (otherTrigger !== trigger) {
+                            const otherCard = otherTrigger.closest('.accordion-card');
+                            const otherContent = otherTrigger.nextElementSibling;
+                            const otherIcon = otherTrigger.querySelector('.accordion-icon');
+                            otherContent.classList.remove('open');
+                            otherIcon.classList.remove('open');
+                            if (otherCard) otherCard.classList.remove('accordion-open');
+                        }
+                    });
+
+                    // Toggle current
+                    content.classList.toggle('open');
+                    icon.classList.toggle('open');
+                    if (card) card.classList.toggle('accordion-open');
+                });
+            });
+
+            /* 3. Antes vs Después Tabs & Data */
+            const bvaData = {
+                'tab-admin': {
+                    bad: "Fijate si las facturas están bien",
+                    goodTitle: "RISEN",
+                    good: "ROL (R): Auditor de Facturación Vial con experiencia en control de documentación de proveedores de áridos.\n\nINSTRUCCIONES (I): Realizá un cruce completo entre los remitos de piedra recibidos y las órdenes de compra emitidas para el período marzo 2026.\n\nSECUENCIA DE PASOS (S):\n1. Listar todos los remitos recibidos con sus cantidades (en toneladas).\n2. Asociar cada remito con su orden de compra correspondiente.\n3. Calcular el desvío porcentual entre cantidad remitida y ordenada.\n4. Marcar como \"ALERTA\" todo desvío superior al 2%.\n5. Generar resumen con total de inconsistencias detectadas.\n\nENTREGABLE FINAL (E): Tabla comparativa con columnas:\n[Proveedor | Remito # | OC # | Cant. Remito (tn) | Cant. OC (tn) | Desvío % | Estado]\nIncluir párrafo de resumen con cantidad total de alertas.\n\nNEGATIVAS / RESTRICCIONES (N):\n- NO asumas datos que no estén en los documentos proporcionados.\n- NO redondees las cantidades; usá los decimales originales.\n- Si falta un dato, marcalo como \"SIN COINCIDENCIA\" en vez de inventar.\n- Tolerancia aceptada: 2%. Solo alerta por encima de ese umbral.",
+                    exp: "El prompt vago genera consejos genéricos sobre qué revisar. El prompt profesional genera directamente la tabla de cruce con alertas de desvío lista para presentar."
+                },
+                'tab-compras': {
+                    bad: "Necesito comparar precios de unos repuestos",
+                    goodTitle: "CO-STAR",
+                    good: "CONTEXTO (C): Soy comprador técnico senior en RAVA S.A. Necesito cotizar repuestos pesados (cuchillas de motoniveladora y dientes de excavadora) a 3 distribuidores. Los plazos no pueden superar 15 días hábiles porque hay un frente de obra activo.\n\nOBJETIVO (O): Redactá un comparativo de precios unitarios y plazos de entrega para presentar al jefe de compras.\n\nESTILO (S): Informe técnico-comercial conciso, orientado a decisiones.\n\nTONO (T): Profesional, objetivo, sin adjetivos innecesarios.\n\nAUDIENCIA (A): Jefe de Compras de RAVA S.A. — le interesa precio final, plazo y confiabilidad del proveedor.\n\nRESPUESTA (R): Matriz de decisión en tabla con columnas:\n[Proveedor | Repuesto | Precio Unit. | Plazo | Garantía | Recomendación]\nIncluir recomendación final en máximo 3 líneas.",
+                    exp: "El prompt vago da una tabla genérica sin contexto de urgencia. El prompt profesional genera una matriz de decisión con recomendación final ajustada a los plazos de obra."
+                },
+                'tab-rrhh': {
+                    bad: "Organizame los turnos de la semana",
+                    goodTitle: "RTF",
+                    good: "ROL (R): Coordinador de Personal de Obra con experiencia en gestión de turnos rotativos y control de asistencia en frentes móviles.\n\nTAREA (T): Estructurá el parte de novedades semanal organizando los descansos, ausencias y rotaciones de las cuadrillas de obra.\n\nFORMATO (F): Resumen ejecutivo clasificado por cuadrilla, con tabla que incluya: [Cuadrilla | Personal | Turno | Estado | Observaciones]",
+                    exp: "El prompt vago produce una grilla de turnos genérica. El prompt profesional genera el parte de novedades semanal completo, clasificado por cuadrilla y listo para firmar."
+                },
+                'tab-taller': {
+                    bad: "La motoniveladora anda mal, qué puede ser?",
+                    goodTitle: "RTF",
+                    good: "ROL (R): Jefe de Mantenimiento Mecánico especializado en maquinaria vial pesada.\n\nTAREA (T): Clasificá estas averías de motoniveladoras por criticidad (Alta/Media/Baja) y listá los repuestos requeridos para cada una.\n\nFORMATO (F): Lista estructurada agrupada por código de falla, con columna de criticidad y repuestos necesarios.",
+                    exp: "El prompt vago da una lista genérica de posibles fallas. El prompt profesional clasifica las averías reales por criticidad con los repuestos específicos que hay que pedir."
+                },
+                'tab-tecnicos': {
+                    bad: "Resumime este pliego",
+                    goodTitle: "RISEN",
+                    good: "ROL (R): Ingeniero de Oficina Técnica especializado en vialidad y carpeta asfáltica.\n\nINSTRUCCIONES (I): Analizá el pliego de especificaciones adjunto para carpeta asfáltica y extraé la información técnica clave.\n\nSECUENCIA DE PASOS (S):\n1. Identificar las tolerancias de compactación exigidas.\n2. Listar todos los ensayos obligatorios con sus normas de referencia.\n3. Extraer los espesores mínimos y máximos especificados.\n4. Señalar cualquier requisito especial o condición de rechazo.\n\nENTREGABLE FINAL (E): Ficha técnica con viñetas claras, organizada por categoría (Compactación, Ensayos, Espesores, Requisitos Especiales).\n\nNEGATIVAS / RESTRICCIONES (N):\n- NO resumas de forma genérica; extraé datos numéricos exactos.\n- NO omitas las normas IRAM/DNV referenciadas en el pliego.\n- Si un dato no está explícito en el pliego, indicalo como \"No especificado\".",
+                    exp: "El prompt vago genera un resumen superficial que pierde datos críticos. El prompt profesional extrae tolerancias exactas, ensayos obligatorios con sus normas, y señala lo que falta."
+                },
+                'tab-direccion': {
+                    bad: "Haceme un resumen del avance de obra",
+                    goodTitle: "CO-STAR",
+                    good: "CONTEXTO (C): Soy gerente de RAVA S.A. y necesito presentar el avance semanal del frente de obra Ruta Provincial 15, tramo km 42-58. La obra tiene un plazo contractual de 180 días corridos y llevamos 95 días.\n\nOBJETIVO (O): Generá un resumen ejecutivo del avance semanal con indicadores clave y detección de desvíos respecto al cronograma.\n\nESTILO (S): Informe ejecutivo conciso, orientado a la toma de decisiones.\n\nTONO (T): Profesional, directo, con foco en datos y desvíos críticos.\n\nAUDIENCIA (A): Directorio de RAVA S.A. — les interesa el avance porcentual, los desvíos de cronograma y cualquier riesgo operativo.\n\nRESPUESTA (R): Informe de 1 página con:\n- Indicadores clave: Avance programado vs. real (%)\n- Tabla de hitos: [Hito | Fecha Programada | Fecha Real | Estado]\n- Desvíos críticos y acciones correctivas (máximo 3)\n- Semáforo general del proyecto (Verde/Amarillo/Rojo)",
+                    exp: "El prompt vago genera un texto narrativo sin datos concretos. El prompt profesional produce un informe ejecutivo con semáforo, indicadores y desvíos listo para presentar al directorio."
+                }
+            };
+
+            const bvaContainer = document.getElementById('bva-content-container');
+            const bvaTabs = document.querySelectorAll('.bva-tab');
+
+            function renderBva(tabId) {
+                const data = bvaData[tabId];
+                bvaContainer.innerHTML = `
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 animation-fade-in">
+                        <!-- Bad Prompt -->
+                        <div class="bg-red-50 border border-red-200 rounded-2xl p-6 shadow-sm flex flex-col h-full">
+                            <h4 class="font-poppins font-semibold text-red-600 text-xl mb-4 flex items-center">
+                                <span class="mr-2">❌</span> Prompt Vago
+                            </h4>
+                            <div class="bg-white border border-red-100 rounded-xl p-5 flex-grow font-mono text-slate-700 text-sm">
+                                "${data.bad}"
+                            </div>
+                        </div>
+                        
+                        <!-- Good Prompt -->
+                        <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 shadow-sm flex flex-col h-full">
+                            <h4 class="font-poppins font-semibold text-emerald-600 text-xl mb-4 flex items-center">
+                                <span class="mr-2">✅</span> Prompt Profesional <span class="ml-auto text-xs bg-emerald-200 text-emerald-800 px-2 py-1 rounded-md font-sans">${data.goodTitle}</span>
+                            </h4>
+                            <div class="bg-white border border-emerald-100 rounded-xl p-5 flex-grow font-mono text-slate-700 text-sm whitespace-pre-wrap overflow-x-auto">
+${data.good}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 text-center px-4">
+                        <p class="inline-block bg-slate-100 border border-slate-200 text-slate-700 px-6 py-3 rounded-lg text-sm font-medium">
+                            💡 <span class="ml-2">${data.exp}</span>
+                        </p>
+                    </div>
+                `;
+            }
+
+            bvaTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    bvaTabs.forEach(t => {
+                        t.classList.remove('active', 'border-brand-blue', 'text-slate-900');
+                        t.classList.add('border-transparent');
+                    });
+                    tab.classList.add('active', 'border-brand-blue', 'text-slate-900');
+                    tab.classList.remove('border-transparent');
+                    renderBva(tab.dataset.target);
+                });
+            });
+            // Init first BVA tab
+            bvaTabs[0].classList.add('active', 'border-brand-blue', 'text-slate-900');
+            renderBva('tab-admin');
+
+
+            /* 4. Generator & Library Toggle */
+            const btnGen = document.getElementById('btn-tab-generador');
+            const btnLib = document.getElementById('btn-tab-biblioteca');
+            const viewGen = document.getElementById('view-generador');
+            const viewLib = document.getElementById('view-biblioteca');
+
+            btnGen.addEventListener('click', () => {
+                viewGen.classList.remove('hidden');
+                viewLib.classList.add('hidden');
+                btnGen.classList.replace('text-slate-500', 'text-brand-blue');
+                btnGen.classList.add('bg-white', 'shadow-sm');
+                btnGen.classList.remove('hover:text-slate-700');
+                
+                btnLib.classList.replace('text-brand-blue', 'text-slate-500');
+                btnLib.classList.remove('bg-white', 'shadow-sm');
+                btnLib.classList.add('hover:text-slate-700');
+            });
+
+            btnLib.addEventListener('click', () => {
+                viewLib.classList.remove('hidden');
+                viewGen.classList.add('hidden');
+                btnLib.classList.replace('text-slate-500', 'text-brand-blue');
+                btnLib.classList.add('bg-white', 'shadow-sm');
+                btnLib.classList.remove('hover:text-slate-700');
+                
+                btnGen.classList.replace('text-brand-blue', 'text-slate-500');
+                btnGen.classList.remove('bg-white', 'shadow-sm');
+                btnGen.classList.add('hover:text-slate-700');
+            });
+
+
+            /* 5. Generator Logic */
+            const genConfig = {
+                costar: [
+                    { id: 'c', label: 'Contexto (C)', phKey: 'contexto' },
+                    { id: 'o', label: 'Objetivo (O)', phKey: 'objetivo' },
+                    { id: 's', label: 'Estilo (S)', phKey: 'estilo' },
+                    { id: 't', label: 'Tono (T)', phKey: 'tono' },
+                    { id: 'a', label: 'Audiencia (A)', phKey: 'audiencia' },
+                    { id: 'r', label: 'Respuesta (R)', phKey: 'respuesta' },
+                ],
+                rtf: [
+                    { id: 'r', label: 'Rol (R)', phKey: 'rol' },
+                    { id: 't', label: 'Tarea (T)', phKey: 'tarea' },
+                    { id: 'f', label: 'Formato (F)', phKey: 'formato' },
+                ],
+                risen: [
+                    { id: 'r', label: 'Rol (R)', phKey: 'rol' },
+                    { id: 'i', label: 'Instrucciones (I)', phKey: 'instrucciones' },
+                    { id: 's', label: 'Secuencia de pasos (S)', phKey: 'secuencia' },
+                    { id: 'e', label: 'Entregable final (E)', phKey: 'entregable' },
+                    { id: 'n', label: 'Negativas / Restricciones (N)', phKey: 'negativas' },
+                ]
+            };
+
+            const placeholders = {
+                admin: {
+                    rol: "Auditor de Facturación Vial...",
+                    instrucciones: "Realizá un cruce completo entre los remitos...",
+                    secuencia: "1. Listar remitos\n2. Asociar con OC...",
+                    entregable: "Tabla comparativa con columnas...",
+                    negativas: "NO asumas datos que no estén en los documentos...",
+                    contexto: "Soy analista contable en RAVA S.A...",
+                    objetivo: "Redactá un reporte de gastos mensuales...",
+                    estilo: "Informe financiero estructurado...",
+                    tono: "Formal, objetivo...",
+                    audiencia: "Gerencia Financiera...",
+                    respuesta: "Tabla con desglose por centro de costo...",
+                    tarea: "Revisá estas facturas y extraé el IVA...",
+                    formato: "Lista con CUIT, Monto e IVA."
+                },
+                compras: {
+                    contexto: "Soy comprador técnico senior en RAVA S.A...",
+                    objetivo: "Redactá un comparativo de precios...",
+                    estilo: "Informe técnico-comercial conciso...",
+                    tono: "Profesional, objetivo...",
+                    audiencia: "Jefe de Compras de RAVA S.A...",
+                    respuesta: "Matriz de decisión en tabla...",
+                    rol: "Especialista en compras técnicas...",
+                    instrucciones: "Analizá cotizaciones de 3 proveedores...",
+                    secuencia: "1. Extraer precio unitario\n2. Comparar plazos...",
+                    entregable: "Cuadro comparativo...",
+                    negativas: "NO inventar precios...",
+                    tarea: "Generá solicitud de cotización para proveedores...",
+                    formato: "Email formal con tabla de ítems."
+                },
+                rrhh: {
+                    rol: "Coordinador de Personal de Obra...",
+                    tarea: "Estructurá el parte de novedades semanal...",
+                    formato: "Resumen ejecutivo con tabla...",
+                    contexto: "Soy analista de RRHH, necesito comunicar un cambio en viáticos...",
+                    objetivo: "Redactar comunicado interno claro...",
+                    estilo: "Comunicado corporativo directo...",
+                    tono: "Empático pero firme...",
+                    audiencia: "Todo el personal de obra...",
+                    respuesta: "Email de 3 párrafos con viñetas...",
+                    instrucciones: "Procesá las altas y bajas de la quincena...",
+                    secuencia: "1. Listar altas\n2. Listar bajas...",
+                    entregable: "Reporte de movimiento de personal...",
+                    negativas: "NO incluir motivos médicos personales..."
+                },
+                taller: {
+                    rol: "Jefe de Mantenimiento Mecánico...",
+                    tarea: "Clasificá estas averías de motoniveladoras...",
+                    formato: "Lista estructurada agrupada por falla...",
+                    contexto: "El taller tiene un retraso del 20% en entregas...",
+                    objetivo: "Planificar los mantenimientos preventivos...",
+                    estilo: "Planilla de planificación directa...",
+                    tono: "Técnico y operativo...",
+                    audiencia: "Mecánicos de turno...",
+                    respuesta: "Cronograma semanal...",
+                    instrucciones: "Auditar consumo de lubricantes...",
+                    secuencia: "1. Sumar litros por equipo\n2. Comparar con histórico...",
+                    entregable: "Alerta de desvíos...",
+                    negativas: "NO omitir equipos tercerizados..."
+                },
+                tecnicos: {
+                    rol: "Ingeniero de Oficina Técnica especializado...",
+                    instrucciones: "Analizá el pliego de especificaciones adjunto...",
+                    secuencia: "1. Identificar tolerancias\n2. Listar ensayos...",
+                    entregable: "Ficha técnica con viñetas...",
+                    negativas: "NO resumas de forma genérica...",
+                    contexto: "Preparando licitación para obra vial en Ruta 40...",
+                    objetivo: "Extraer requisitos de maquinaria del pliego...",
+                    estilo: "Listado de requisitos técnicos...",
+                    tono: "Preciso, legal...",
+                    audiencia: "Dirección de obra...",
+                    respuesta: "Checklist de equipos requeridos...",
+                    tarea: "Traducir resumen técnico para operarios...",
+                    formato: "Guía paso a paso simple."
+                },
+                direccion: {
+                    contexto: "Soy gerente de RAVA S.A. y necesito presentar...",
+                    objetivo: "Generá un resumen ejecutivo del avance...",
+                    estilo: "Informe ejecutivo conciso...",
+                    tono: "Profesional, directo, foco en datos...",
+                    audiencia: "Directorio de RAVA S.A...",
+                    respuesta: "Informe de 1 página con indicadores...",
+                    rol: "Director de Operaciones...",
+                    instrucciones: "Evaluar impacto de lluvia en cronograma...",
+                    secuencia: "1. Calcular días perdidos\n2. Estimar costo...",
+                    entregable: "Reporte de riesgo...",
+                    negativas: "NO usar tono alarmista...",
+                    tarea: "Escribir puntos clave para reunión de directorio...",
+                    formato: "Bullet points ejecutivos."
+                }
+            };
+
+            let currentFw = 'costar';
+            let currentArea = 'admin';
+
+            const genAreaSelect = document.getElementById('gen-area');
+            const fwBtns = document.querySelectorAll('.gen-framework-btn');
+            const genInputsContainer = document.getElementById('gen-inputs');
+            const genPreview = document.getElementById('gen-preview');
+            const btnCopyGen = document.getElementById('btn-copy-gen');
+
+            function renderGenInputs() {
+                genInputsContainer.innerHTML = '';
+                const fields = genConfig[currentFw];
+                
+                fields.forEach(field => {
+                    const ph = placeholders[currentArea][field.phKey] || '...';
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                        <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">${field.label}</label>
+                        <textarea class="gen-input w-full bg-white border border-slate-200 rounded p-3 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-shadow resize-y h-20" data-id="${field.id}" placeholder="${ph}"></textarea>
+                    `;
+                    genInputsContainer.appendChild(div);
+                });
+
+                // Add event listeners to new textareas
+                document.querySelectorAll('.gen-input').forEach(input => {
+                    input.addEventListener('input', updatePreview);
+                });
+                
+                updatePreview();
+            }
+
+            function updatePreview() {
+                let out = '';
+                document.querySelectorAll('.gen-input').forEach(input => {
+                    if (input.value.trim() !== '') {
+                        const label = input.previousElementSibling.innerText;
+                        out += `${label}:\n${input.value.trim()}\n\n`;
+                    }
+                });
+                genPreview.textContent = out || 'Tu prompt se mostrará aquí a medida que escribas...';
+            }
+
+            genAreaSelect.addEventListener('change', (e) => {
+                currentArea = e.target.value;
+                renderGenInputs();
+            });
+
+            fwBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // Update styles
+                    fwBtns.forEach(b => {
+                        b.classList.remove('bg-blue-50', 'text-brand-blue', 'border-brand-blue');
+                        b.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+                    });
+                    btn.classList.add('bg-blue-50', 'text-brand-blue', 'border-brand-blue');
+                    btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                    
+                    currentFw = btn.dataset.fw;
+                    renderGenInputs();
+                });
+            });
+
+            // Initialize Generator
+            renderGenInputs();
+
+            // Toast Function
+            function showToast() {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+
+            btnCopyGen.addEventListener('click', () => {
+                const text = genPreview.textContent;
+                if(text && text !== 'Tu prompt se mostrará aquí a medida que escribas...') {
+                    navigator.clipboard.writeText(text).then(() => {
+                        showToast();
+                    });
+                }
+            });
+
+            /* 6. Library Logic */
+            const libraryCards = [
+                { id: 'admin', area: 'Administración', fw: 'RISEN', color: 'blue', title: 'Cruce de remitos de piedra con OC', text: bvaData['tab-admin'].good },
+                { id: 'compras', area: 'Compras', fw: 'CO-STAR', color: 'emerald', title: 'Comparativo de cotizaciones de repuestos pesados', text: bvaData['tab-compras'].good },
+                { id: 'rrhh', area: 'RRHH', fw: 'RTF', color: 'amber', title: 'Parte de novedades semanal con turnos rotativos', text: bvaData['tab-rrhh'].good },
+                { id: 'taller', area: 'Taller', fw: 'RTF', color: 'coral', title: 'Clasificar averías de motoniveladoras por criticidad', text: bvaData['tab-taller'].good },
+                { id: 'tecnicos', area: 'Técnicos', fw: 'RISEN', color: 'blue', title: 'Resumir tolerancias de compactación de pliego', text: bvaData['tab-tecnicos'].good },
+                { id: 'direccion', area: 'Dirección', fw: 'CO-STAR', color: 'emerald', title: 'Resumen ejecutivo de avance semanal de obra', text: bvaData['tab-direccion'].good }
+            ];
+
+            const libGrid = document.getElementById('lib-grid');
+            const libFilters = document.querySelectorAll('.lib-filter');
+
+            function renderLibrary(filterId = 'all') {
+                libGrid.innerHTML = '';
+                const filtered = libraryCards.filter(c => filterId === 'all' || c.id === filterId);
+                
+                filtered.forEach(card => {
+                    const el = document.createElement('div');
+                    el.className = 'bg-white border border-slate-200 rounded-xl flex flex-col shadow-sm hover:shadow-md transition-shadow';
+                    
+                    let bgBadge = 'bg-slate-100 text-slate-700';
+                    if(card.fw === 'CO-STAR') bgBadge = 'bg-emerald-100 text-emerald-800';
+                    if(card.fw === 'RTF') bgBadge = 'bg-blue-100 text-blue-800';
+                    if(card.fw === 'RISEN') bgBadge = 'bg-amber-100 text-amber-800';
+
+                    el.innerHTML = `
+                        <div class="p-5 border-b border-slate-100">
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">${card.area}</span>
+                                <span class="text-xs font-bold px-2 py-0.5 rounded ${bgBadge}">${card.fw}</span>
+                            </div>
+                            <h4 class="font-poppins font-semibold text-slate-900 leading-tight">${card.title}</h4>
+                        </div>
+                        <div class="p-5 flex-grow bg-slate-50 overflow-hidden relative">
+                            <div class="max-h-48 overflow-y-auto text-xs font-mono text-slate-600 whitespace-pre-wrap no-scrollbar pr-2">${card.text}</div>
+                        </div>
+                        <div class="p-4 border-t border-slate-100 bg-white rounded-b-xl">
+                            <button class="lib-copy-btn w-full py-2 bg-slate-800 hover:bg-slate-900 text-white text-sm font-medium rounded-lg transition-colors flex items-center justify-center space-x-2">
+                                <span>📋</span> <span>Copiar Prompt</span>
+                            </button>
+                        </div>
+                    `;
+                    
+                    // Add copy listener
+                    el.querySelector('.lib-copy-btn').addEventListener('click', () => {
+                        navigator.clipboard.writeText(card.text).then(() => {
+                            showToast();
+                        });
+                    });
+
+                    libGrid.appendChild(el);
+                });
+            }
+
+            // Init Library
+            renderLibrary();
+
+            libFilters.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const filter = e.target.dataset.filter;
+                    // update active state
+                    libFilters.forEach(b => {
+                        b.classList.remove('bg-slate-800', 'text-white');
+                        b.classList.add('bg-slate-100', 'text-slate-600');
+                    });
+                    e.target.classList.remove('bg-slate-100', 'text-slate-600');
+                    e.target.classList.add('bg-slate-800', 'text-white');
+                    
+                    renderLibrary(filter);
+                });
+            });
+
+            /* 7. Checklist Logic */
+            const checkboxes = document.querySelectorAll('.checklist-item');
+            const successMsg = document.getElementById('checklist-success');
+
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', () => {
+                    const allChecked = Array.from(checkboxes).every(c => c.checked);
+                    if(allChecked) {
+                        successMsg.classList.remove('hidden');
                     } else {
-                        currentLine = currentLine ? currentLine + ' ' + word : word;
-                    }
-                }
-                lines.push(currentLine);
-                return lines;
-            };
-
-            const tooltipTitleCallback = (tooltipItems) => {
-                const item = tooltipItems[0];
-                let label = item.chart.data.labels[item.dataIndex];
-                if (Array.isArray(label)) {
-                    return label.join(' ');
-                } else {
-                    return label;
-                }
-            };
-
-            const defaultChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            color: '#374151',
-                            font: {
-                                size: 14,
-                                family: 'Poppins'
-                            }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: tooltipTitleCallback
-                        },
-                        backgroundColor: '#34495E',
-                        titleFont: { size: 16, family: 'Poppins' },
-                        bodyFont: { size: 14, family: 'Poppins' },
-                        padding: 12,
-                        cornerRadius: 8
-                    }
-                }
-            };
-
-            const createTaoChart = () => {
-                const ctx = document.getElementById('taoChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Tarea', 'Acción', 'Objetivo'],
-                        datasets: [{
-                            label: 'Importancia en el Prompt',
-                            data: [30, 40, 30],
-                            backgroundColor: ['#F8B229', '#FABE58', '#FCD087'],
-                            borderColor: '#E7A217',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        ...defaultChartOptions,
-                        plugins: {
-                            ...defaultChartOptions.plugins,
-                            tooltip: {
-                                enabled: false
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                display: false
-                            },
-                            x: {
-                                ticks: { color: '#374151', font: { size: 14, family: 'Poppins' } }
-                            }
-                        }
+                        successMsg.classList.add('hidden');
                     }
                 });
-            };
+            });
 
-            const createCareChart = () => {
-                const ctx = document.getElementById('careChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Contexto', 'Acción', 'Resultado', 'Ejemplo'],
-                        datasets: [{
-                            label: 'Componentes de CARE',
-                            data: [25, 25, 25, 25],
-                            backgroundColor: ['#00A6ED', '#72D148', '#F8B229', '#E43358'],
-                            hoverOffset: 4
-                        }]
-                    },
-                    options: {
-                        ...defaultChartOptions,
-                        plugins: {
-                            ...defaultChartOptions.plugins,
-                            tooltip: {
-                                enabled: false
-                            }
-                        },
-                        cutout: '50%'
+            /* 8. Scroll Reveal Animations */
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+            
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
                     }
                 });
-            };
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -60px 0px'
+            });
 
-            const createBenefitsChart = () => {
-                const ctx = document.getElementById('benefitsChart').getContext('2d');
-                const labels = [
-                    wrapLabel('Ahorrar tiempo en investigar'),
-                    wrapLabel('Desbloquear tu creatividad'),
-                    wrapLabel('Aprender a tu propio ritmo'),
-                    wrapLabel('NO copiar y pegar (Aprender)'),
-                    wrapLabel('SIEMPRE revisar la información'),
-                    wrapLabel('Usar como punto de partida')
-                ];
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: [
-                            {
-                                label: 'Beneficios',
-                                data: [90, 85, 80, 0, 0, 0],
-                                backgroundColor: '#72D148',
-                            },
-                            {
-                                label: 'Responsabilidades',
-                                data: [0, 0, 0, 95, 88, 75],
-                                backgroundColor: '#E43358',
-                            }
-                        ]
-                    },
-                    options: {
-                        ...defaultChartOptions,
-                        indexAxis: 'y',
-                        scales: {
-                            x: {
-                                stacked: true,
-                                display: false,
-                            },
-                            y: {
-                                stacked: true,
-                                ticks: { color: '#374151', font: { size: 12, family: 'Poppins' } }
-                            }
-                        },
-                        plugins: {
-                           ...defaultChartOptions.plugins,
-                           tooltip:{
-                            enabled: false
-                           },
-                           legend: {
-                                position: 'bottom'
-                           }
-                        }
-                    }
-                });
-            };
+            revealElements.forEach(el => revealObserver.observe(el));
 
-            createTaoChart();
-            createCareChart();
-            createBenefitsChart();
         });
     </script>
-    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-
 </body>
 </html>
