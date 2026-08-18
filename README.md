@@ -3,7 +3,7 @@
 Plataforma web interactiva de capacitación corporativa en Inteligencia Artificial para empleados de **RAVA S.A.** (Vialidad / Infraestructura Vial).
 
 **Módulo 2:** Prompt Engineering & Automatización Práctica  
-**Dictado por:** Brian Ruiz Moreno y Leon Schwegler
+**Dictado por:** Brian Ruiz Moreno y León Schwegler
 
 ---
 
