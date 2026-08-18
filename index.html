@@ -192,7 +192,7 @@
             transform: translateY(0);
         }
 
-        /* ========== CUSTOM ANIMATED DROPDOWN ========== */
+        /* ========== CUSTOM ANIMATED DROPDOWNS ========== */
         .dropdown-menu {
             opacity: 0;
             visibility: hidden;
@@ -208,27 +208,36 @@
             transform: translateY(0) scale(1);
             pointer-events: auto;
         }
-        #area-dropdown-trigger.active-ring {
+        #area-dropdown-trigger.active-ring, #bva-dropdown-trigger.active-ring {
             border-color: #2563EB;
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
-        #area-dropdown-chevron.open {
+        #area-dropdown-chevron.open, #bva-dropdown-chevron.open {
             transform: rotate(180deg);
             color: #2563EB;
         }
-        .area-option.active-option {
+        .area-option.active-option, .bva-option-item.active-option {
             background-color: #EFF6FF;
         }
-        .area-option.active-option .option-text {
+        .area-option.active-option .option-text, .bva-option-item.active-option .option-text {
             color: #2563EB;
             font-weight: 600;
         }
 
-        /* Smooth section transitions */
+        /* ========== MOBILE NAV MENU PANEL ========== */
+        #mobile-nav-panel {
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #mobile-nav-panel.open-panel {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Smooth section transitions & overflow overrides */
         section {
             overflow: hidden;
         }
-        #generador {
+        #generador, #antes-despues, #sticky-nav {
             overflow: visible !important;
         }
 
@@ -261,31 +270,59 @@
     <nav id="sticky-nav" class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
             <div class="flex items-center justify-between py-3">
-                <span class="font-poppins font-bold text-slate-800 text-sm md:text-base lg:hidden flex items-center space-x-2">
-                    <span class="text-brand-blue">🏗️</span>
-                    <span>RAVA S.A. | Menú</span>
-                </span>
+                <a href="#intro" class="font-poppins font-bold text-slate-900 text-base md:text-lg flex items-center space-x-2.5">
+                    <span class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center text-lg shadow-xs">🏗️</span>
+                    <span class="tracking-tight"><span class="text-brand-blue font-bold">RAVA S.A.</span> <span class="text-slate-300 font-normal">|</span> <span class="text-slate-700 font-medium text-sm sm:text-base">Capacitación IA</span></span>
+                </a>
                 
                 <!-- Mobile Menu Toggle Button -->
-                <button id="mobile-nav-toggle" type="button" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none transition-colors" aria-label="Toggle navigation menu">
-                    <svg id="mobile-hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                    <svg id="mobile-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
+                <button id="mobile-nav-toggle" type="button" class="lg:hidden flex items-center space-x-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 px-3 py-2 rounded-xl text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-brand-blue cursor-pointer" aria-label="Toggle navigation menu">
+                    <span id="mobile-nav-label" class="text-xs font-semibold uppercase tracking-wider text-slate-600">Menú</span>
+                    <div class="relative w-5 h-5 flex items-center justify-center">
+                        <svg id="mobile-hamburger-icon" class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                        <svg id="mobile-close-icon" class="w-5 h-5 hidden transition-transform duration-300 text-brand-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </div>
                 </button>
 
-                <!-- Links (Desktop Horizontal + Mobile Slide-down Dropdown) -->
-                <ul id="nav-menu" class="hidden lg:flex lg:items-center lg:space-x-8 text-sm md:text-base font-medium text-slate-500 w-full lg:w-auto absolute lg:static left-0 top-full bg-white lg:bg-transparent border-b lg:border-b-0 border-slate-200 px-6 lg:px-0 py-4 lg:py-0 shadow-lg lg:shadow-none space-y-3 lg:space-y-0 transition-all duration-200">
-                    <li><a href="#intro" class="nav-link block text-slate-700 active">Intro</a></li>
-                    <li><a href="#anatomia" class="nav-link block hover:text-slate-900">Anatomía</a></li>
-                    <li><a href="#frameworks" class="nav-link block hover:text-slate-900">Frameworks</a></li>
-                    <li><a href="#tecnicas" class="nav-link block hover:text-slate-900">Técnicas</a></li>
-                    <li><a href="#antes-despues" class="nav-link block hover:text-slate-900">Antes vs Después</a></li>
-                    <li><a href="#generador" class="nav-link block hover:text-slate-900">Generador</a></li>
-                    <li><a href="#seguridad" class="nav-link block hover:text-slate-900">Seguridad</a></li>
+                <!-- Links Desktop (>= lg) -->
+                <ul class="hidden lg:flex lg:items-center lg:space-x-8 text-sm md:text-base font-medium text-slate-500">
+                    <li><a href="#intro" class="nav-link block py-1 text-slate-700 active">Intro</a></li>
+                    <li><a href="#anatomia" class="nav-link block py-1 hover:text-slate-900">Anatomía</a></li>
+                    <li><a href="#frameworks" class="nav-link block py-1 hover:text-slate-900">Frameworks</a></li>
+                    <li><a href="#tecnicas" class="nav-link block py-1 hover:text-slate-900">Técnicas</a></li>
+                    <li><a href="#antes-despues" class="nav-link block py-1 hover:text-slate-900">Antes vs Después</a></li>
+                    <li><a href="#generador" class="nav-link block py-1 hover:text-slate-900">Generador</a></li>
+                    <li><a href="#seguridad" class="nav-link block py-1 hover:text-slate-900">Seguridad</a></li>
                 </ul>
+            </div>
+
+            <!-- Mobile Menu Dropdown Panel (< lg) -->
+            <div id="mobile-nav-panel" class="lg:hidden hidden pb-4 pt-2 border-t border-slate-100 space-y-1">
+                <a href="#intro" class="mobile-nav-item flex items-center space-x-3 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-700 hover:bg-blue-50 hover:text-brand-blue transition-all">
+                    <span>📌</span> <span>1. Introducción</span>
+                </a>
+                <a href="#anatomia" class="mobile-nav-item flex items-center space-x-3 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-700 hover:bg-blue-50 hover:text-brand-blue transition-all">
+                    <span>🎭</span> <span>2. Anatomía del Prompt</span>
+                </a>
+                <a href="#frameworks" class="mobile-nav-item flex items-center space-x-3 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-700 hover:bg-blue-50 hover:text-brand-blue transition-all">
+                    <span>📐</span> <span>3. Frameworks (CO-STAR / RTF / RISEN)</span>
+                </a>
+                <a href="#tecnicas" class="mobile-nav-item flex items-center space-x-3 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-700 hover:bg-blue-50 hover:text-brand-blue transition-all">
+                    <span>⚡</span> <span>4. Técnicas Avanzadas</span>
+                </a>
+                <a href="#antes-despues" class="mobile-nav-item flex items-center space-x-3 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-700 hover:bg-blue-50 hover:text-brand-blue transition-all">
+                    <span>⚖️</span> <span>5. Antes vs. Después (por Área)</span>
+                </a>
+                <a href="#generador" class="mobile-nav-item flex items-center space-x-3 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-700 hover:bg-blue-50 hover:text-brand-blue transition-all">
+                    <span>⚙️</span> <span>6. Generador & Biblioteca</span>
+                </a>
+                <a href="#seguridad" class="mobile-nav-item flex items-center space-x-3 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-700 hover:bg-blue-50 hover:text-brand-blue transition-all">
+                    <span>🔒</span> <span>7. Gobernanza & Seguridad</span>
+                </a>
             </div>
         </div>
     </nav>
@@ -714,17 +751,64 @@ Si encontrás errores, corregí y emití la versión final.</pre>
 
             <!-- Tab Navigation (Mobile Select Dropdown + Desktop 6-Column Grid) -->
             <div class="mb-8 max-w-5xl mx-auto">
-                <!-- Mobile Select (< sm) -->
-                <div class="sm:hidden mb-4">
+                <!-- Mobile Custom Animated Selector (< sm) -->
+                <div class="sm:hidden mb-6 relative" id="bva-custom-dropdown-container">
                     <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Seleccionar Área:</label>
-                    <select id="bva-mobile-select" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-slate-800 font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue shadow-sm">
-                        <option value="tab-admin">🏛️ Administración</option>
-                        <option value="tab-compras">🛒 Compras</option>
-                        <option value="tab-rrhh">👥 Recursos Humanos (RRHH)</option>
-                        <option value="tab-taller">🔧 Taller Mecánico</option>
-                        <option value="tab-tecnicos">📐 Oficina Técnica</option>
-                        <option value="tab-direccion">👔 Dirección / Gerencia</option>
-                    </select>
+                    <button type="button" id="bva-dropdown-trigger" class="w-full bg-slate-50 hover:bg-white border border-slate-300 hover:border-slate-400 text-slate-800 rounded-xl p-3.5 flex items-center justify-between shadow-sm focus:outline-none transition-all cursor-pointer">
+                        <div class="flex items-center space-x-3">
+                            <span id="bva-selected-icon" class="text-xl">🏛️</span>
+                            <span id="bva-selected-label" class="font-semibold text-slate-800 text-sm">Administración</span>
+                        </div>
+                        <svg id="bva-dropdown-chevron" class="w-5 h-5 text-slate-400 transition-transform duration-300 ease-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Floating Dropdown Menu Panel -->
+                    <div id="bva-dropdown-menu" class="dropdown-menu absolute left-0 right-0 mt-2 bg-white/98 backdrop-blur-md border border-slate-200 rounded-2xl shadow-xl z-30 p-2 space-y-1">
+                        <button type="button" class="bva-option-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left transition-all hover:bg-blue-50 active:bg-blue-100 group active-option" data-target="tab-admin" data-icon="🏛️" data-label="Administración">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-lg group-hover:scale-110 transition-transform">🏛️</span>
+                                <span class="option-text font-medium text-sm text-slate-700 group-hover:text-brand-blue">Administración</span>
+                            </div>
+                            <span class="bva-check-icon text-brand-blue text-sm font-bold">✓</span>
+                        </button>
+                        <button type="button" class="bva-option-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left transition-all hover:bg-blue-50 active:bg-blue-100 group" data-target="tab-compras" data-icon="🛒" data-label="Compras">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-lg group-hover:scale-110 transition-transform">🛒</span>
+                                <span class="option-text font-medium text-sm text-slate-700 group-hover:text-brand-blue">Compras</span>
+                            </div>
+                            <span class="bva-check-icon text-brand-blue text-sm font-bold hidden">✓</span>
+                        </button>
+                        <button type="button" class="bva-option-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left transition-all hover:bg-blue-50 active:bg-blue-100 group" data-target="tab-rrhh" data-icon="👥" data-label="Recursos Humanos (RRHH)">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-lg group-hover:scale-110 transition-transform">👥</span>
+                                <span class="option-text font-medium text-sm text-slate-700 group-hover:text-brand-blue">Recursos Humanos (RRHH)</span>
+                            </div>
+                            <span class="bva-check-icon text-brand-blue text-sm font-bold hidden">✓</span>
+                        </button>
+                        <button type="button" class="bva-option-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left transition-all hover:bg-blue-50 active:bg-blue-100 group" data-target="tab-taller" data-icon="🔧" data-label="Taller Mecánico">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-lg group-hover:scale-110 transition-transform">🔧</span>
+                                <span class="option-text font-medium text-sm text-slate-700 group-hover:text-brand-blue">Taller Mecánico</span>
+                            </div>
+                            <span class="bva-check-icon text-brand-blue text-sm font-bold hidden">✓</span>
+                        </button>
+                        <button type="button" class="bva-option-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left transition-all hover:bg-blue-50 active:bg-blue-100 group" data-target="tab-tecnicos" data-icon="📐" data-label="Oficina Técnica">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-lg group-hover:scale-110 transition-transform">📐</span>
+                                <span class="option-text font-medium text-sm text-slate-700 group-hover:text-brand-blue">Oficina Técnica</span>
+                            </div>
+                            <span class="bva-check-icon text-brand-blue text-sm font-bold hidden">✓</span>
+                        </button>
+                        <button type="button" class="bva-option-item w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left transition-all hover:bg-blue-50 active:bg-blue-100 group" data-target="tab-direccion" data-icon="👔" data-label="Dirección / Gerencia">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-lg group-hover:scale-110 transition-transform">👔</span>
+                                <span class="option-text font-medium text-sm text-slate-700 group-hover:text-brand-blue">Dirección / Gerencia</span>
+                            </div>
+                            <span class="bva-check-icon text-brand-blue text-sm font-bold hidden">✓</span>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Desktop / Tablet Grid Tabs (>= sm) -->
@@ -1027,23 +1111,34 @@ Si encontrás errores, corregí y emití la versión final.</pre>
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.nav-link');
             const mobileNavToggle = document.getElementById('mobile-nav-toggle');
-            const navMenu = document.getElementById('nav-menu');
+            const mobileNavPanel = document.getElementById('mobile-nav-panel');
             const hamburgerIcon = document.getElementById('mobile-hamburger-icon');
             const closeIcon = document.getElementById('mobile-close-icon');
 
-            if (mobileNavToggle) {
-                mobileNavToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('hidden');
-                    hamburgerIcon.classList.toggle('hidden');
-                    closeIcon.classList.toggle('hidden');
+            if (mobileNavToggle && mobileNavPanel) {
+                mobileNavToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = !mobileNavPanel.classList.contains('hidden');
+                    if (isOpen) {
+                        mobileNavPanel.classList.add('hidden');
+                        mobileNavPanel.classList.remove('open-panel');
+                        if (hamburgerIcon) hamburgerIcon.classList.remove('hidden');
+                        if (closeIcon) closeIcon.classList.add('hidden');
+                    } else {
+                        mobileNavPanel.classList.remove('hidden');
+                        setTimeout(() => mobileNavPanel.classList.add('open-panel'), 10);
+                        if (hamburgerIcon) hamburgerIcon.classList.add('hidden');
+                        if (closeIcon) closeIcon.classList.remove('hidden');
+                    }
                 });
             }
 
-            // Close mobile menu when link clicked
-            navLinks.forEach(link => {
+            // Close mobile menu when link or outside clicked
+            document.querySelectorAll('.mobile-nav-item, .nav-link').forEach(link => {
                 link.addEventListener('click', () => {
-                    if (window.innerWidth < 1024 && navMenu && !navMenu.classList.contains('hidden')) {
-                        navMenu.classList.add('hidden');
+                    if (mobileNavPanel && !mobileNavPanel.classList.contains('hidden')) {
+                        mobileNavPanel.classList.add('hidden');
+                        mobileNavPanel.classList.remove('open-panel');
                         if (hamburgerIcon) hamburgerIcon.classList.remove('hidden');
                         if (closeIcon) closeIcon.classList.add('hidden');
                     }
@@ -1094,7 +1189,7 @@ Si encontrás errores, corregí y emití la versión final.</pre>
                 });
             });
 
-            /* 3. Antes vs Después Tabs & Data */
+            /* 3. Antes vs Después Custom Dropdown & Tabs */
             const bvaData = {
                 'tab-admin': {
                     bad: "Fijate si las facturas están bien",
@@ -1136,7 +1231,58 @@ Si encontrás errores, corregí y emití la versión final.</pre>
 
             const bvaContainer = document.getElementById('bva-content-container');
             const bvaTabs = document.querySelectorAll('.bva-tab');
-            const bvaMobileSelect = document.getElementById('bva-mobile-select');
+
+            const bvaDropdownTrigger = document.getElementById('bva-dropdown-trigger');
+            const bvaDropdownMenu = document.getElementById('bva-dropdown-menu');
+            const bvaDropdownChevron = document.getElementById('bva-dropdown-chevron');
+            const bvaSelectedIcon = document.getElementById('bva-selected-icon');
+            const bvaSelectedLabel = document.getElementById('bva-selected-label');
+            const bvaOptionItems = document.querySelectorAll('.bva-option-item');
+
+            function toggleBvaDropdown(open) {
+                if (!bvaDropdownMenu) return;
+                const shouldOpen = open !== undefined ? open : !bvaDropdownMenu.classList.contains('open');
+                if (shouldOpen) {
+                    bvaDropdownMenu.classList.add('open');
+                    bvaDropdownChevron.classList.add('open');
+                    bvaDropdownTrigger.classList.add('active-ring');
+                } else {
+                    bvaDropdownMenu.classList.remove('open');
+                    bvaDropdownChevron.classList.remove('open');
+                    bvaDropdownTrigger.classList.remove('active-ring');
+                }
+            }
+
+            if (bvaDropdownTrigger) {
+                bvaDropdownTrigger.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleBvaDropdown();
+                });
+            }
+
+            bvaOptionItems.forEach(opt => {
+                opt.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const target = opt.dataset.target;
+                    const icon = opt.dataset.icon;
+                    const label = opt.dataset.label;
+
+                    if (bvaSelectedIcon) bvaSelectedIcon.textContent = icon;
+                    if (bvaSelectedLabel) bvaSelectedLabel.textContent = label;
+
+                    bvaOptionItems.forEach(o => {
+                        o.classList.remove('active-option');
+                        const chk = o.querySelector('.bva-check-icon');
+                        if (chk) chk.classList.add('hidden');
+                    });
+                    opt.classList.add('active-option');
+                    const myChk = opt.querySelector('.bva-check-icon');
+                    if (myChk) myChk.classList.remove('hidden');
+
+                    toggleBvaDropdown(false);
+                    setActiveBvaTab(target);
+                });
+            });
 
             function renderBva(tabId) {
                 const data = bvaData[tabId];
@@ -1180,9 +1326,22 @@ ${data.good}
                         t.classList.add('bg-white', 'text-slate-700', 'hover:bg-slate-100');
                     }
                 });
-                if (bvaMobileSelect) {
-                    bvaMobileSelect.value = tabId;
-                }
+
+                // Sync custom dropdown option active state
+                bvaOptionItems.forEach(opt => {
+                    const isTarget = opt.dataset.target === tabId;
+                    const chk = opt.querySelector('.bva-check-icon');
+                    if (isTarget) {
+                        opt.classList.add('active-option');
+                        if (chk) chk.classList.remove('hidden');
+                        if (bvaSelectedIcon) bvaSelectedIcon.textContent = opt.dataset.icon;
+                        if (bvaSelectedLabel) bvaSelectedLabel.textContent = opt.dataset.label;
+                    } else {
+                        opt.classList.remove('active-option');
+                        if (chk) chk.classList.add('hidden');
+                    }
+                });
+
                 renderBva(tabId);
             }
 
@@ -1191,12 +1350,6 @@ ${data.good}
                     setActiveBvaTab(tab.dataset.target);
                 });
             });
-
-            if (bvaMobileSelect) {
-                bvaMobileSelect.addEventListener('change', (e) => {
-                    setActiveBvaTab(e.target.value);
-                });
-            }
 
             // Init first BVA tab
             setActiveBvaTab('tab-admin');
