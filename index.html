@@ -247,35 +247,53 @@
 
     <!-- MODULE 1: HEADER + INTRO -->
     <header class="bg-navy text-white pt-20 pb-16 px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="font-poppins font-bold text-4xl md:text-5xl leading-tight tracking-tight text-white mb-2">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
+            <h1 class="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight text-white mb-2">
                 Inteligencia Artificial:
             </h1>
-            <h2 class="font-poppins font-semibold text-2xl md:text-3xl text-blue-300">
+            <h2 class="font-poppins font-semibold text-2xl md:text-3xl lg:text-4xl text-blue-300">
                 Prompt Engineering Aplicado al Entorno Corporativo
             </h2>
         </div>
     </header>
 
-    <!-- Sticky Navigation -->
-    <nav id="sticky-nav" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-            <ul class="flex space-x-6 sm:space-x-8 overflow-x-auto no-scrollbar whitespace-nowrap py-4 text-sm md:text-base font-medium text-slate-500">
-                <li><a href="#intro" class="nav-link text-slate-700 active">Intro</a></li>
-                <li><a href="#anatomia" class="nav-link hover:text-slate-900">Anatomía</a></li>
-                <li><a href="#frameworks" class="nav-link hover:text-slate-900">Frameworks</a></li>
-                <li><a href="#tecnicas" class="nav-link hover:text-slate-900">Técnicas</a></li>
-                <li><a href="#antes-despues" class="nav-link hover:text-slate-900">Antes vs Después</a></li>
-                <li><a href="#generador" class="nav-link hover:text-slate-900">Generador</a></li>
-                <li><a href="#seguridad" class="nav-link hover:text-slate-900">Seguridad</a></li>
-            </ul>
+    <!-- Sticky Navigation (Responsive Mobile Menu + Wide Desktop) -->
+    <nav id="sticky-nav" class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="flex items-center justify-between py-3">
+                <span class="font-poppins font-bold text-slate-800 text-sm md:text-base lg:hidden flex items-center space-x-2">
+                    <span class="text-brand-blue">🏗️</span>
+                    <span>RAVA S.A. | Menú</span>
+                </span>
+                
+                <!-- Mobile Menu Toggle Button -->
+                <button id="mobile-nav-toggle" type="button" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none transition-colors" aria-label="Toggle navigation menu">
+                    <svg id="mobile-hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                    <svg id="mobile-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+
+                <!-- Links (Desktop Horizontal + Mobile Slide-down Dropdown) -->
+                <ul id="nav-menu" class="hidden lg:flex lg:items-center lg:space-x-8 text-sm md:text-base font-medium text-slate-500 w-full lg:w-auto absolute lg:static left-0 top-full bg-white lg:bg-transparent border-b lg:border-b-0 border-slate-200 px-6 lg:px-0 py-4 lg:py-0 shadow-lg lg:shadow-none space-y-3 lg:space-y-0 transition-all duration-200">
+                    <li><a href="#intro" class="nav-link block text-slate-700 active">Intro</a></li>
+                    <li><a href="#anatomia" class="nav-link block hover:text-slate-900">Anatomía</a></li>
+                    <li><a href="#frameworks" class="nav-link block hover:text-slate-900">Frameworks</a></li>
+                    <li><a href="#tecnicas" class="nav-link block hover:text-slate-900">Técnicas</a></li>
+                    <li><a href="#antes-despues" class="nav-link block hover:text-slate-900">Antes vs Después</a></li>
+                    <li><a href="#generador" class="nav-link block hover:text-slate-900">Generador</a></li>
+                    <li><a href="#seguridad" class="nav-link block hover:text-slate-900">Seguridad</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <!-- Intro Section -->
-    <section id="intro" class="py-16 md:py-24 px-4 sm:px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="max-w-3xl mb-12 reveal">
+    <section id="intro" class="py-16 md:py-24 px-4 sm:px-6 lg:px-12">
+        <div class="max-w-[1440px] mx-auto">
+            <div class="max-w-4xl mb-12 reveal">
                 <h3 class="font-poppins font-semibold text-3xl text-brand-blue mb-6">¿Con quién estamos hablando?</h3>
                 <p class="text-lg text-slate-600 leading-relaxed">
                     Pensá en la Inteligencia Artificial (IA) como un asistente súper capaz en tu computadora o celular. Puede entender lo que le pedís para crear textos, estructurar informes, analizar datos y ayudarte a ser más productivo. La clave para que te entienda bien es el <strong>Prompt</strong>: la instrucción o pregunta que le escribís.
@@ -306,9 +324,9 @@
     </section>
 
     <!-- MODULE 2: LA ANATOMÍA DE UN PROMPT DE NIVEL SUPERIOR -->
-    <section id="anatomia" class="py-16 md:py-24 bg-white border-t border-slate-200 px-4 sm:px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="mb-12 reveal">
+    <section id="anatomia" class="py-16 md:py-24 bg-white border-t border-slate-200 px-4 sm:px-6 lg:px-12">
+        <div class="max-w-[1440px] mx-auto">
+            <div class="mb-12 reveal max-w-4xl">
                 <h3 class="font-poppins font-semibold text-3xl text-brand-blue mb-4">La Anatomía de un Prompt de Nivel Superior</h3>
                 <p class="text-lg text-slate-600">Para obtener resultados que se sienten como magia, necesitás un prompt bien estructurado. Olvidate de las preguntas simples y aprendé a darle a la IA una instrucción completa con todos estos componentes.</p>
             </div>
@@ -378,15 +396,14 @@
     </section>
 
     <!-- MODULE 3: FRAMEWORKS PROFESIONALES -->
-    <section id="frameworks" class="py-16 md:py-24 px-4 sm:px-6">
-        <div class="max-w-6xl mx-auto">
+    <section id="frameworks" class="py-16 md:py-24 px-4 sm:px-6 lg:px-12">
+        <div class="max-w-[1440px] mx-auto">
             <div class="mb-12 text-center max-w-3xl mx-auto reveal">
                 <h3 class="font-poppins font-semibold text-3xl text-brand-blue mb-4">No Adivines: ¡Usá una Fórmula Profesional!</h3>
                 <p class="text-lg text-slate-600">Existen esquemas probados para crear prompts claros y efectivos. Estos son los 3 estándares de la industria para el entorno corporativo.</p>
             </div>
-
-            <!-- Decision Flowchart (HTML structure) -->
-            <div class="mb-16 bg-white border border-slate-200 rounded-2xl p-6 md:p-10 shadow-sm reveal-scale">
+            
+            <div class="mb-16 bg-white border border-slate-200 rounded-2xl p-6 md:p-10 shadow-sm reveal-scale max-w-4xl mx-auto">
                 <h4 class="font-poppins font-semibold text-slate-900 text-center mb-8 text-xl">¿QUÉ FRAMEWORK USO?</h4>
                 
                 <div class="flex flex-col items-center max-w-xl mx-auto space-y-4">
@@ -522,7 +539,7 @@ FORMATO (F): Lista estructurada agrupada por código de falla, con columna de cr
                             <h4 class="font-poppins font-semibold text-2xl text-slate-900">RISEN</h4>
                             <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-1 rounded">Procesos Técnicos Secuenciales</span>
                         </div>
-                        <p class="text-sm text-slate-500 mb-4">Creado por Kyle Balmer (Prompt Entrepreneur). También conocido como RISE o RISE-M.</p>
+                        <p class="text-sm text-slate-500 mb-4">Creado por Kyle Balmer (Prompt Entrepreneur). También conocido como RISE (4 letras) o RISE-M (con Methods/Tools).</p>
                         <p class="text-slate-700"><strong>Cuándo usarlo:</strong> Procesos donde el orden de los pasos importa y hay restricciones que no se pueden violar. Auditorías, análisis técnicos, flujos de aprobación.</p>
                     </div>
 
@@ -551,7 +568,7 @@ FORMATO (F): Lista estructurada agrupada por código de falla, con columna de cr
 INSTRUCCIONES (I): Realizá un cruce completo entre los remitos de piedra recibidos y las órdenes de compra emitidas para el período marzo 2026.
 
 SECUENCIA DE PASOS (S):
-1. Listar todos los remitos recibidos con sus cantidades.
+1. Listar todos los remitos recibidos con sus cantidades (en toneladas).
 2. Asociar cada remito con su orden de compra correspondiente.
 3. Calcular el desvío porcentual entre cantidad remitida y ordenada.
 4. Marcar como "ALERTA" todo desvío superior al 2%.
@@ -562,7 +579,7 @@ ENTREGABLE FINAL (E): Tabla comparativa con columnas:
 Incluir párrafo de resumen con cantidad total de alertas.
 
 NEGATIVAS / RESTRICCIONES (N):
-- NO asumas datos que no estén en los documentos.
+- NO asumas datos que no estén en los documentos proporcionados.
 - NO redondees las cantidades; usá los decimales originales.
 - Si falta un dato, marcalo como "SIN COINCIDENCIA" en vez de inventar.
 - Tolerancia aceptada: 2%. Solo alerta por encima de ese umbral.</pre>
@@ -574,14 +591,14 @@ NEGATIVAS / RESTRICCIONES (N):
     </section>
 
     <!-- MODULE 4: TÉCNICAS AVANZADAS -->
-    <section id="tecnicas" class="py-16 md:py-24 bg-white border-t border-slate-200 px-4 sm:px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="mb-12 text-center reveal">
+    <section id="tecnicas" class="py-16 md:py-24 bg-white border-t border-slate-200 px-4 sm:px-6 lg:px-12">
+        <div class="max-w-[1440px] mx-auto">
+            <div class="mb-12 text-center max-w-3xl mx-auto reveal">
                 <h3 class="font-poppins font-semibold text-3xl text-brand-blue mb-4">Técnicas Avanzadas de Prompt Engineering</h3>
                 <p class="text-lg text-slate-600">Herramientas complementarias que potencian cualquier framework. Dominá estas 4 técnicas para llevar tus prompts al siguiente nivel.</p>
             </div>
 
-            <div class="space-y-4 stagger">
+            <div class="space-y-4 stagger max-w-4xl mx-auto">
                 <!-- Acc 1 -->
                 <div class="accordion-card border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm reveal">
                     <button class="accordion-trigger w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-slate-50 transition-colors focus:outline-none">
@@ -688,22 +705,48 @@ Si encontrás errores, corregí y emití la versión final.</pre>
     </section>
 
     <!-- MODULE 5: COMPARADOR "ANTES VS. DESPUÉS" -->
-    <section id="antes-despues" class="py-16 md:py-24 px-4 sm:px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-12 text-center">
-                <h3 class="font-poppins font-semibold text-3xl text-brand-blue mb-4">De Prompt Vago a Prompt Profesional</h3>
+    <section id="antes-despues" class="py-16 md:py-24 px-4 sm:px-6 lg:px-12">
+        <div class="max-w-[1440px] mx-auto">
+            <div class="mb-12 text-center max-w-3xl mx-auto">
+                <h3 class="font-poppins font-semibold text-3xl md:text-4xl text-brand-blue mb-4">De Prompt Vago a Prompt Profesional</h3>
                 <p class="text-lg text-slate-600">Mirá la diferencia radical entre un prompt sin estructura y uno con framework aplicado. Elegí tu área para ver el ejemplo.</p>
             </div>
 
-            <!-- Tab Navigation -->
-            <div class="border-b border-slate-200 mb-8 overflow-x-auto no-scrollbar">
-                <div class="flex space-x-6 min-w-max px-2">
-                    <button class="bva-tab active pb-3 font-medium text-slate-600 border-b-2 border-transparent hover:text-slate-900 transition-colors" data-target="tab-admin">Administración</button>
-                    <button class="bva-tab pb-3 font-medium text-slate-600 border-b-2 border-transparent hover:text-slate-900 transition-colors" data-target="tab-compras">Compras</button>
-                    <button class="bva-tab pb-3 font-medium text-slate-600 border-b-2 border-transparent hover:text-slate-900 transition-colors" data-target="tab-rrhh">RRHH</button>
-                    <button class="bva-tab pb-3 font-medium text-slate-600 border-b-2 border-transparent hover:text-slate-900 transition-colors" data-target="tab-taller">Taller</button>
-                    <button class="bva-tab pb-3 font-medium text-slate-600 border-b-2 border-transparent hover:text-slate-900 transition-colors" data-target="tab-tecnicos">Técnicos</button>
-                    <button class="bva-tab pb-3 font-medium text-slate-600 border-b-2 border-transparent hover:text-slate-900 transition-colors" data-target="tab-direccion">Dirección</button>
+            <!-- Tab Navigation (Mobile Select Dropdown + Desktop 6-Column Grid) -->
+            <div class="mb-8 max-w-5xl mx-auto">
+                <!-- Mobile Select (< sm) -->
+                <div class="sm:hidden mb-4">
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Seleccionar Área:</label>
+                    <select id="bva-mobile-select" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-slate-800 font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue shadow-sm">
+                        <option value="tab-admin">🏛️ Administración</option>
+                        <option value="tab-compras">🛒 Compras</option>
+                        <option value="tab-rrhh">👥 Recursos Humanos (RRHH)</option>
+                        <option value="tab-taller">🔧 Taller Mecánico</option>
+                        <option value="tab-tecnicos">📐 Oficina Técnica</option>
+                        <option value="tab-direccion">👔 Dirección / Gerencia</option>
+                    </select>
+                </div>
+
+                <!-- Desktop / Tablet Grid Tabs (>= sm) -->
+                <div class="hidden sm:grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+                    <button class="bva-tab active p-3 rounded-xl font-semibold text-sm text-center border border-slate-200 transition-all flex items-center justify-center space-x-2 bg-brand-blue text-white shadow-sm" data-target="tab-admin">
+                        <span>🏛️</span> <span>Administración</span>
+                    </button>
+                    <button class="bva-tab p-3 rounded-xl font-medium text-sm text-center border border-slate-200 transition-all flex items-center justify-center space-x-2 bg-white text-slate-700 hover:bg-slate-100" data-target="tab-compras">
+                        <span>🛒</span> <span>Compras</span>
+                    </button>
+                    <button class="bva-tab p-3 rounded-xl font-medium text-sm text-center border border-slate-200 transition-all flex items-center justify-center space-x-2 bg-white text-slate-700 hover:bg-slate-100" data-target="tab-rrhh">
+                        <span>👥</span> <span>RRHH</span>
+                    </button>
+                    <button class="bva-tab p-3 rounded-xl font-medium text-sm text-center border border-slate-200 transition-all flex items-center justify-center space-x-2 bg-white text-slate-700 hover:bg-slate-100" data-target="tab-taller">
+                        <span>🔧</span> <span>Taller</span>
+                    </button>
+                    <button class="bva-tab p-3 rounded-xl font-medium text-sm text-center border border-slate-200 transition-all flex items-center justify-center space-x-2 bg-white text-slate-700 hover:bg-slate-100" data-target="tab-tecnicos">
+                        <span>📐</span> <span>Técnicos</span>
+                    </button>
+                    <button class="bva-tab p-3 rounded-xl font-medium text-sm text-center border border-slate-200 transition-all flex items-center justify-center space-x-2 bg-white text-slate-700 hover:bg-slate-100" data-target="tab-direccion">
+                        <span>👔</span> <span>Dirección</span>
+                    </button>
                 </div>
             </div>
 
@@ -715,8 +758,8 @@ Si encontrás errores, corregí y emití la versión final.</pre>
     </section>
 
     <!-- MODULE 6: GENERADOR DE PROMPTS + BIBLIOTECA -->
-    <section id="generador" class="py-16 md:py-24 bg-white border-t border-slate-200 px-4 sm:px-6">
-        <div class="max-w-6xl mx-auto">
+    <section id="generador" class="py-16 md:py-24 bg-white border-t border-slate-200 px-4 sm:px-6 lg:px-12">
+        <div class="max-w-[1440px] mx-auto">
             
             <!-- Module 6 Tabs -->
             <div class="flex justify-center mb-12">
@@ -856,9 +899,9 @@ Si encontrás errores, corregí y emití la versión final.</pre>
     </section>
 
     <!-- MODULE 7: GOBERNANZA Y REGLAS DE ORO -->
-    <section id="seguridad" class="py-16 md:py-24 border-t border-slate-200 px-4 sm:px-6 relative overflow-hidden">
-        <div class="max-w-5xl mx-auto relative z-10">
-            <div class="mb-12 text-center">
+    <section id="seguridad" class="py-16 md:py-24 border-t border-slate-200 px-4 sm:px-6 lg:px-12 relative overflow-hidden">
+        <div class="max-w-[1440px] mx-auto relative z-10">
+            <div class="mb-12 text-center max-w-3xl mx-auto">
                 <h3 class="font-poppins font-semibold text-3xl text-brand-coral mb-4">Genial, pero... ¡Usala con Responsabilidad!</h3>
                 <p class="text-lg text-slate-600 max-w-2xl mx-auto">La IA es una herramienta increíble, pero como todo poder, conlleva una gran responsabilidad. Entender sus beneficios y sus límites es clave.</p>
             </div>
@@ -964,7 +1007,7 @@ Si encontrás errores, corregí y emití la versión final.</pre>
 
     <!-- FOOTER -->
     <footer class="bg-navy py-10 px-6 text-center text-slate-400 border-t border-slate-800">
-        <div class="max-w-4xl mx-auto">
+        <div class="max-w-[1440px] mx-auto">
             <p class="font-poppins font-medium text-slate-300 mb-2">RAVA S.A. — Capacitación en Nuevas Tecnologías e IA — 2026</p>
             <p class="text-sm">Material desarrollado por Brian Ruiz Moreno y Leon Schwegler</p>
         </div>
@@ -980,15 +1023,37 @@ Si encontrás errores, corregí y emití la versión final.</pre>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            /* 1. Smooth Scroll & Sticky Nav Highlighting */
+            /* 1. Smooth Scroll, Sticky Nav & Mobile Menu Toggle */
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const hamburgerIcon = document.getElementById('mobile-hamburger-icon');
+            const closeIcon = document.getElementById('mobile-close-icon');
+
+            if (mobileNavToggle) {
+                mobileNavToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('hidden');
+                    hamburgerIcon.classList.toggle('hidden');
+                    closeIcon.classList.toggle('hidden');
+                });
+            }
+
+            // Close mobile menu when link clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 1024 && navMenu && !navMenu.classList.contains('hidden')) {
+                        navMenu.classList.add('hidden');
+                        if (hamburgerIcon) hamburgerIcon.classList.remove('hidden');
+                        if (closeIcon) closeIcon.classList.add('hidden');
+                    }
+                });
+            });
 
             window.addEventListener('scroll', () => {
                 let current = '';
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
                     if (pageYOffset >= (sectionTop - 150)) {
                         current = section.getAttribute('id');
                     }
@@ -996,10 +1061,8 @@ Si encontrás errores, corregí y emití la versión final.</pre>
 
                 navLinks.forEach(link => {
                     link.classList.remove('active', 'text-brand-blue');
-                    link.classList.add('hover:text-slate-900');
                     if (link.getAttribute('href').includes(current)) {
                         link.classList.add('active', 'text-brand-blue');
-                        link.classList.remove('hover:text-slate-900');
                     }
                 });
             });
@@ -1073,6 +1136,7 @@ Si encontrás errores, corregí y emití la versión final.</pre>
 
             const bvaContainer = document.getElementById('bva-content-container');
             const bvaTabs = document.querySelectorAll('.bva-tab');
+            const bvaMobileSelect = document.getElementById('bva-mobile-select');
 
             function renderBva(tabId) {
                 const data = bvaData[tabId];
@@ -1106,20 +1170,36 @@ ${data.good}
                 `;
             }
 
+            function setActiveBvaTab(tabId) {
+                bvaTabs.forEach(t => {
+                    if (t.dataset.target === tabId) {
+                        t.classList.add('active', 'bg-brand-blue', 'text-white', 'border-brand-blue', 'shadow-sm');
+                        t.classList.remove('bg-white', 'text-slate-700', 'hover:bg-slate-100');
+                    } else {
+                        t.classList.remove('active', 'bg-brand-blue', 'text-white', 'border-brand-blue', 'shadow-sm');
+                        t.classList.add('bg-white', 'text-slate-700', 'hover:bg-slate-100');
+                    }
+                });
+                if (bvaMobileSelect) {
+                    bvaMobileSelect.value = tabId;
+                }
+                renderBva(tabId);
+            }
+
             bvaTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
-                    bvaTabs.forEach(t => {
-                        t.classList.remove('active', 'border-brand-blue', 'text-slate-900');
-                        t.classList.add('border-transparent');
-                    });
-                    tab.classList.add('active', 'border-brand-blue', 'text-slate-900');
-                    tab.classList.remove('border-transparent');
-                    renderBva(tab.dataset.target);
+                    setActiveBvaTab(tab.dataset.target);
                 });
             });
+
+            if (bvaMobileSelect) {
+                bvaMobileSelect.addEventListener('change', (e) => {
+                    setActiveBvaTab(e.target.value);
+                });
+            }
+
             // Init first BVA tab
-            bvaTabs[0].classList.add('active', 'border-brand-blue', 'text-slate-900');
-            renderBva('tab-admin');
+            setActiveBvaTab('tab-admin');
 
 
             /* 4. Generator & Library Toggle */
