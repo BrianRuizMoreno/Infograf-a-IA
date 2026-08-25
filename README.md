@@ -14,7 +14,7 @@ La plataforma se organiza en dos módulos de capacitación complementarios y de 
 ```text
 ├── index.html        # Módulo 2: Prompt Engineering & Automatización Práctica
 ├── agente/
-│   ├── index.html    # Módulo 3: Agentes Autónomos, Arquitectura ReAct & Skills
+│   ├── index.html    # Módulo 3: Agentes Autónomos, Arquitectura ReAct y Skills
 │   └── assets/       # Recursos gráficos y branding
 ├── assets/           # Logos e íconos compartidos
 └── README.md         # Documentación técnica y pedagógica
@@ -39,7 +39,7 @@ Enfocado en la formulación de instrucciones de alto rendimiento para el trabajo
 
 ---
 
-## 🤖 Módulo 3: Agentes Autónomos & Arquitectura de Skills (`agente/index.html`)
+## 🤖 Módulo 3: Agentes Autónomos y Arquitectura de Skills (`agente/index.html`)
 
 Enfocado en la transición de un chatbot conversacional a un **Agente Autónomo** capaz de ejecutar tareas multi-paso, interactuar con herramientas y auto-corregirse ante desvíos.
 

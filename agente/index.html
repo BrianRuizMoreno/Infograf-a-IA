@@ -229,10 +229,9 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 .pl-c{font-size:12.5px;font-weight:800;letter-spacing:.06em;color:var(--ink-3);flex:none}
 
 /* ===================== 03 · PIEZAS ===================== */
-.pieces{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media(min-width:1120px){.pieces{grid-template-columns:repeat(6,1fr);gap:10px}}
-@media(max-width:860px){.pieces{grid-template-columns:repeat(2,1fr);gap:12px}}
-@media(max-width:520px){.pieces{grid-template-columns:1fr;gap:12px}}
+.pieces{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:880px){.pieces{grid-template-columns:repeat(2,1fr);gap:14px}}
+@media(max-width:540px){.pieces{grid-template-columns:1fr;gap:12px}}
 .piece{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r-l);padding:24px 20px 22px;
   transition:transform .4s var(--ease-out),box-shadow .4s,background .3s}
 .piece:hover{transform:translateY(-6px);box-shadow:var(--sh-m);background:#fff}
@@ -395,20 +394,20 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
 .replay svg{width:15px;height:15px}
 
 /* ===================== 03 · FLIP CARDS ===================== */
-.flip{perspective:1100px;background:none;border:0;padding:0;cursor:pointer;text-align:left;font-family:inherit;color:inherit}
-.flip-in{position:relative;width:100%;min-height:250px;transform-style:preserve-3d;transition:transform .65s var(--ease-io)}
+.flip{perspective:1100px;background:none;border:0;padding:0;cursor:pointer;text-align:left;font-family:inherit;color:inherit;width:100%}
+.flip-in{position:relative;width:100%;min-height:280px;height:100%;transform-style:preserve-3d;transition:transform .65s var(--ease-io)}
 .flip.on .flip-in{transform:rotateY(180deg)}
 .f-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
-  border-radius:var(--r-l);padding:22px 20px;display:flex;flex-direction:column;align-items:flex-start}
+  border-radius:var(--r-l);padding:22px 20px;display:flex;flex-direction:column;align-items:flex-start;overflow-y:auto}
 .f-front{background:var(--paper);border:1px solid var(--rule);transition:border-color .3s,box-shadow .3s,transform .4s var(--ease-out)}
 .flip:hover .f-front{border-color:rgba(67,56,202,.35);box-shadow:var(--sh-s)}
 .flip:hover .p-ico{transform:scale(1.08) rotate(-6deg)}
-.f-front .f-t{display:block;font-size:17.5px;font-weight:800;letter-spacing:-.035em;line-height:1.1;margin-bottom:7px}
-.f-front p{font-size:14px;color:var(--ink-2);line-height:1.45}
-.f-back{transform:rotateY(180deg);background:linear-gradient(150deg,var(--brand),#4F46E5);color:#fff}
-.f-back b{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;opacity:.8;display:block;margin-bottom:4px}
-.f-back p{font-size:13.5px;line-height:1.48;color:#fff}
-.f-back .fb2{margin-top:auto;padding-top:12px;border-top:1px dashed rgba(255,255,255,.35);width:100%}
+.f-front .f-t{display:block;font-size:18px;font-weight:800;letter-spacing:-.035em;line-height:1.15;margin-bottom:8px}
+.f-front p{font-size:14.5px;color:var(--ink-2);line-height:1.45}
+.f-back{transform:rotateY(180deg);background:linear-gradient(150deg,var(--brand),#4F46E5);color:#fff;box-shadow:var(--sh-m)}
+.f-back b{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.85;display:block;margin-bottom:4px}
+.f-back p{font-size:13.5px;line-height:1.45;color:#fff}
+.f-back .fb2{margin-top:auto;padding-top:10px;border-top:1px dashed rgba(255,255,255,.35);width:100%}
 .f-hint{margin-top:auto;padding-top:12px;font-size:10.5px;font-weight:800;letter-spacing:.09em;
   text-transform:uppercase;color:var(--ink-3);display:inline-flex;align-items:center;gap:6px}
 .f-hint svg{width:13px;height:13px}
@@ -550,7 +549,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
     </a>
     <a href="#diferencia" class="hide-s">01 Diferencia</a>
     <a href="#pasos" class="hide-s">02 Pasos</a>
-    <a href="#piezas" class="hide-s">03 Piezas & Skills</a>
+    <a href="#piezas" class="hide-s">03 Piezas y Skills</a>
     <a href="#quiz" class="hide-s">Quiz</a>
     <a href="#trucos" class="hide-s">Trucos</a>
     <a href="#demo" class="btn btn-primary btn-sm" style="color:#fff">Demo en Vivo</a>
@@ -563,7 +562,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="live rv"><span class="dot"></span> Módulo 3 · Agentes Autónomos & Skills</div>
+      <div class="live rv"><span class="dot"></span> Módulo 3 · Agentes Autónomos y Skills</div>
       <h1 class="rv" data-d="1">Un chatbot responde.<br><span class="grad">Un agente hace el trabajo.</span></h1>
       <p class="sub rv" data-d="2">Seis pasos, seis piezas clave con skills operativas, una consola interactiva que corres tú, un quiz para comprobarlo y los trucos para armar el tuyo hoy en RAVA S.A.</p>
       <div class="hero-cta rv" data-d="3">
@@ -665,7 +664,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
     <header class="chapter">
       <div class="ch-n rv">03</div>
       <div>
-        <h2 class="rv" data-d="1">Las seis piezas esenciales</h2>
+        <h2 class="rv" data-d="1">Las seis piezas: Componentes y Skills</h2>
         <p class="ch-s rv" data-d="2">Si te falta una, no es un agente autónomo eficiente. Ninguna exige saber programar. Gira cada carta para ver su analogía de obra y qué pasa cuando falta.</p>
       </div>
     </header>
@@ -794,7 +793,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
           </div>
         </div>
         <div class="panel">
-          <div class="p-h">Herramientas & Skills <span id="toolCount">0 / 0</span></div>
+          <div class="p-h">Herramientas y Skills <span id="toolCount">0 / 0</span></div>
           <div id="tools"></div>
           <div class="loopbox">
             <div class="loop-n" id="loopN">0</div>
