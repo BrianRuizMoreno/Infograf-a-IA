@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mi primer agente · RAVA S.A.</title>
-<meta name="description" content="Capacitación RAVA S.A.: Cómo funciona un agente de IA corporativo desde cero. Seis pasos, demo interactiva, quiz y trucos aplicados a obras y gestión.">
+<meta name="description" content="Capacitación RAVA S.A.: Cómo funciona un agente de IA corporativo desde cero. Seis pasos, seis piezas, skills operativas, demo interactiva, quiz y trucos aplicados a obras y compras.">
 <meta property="og:title" content="Mi primer agente · RAVA S.A.">
-<meta property="og:description" content="Seis pasos, demo interactiva, quiz y trucos para implementar tu primer agente de IA en RAVA S.A.">
+<meta property="og:description" content="Seis pasos, seis piezas clave, skills procedimentales, demo interactiva, quiz y trucos para implementar tu primer agente de IA en RAVA S.A.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,16 +15,16 @@
 <style>
 /* ===================== TOKENS ===================== */
 :root{
-  --ink:#0B0D16; --ink-2:#454a63; --ink-3:#5f657e;
-  --brand:#4A3AC1; --brand-2:#6B5BE6; --brand-ink:#2b1f86;
-  --lilac:#B9ADF7; --lilac-soft:#EDEAFE; --lilac-line:rgba(74,58,193,.18);
-  --green:#19C356; --green-soft:#E2F8EB; --green-ink:#0d7a35;
-  --amber:#E8A317;
-  --paper:#F3F2F9;
-  --rule:rgba(11,13,22,.10); --rule-2:rgba(11,13,22,.06);
-  --sh-s:0 1px 2px rgba(11,13,22,.05),0 4px 14px -6px rgba(11,13,22,.10);
-  --sh-m:0 2px 4px rgba(11,13,22,.04),0 18px 40px -18px rgba(45,32,140,.28);
-  --sh-l:0 30px 70px -30px rgba(45,32,140,.45);
+  --ink:#0B0D16; --ink-2:#374151; --ink-3:#4B5563;
+  --brand:#4338CA; --brand-2:#6366F1; --brand-ink:#1E1B4B;
+  --lilac:#C7D2FE; --lilac-soft:#EEF2FF; --lilac-line:rgba(67,56,202,.16);
+  --green:#059669; --green-soft:#ECFDF5; --green-ink:#064E3B;
+  --amber:#D97706;
+  --paper:#F8FAFC;
+  --rule:rgba(15,23,42,.08); --rule-2:rgba(15,23,42,.05);
+  --sh-s:0 1px 3px rgba(15,23,42,.06),0 4px 14px -6px rgba(15,23,42,.08);
+  --sh-m:0 2px 6px rgba(15,23,42,.04),0 18px 40px -18px rgba(67,56,202,.24);
+  --sh-l:0 30px 70px -30px rgba(67,56,202,.40);
   --r-m:16px; --r-l:24px; --r-xl:32px;
   --maxw:1160px;
   --ease:cubic-bezier(.22,.61,.36,1); --ease-out:cubic-bezier(.16,1,.3,1);
@@ -43,38 +43,38 @@ button{font-family:inherit}
 /* ===================== ATMÓSFERA ===================== */
 .atmo{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.45;will-change:transform}
-.b1{width:52vw;height:52vw;left:-14vw;top:-16vw;background:radial-gradient(circle at 30% 30%,#d9d2ff,#f3f2f9 70%);animation:d1 26s var(--ease) infinite alternate}
-.b2{width:42vw;height:42vw;right:-12vw;top:10vh;background:radial-gradient(circle at 60% 40%,#d6f6e4,#f3f2f9 70%);animation:d2 32s var(--ease) infinite alternate}
+.b1{width:52vw;height:52vw;left:-14vw;top:-16vw;background:radial-gradient(circle at 30% 30%,#e0e7ff,#f8fafc 70%);animation:d1 26s var(--ease) infinite alternate}
+.b2{width:42vw;height:42vw;right:-12vw;top:10vh;background:radial-gradient(circle at 60% 40%,#d1fae5,#f8fafc 70%);animation:d2 32s var(--ease) infinite alternate}
 @keyframes d1{to{transform:translate3d(8vw,6vh,0) scale(1.15)}}
 @keyframes d2{to{transform:translate3d(-7vw,10vh,0) scale(1.1)}}
 
 /* ===================== NAV ===================== */
 .progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:60;
-  background:linear-gradient(90deg,var(--brand),var(--lilac),var(--green));
-  box-shadow:0 0 14px rgba(74,58,193,.5);transform:scaleX(0);transform-origin:left;transition:transform .1s linear}
+  background:linear-gradient(90deg,var(--brand),var(--brand-2),var(--green));
+  box-shadow:0 0 14px rgba(67,56,202,.5);transform:scaleX(0);transform-origin:left;transition:transform .1s linear}
 nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:16px;
-  padding:14px clamp(16px,4vw,40px);background:rgba(243,242,249,.8);
+  padding:14px clamp(16px,4vw,40px);background:rgba(248,250,252,.85);
   backdrop-filter:blur(18px) saturate(1.6);border-bottom:1px solid transparent;
   transition:border-color .35s,padding .35s}
 nav.stuck{border-bottom-color:var(--rule);padding-top:10px;padding-bottom:10px}
-nav img{height:24px;width:auto;display:block}
-.nav-links{margin-left:auto;display:flex;gap:4px;align-items:center}
-.nav-links a{font-size:14px;font-weight:700;color:var(--ink-3);text-decoration:none;
+nav img{height:28px;width:auto;display:block}
+.nav-links{margin-left:auto;display:flex;gap:6px;align-items:center}
+.nav-links a{font-size:14px;font-weight:700;color:var(--ink-2);text-decoration:none;
   padding:8px 12px;border-radius:99px;transition:.25s var(--ease)}
 .nav-links a:hover,.nav-links a.act{color:var(--brand);background:var(--lilac-soft)}
-@media(max-width:900px){.nav-links a.hide-s{display:none}}
-@media(max-width:560px){nav{gap:10px;padding-left:14px;padding-right:14px}nav img{height:21px}
+@media(max-width:960px){.nav-links a.hide-s{display:none}}
+@media(max-width:560px){nav{gap:10px;padding-left:14px;padding-right:14px}nav img{height:23px}
   .nav-links a.btn{padding:9px 14px;font-size:13.5px}}
 
 /* ===================== BOTONES ===================== */
-.btn{display:inline-flex;align-items:center;gap:99px;justify-content:center;
+.btn{display:inline-flex;align-items:center;gap:9px;justify-content:center;
   padding:14px 24px;border-radius:99px;border:1px solid transparent;
   font-size:15.5px;font-weight:700;text-decoration:none;cursor:pointer;
   transition:transform .3s var(--ease-out),box-shadow .3s,background .25s}
-.btn svg{width:17px;height:17px}
-.btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 22px -8px rgba(74,58,193,.75)}
-.btn-primary:hover{transform:translateY(-2px);background:#523fd6}
-.btn-ghost{background:rgba(255,255,255,.75);color:var(--ink);border-color:var(--rule)}
+.btn svg{width:17px;height:17px;flex:none}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 22px -8px rgba(67,56,202,.75)}
+.btn-primary:hover{transform:translateY(-2px);background:#3730A3;box-shadow:0 10px 26px -6px rgba(67,56,202,.85)}
+.btn-ghost{background:rgba(255,255,255,.85);color:var(--ink);border-color:var(--rule);box-shadow:var(--sh-s)}
 .btn-ghost:hover{transform:translateY(-2px);border-color:var(--brand);color:var(--brand);background:#fff}
 .btn-sm{padding:10px 17px;font-size:14px}
 .btn:disabled{opacity:.45;cursor:default;transform:none}
@@ -87,10 +87,10 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 .sec-tint{background:var(--lilac-soft);border-block:1px solid var(--lilac-line)}
 .chapter{display:flex;gap:clamp(16px,3vw,30px);align-items:flex-start;margin-bottom:clamp(32px,4.2vw,52px)}
 .ch-n{font-size:clamp(52px,9vw,112px);font-weight:800;line-height:.74;letter-spacing:-.06em;
-  color:transparent;-webkit-text-stroke:1.6px rgba(74,58,193,.3);flex:none;user-select:none}
-.sec-tint .ch-n{-webkit-text-stroke-color:rgba(74,58,193,.42)}
+  color:transparent;-webkit-text-stroke:1.6px rgba(67,56,202,.3);flex:none;user-select:none}
+.sec-tint .ch-n{-webkit-text-stroke-color:rgba(67,56,202,.42)}
 .chapter h2{font-size:clamp(29px,4.4vw,50px)}
-.ch-s{font-size:clamp(16px,1.7vw,19px);color:var(--ink-2);margin-top:12px;max-width:52ch;font-weight:500}
+.ch-s{font-size:clamp(16px,1.7vw,19px);color:var(--ink-2);margin-top:12px;max-width:56ch;font-weight:500}
 @media(max-width:620px){.chapter{flex-direction:column;gap:4px}.ch-n{font-size:44px}}
 
 /* ===================== REVEAL ===================== */
@@ -98,6 +98,7 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 .rv.in{opacity:1;transform:none}
 .rv[data-d="1"]{transition-delay:.08s}.rv[data-d="2"]{transition-delay:.16s}
 .rv[data-d="3"]{transition-delay:.24s}.rv[data-d="4"]{transition-delay:.32s}
+.rv[data-d="5"]{transition-delay:.40s}
 
 /* ===================== HERO ===================== */
 .hero{min-height:100svh;display:flex;align-items:center;padding-top:118px;padding-bottom:50px}
@@ -105,19 +106,19 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 @media(max-width:980px){.hero-grid{grid-template-columns:1fr;gap:40px}}
 .live{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:800;
   letter-spacing:.06em;text-transform:uppercase;color:var(--green-ink);
-  background:var(--green-soft);padding:8px 15px;border-radius:99px;border:1px solid rgba(25,195,86,.25)}
+  background:var(--green-soft);padding:8px 15px;border-radius:99px;border:1px solid rgba(5,150,105,.25)}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--green);position:relative}
 .dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--green);animation:ping 1.9s var(--ease-out) infinite}
 @keyframes ping{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.7);opacity:0}}
 .hero h1{font-size:clamp(42px,7.2vw,86px);margin:22px 0 0;letter-spacing:-.045em}
-.hero h1 .grad{background:linear-gradient(100deg,var(--brand) 10%,var(--brand-2) 45%,var(--green) 96%);
+.hero h1 .grad{background:linear-gradient(100deg,var(--brand) 10%,var(--brand-2) 50%,var(--green) 96%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.hero .sub{margin-top:20px;font-size:clamp(17px,1.9vw,20px);color:var(--ink-2);max-width:44ch;font-weight:500}
+.hero .sub{margin-top:20px;font-size:clamp(17px,1.9vw,20px);color:var(--ink-2);max-width:48ch;font-weight:500}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
 
 .orbit{position:relative;aspect-ratio:1;max-width:min(440px,76vw);margin:0 auto;width:100%}
-.ring{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(74,58,193,.26)}
-.ring.r2{inset:16%;border-style:solid;border-color:rgba(74,58,193,.12)}
+.ring{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(67,56,202,.26)}
+.ring.r2{inset:16%;border-style:solid;border-color:rgba(67,56,202,.12)}
 .spin{position:absolute;inset:0;animation:spin 30s linear infinite}
 .spin.rev{animation-duration:22s;animation-direction:reverse}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -128,8 +129,8 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 .node svg{width:25px;height:25px;display:block}
 @media(max-width:560px){.node{width:52px;height:52px;border-radius:16px;margin:-26px 0 0 -26px}.node svg{width:21px;height:21px}}
 .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:42%;aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#fff,#f0edff 45%,#ddd6ff);border:1px solid rgba(74,58,193,.2);
-  box-shadow:0 20px 60px -20px rgba(74,58,193,.6),inset 0 2px 20px rgba(255,255,255,.9);
+  background:radial-gradient(circle at 35% 30%,#fff,#eef2ff 45%,#c7d2fe);border:1px solid rgba(67,56,202,.2);
+  box-shadow:0 20px 60px -20px rgba(67,56,202,.6),inset 0 2px 20px rgba(255,255,255,.9);
   display:grid;place-items:center;text-align:center;animation:breathe 4.4s var(--ease) infinite}
 @keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.045)}}
 .core svg{width:32px;height:32px;color:var(--brand)}
@@ -152,7 +153,7 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 @media(max-width:820px){.vs{grid-template-columns:1fr}}
 .vs-card{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r-l);
   padding:clamp(22px,2.8vw,32px);position:relative;overflow:hidden}
-.vs-card.hot{background:#fff;border-color:rgba(74,58,193,.3);box-shadow:var(--sh-m)}
+.vs-card.hot{background:#fff;border-color:rgba(67,56,202,.3);box-shadow:var(--sh-m)}
 .vs-card.hot::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;
   background:linear-gradient(90deg,var(--brand),var(--green))}
 .vs-k{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
@@ -178,13 +179,13 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 .rc b{display:block;font-size:10.5px;font-weight:800;letter-spacing:.1em;opacity:.9;margin-bottom:3px}
 .rc span{display:block;font-size:14px;font-weight:700;letter-spacing:-.01em}
 .rc.on{background:var(--brand);border-color:var(--brand);color:#fff;
-  box-shadow:0 10px 26px -10px rgba(74,58,193,.85);transform:translateY(-2px)}
+  box-shadow:0 10px 26px -10px rgba(67,56,202,.85);transform:translateY(-2px)}
 .rc.on b{opacity:.95}
-.rc.past{background:#fff;color:var(--brand);border-color:rgba(74,58,193,.35)}
+.rc.past{background:#fff;color:var(--brand);border-color:rgba(67,56,202,.35)}
 .loopbar{position:relative;height:34px;margin-bottom:clamp(18px,2.4vw,26px)}
 @media(max-width:760px){.loopbar{display:none}}
 .loopbar i{position:absolute;left:33.333%;width:50%;top:0;height:16px;
-  border:1.5px dashed rgba(74,58,193,.45);border-top:none;border-radius:0 0 12px 12px}
+  border:1.5px dashed rgba(67,56,202,.45);border-top:none;border-radius:0 0 12px 12px}
 .loopbar em{position:absolute;left:33.333%;width:50%;top:17px;text-align:center;font-style:normal;
   font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
 
@@ -199,7 +200,7 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 @media(max-width:860px){.pl-left{border-right:none;border-bottom:1px solid var(--rule-2)}}
 .pl-n{font-size:13px;font-weight:800;letter-spacing:.16em;color:var(--brand);margin-bottom:12px}
 .pl-t{font-size:clamp(26px,3.2vw,38px);letter-spacing:-.04em;font-weight:800}
-.pl-d{font-size:clamp(16px,1.7vw,18px);color:var(--ink-2);margin-top:14px;max-width:34ch;font-weight:500}
+.pl-d{font-size:clamp(16px,1.7vw,18px);color:var(--ink-2);margin-top:14px;max-width:36ch;font-weight:500}
 .pl-right{padding:clamp(24px,3vw,34px);background:var(--paper);display:flex;flex-direction:column;justify-content:center}
 .fade-in{animation:fu .5s var(--ease-out) both}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -211,13 +212,13 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 .vrow .vi{width:30px;height:30px;border-radius:9px;background:var(--paper);border:1px solid var(--rule-2);
   display:grid;place-items:center;flex:none;color:var(--brand);font-size:12px;font-weight:800}
 .vrow .vi svg{width:15px;height:15px}
-.vrow.ok{background:var(--green-soft);border-color:rgba(25,195,86,.24);color:var(--green-ink)}
-.vrow.ok .vi{color:var(--green-ink);background:#fff;border-color:rgba(25,195,86,.3)}
-.vrow.warn{background:#fff7e6;border-color:rgba(232,163,23,.32);color:#8a5d00}
-.vrow.warn .vi{color:var(--amber);background:#fff;border-color:rgba(232,163,23,.35)}
+.vrow.ok{background:var(--green-soft);border-color:rgba(5,150,105,.24);color:var(--green-ink)}
+.vrow.ok .vi{color:var(--green-ink);background:#fff;border-color:rgba(5,150,105,.3)}
+.vrow.warn{background:#fff7e6;border-color:rgba(217,119,6,.32);color:#92400e}
+.vrow.warn .vi{color:var(--amber);background:#fff;border-color:rgba(217,119,6,.35)}
 .vrow small{margin-left:auto;font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;opacity:.95}
 .pl-bar{display:flex;align-items:center;gap:12px;padding:14px clamp(20px,2.6vw,30px);
-  border-top:1px solid var(--rule-2);background:rgba(243,242,249,.5)}
+  border-top:1px solid var(--rule-2);background:rgba(248,250,252,.7)}
 .pl-bar .tick{flex:1;height:4px;border-radius:99px;background:var(--rule-2);overflow:hidden}
 .pl-bar .tick i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--green));
   border-radius:99px;transition:width .35s linear}
@@ -228,9 +229,10 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 .pl-c{font-size:12.5px;font-weight:800;letter-spacing:.06em;color:var(--ink-3);flex:none}
 
 /* ===================== 03 · PIEZAS ===================== */
-.pieces{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-@media(max-width:1000px){.pieces{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.pieces{grid-template-columns:1fr}}
+.pieces{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(min-width:1120px){.pieces{grid-template-columns:repeat(6,1fr);gap:10px}}
+@media(max-width:860px){.pieces{grid-template-columns:repeat(2,1fr);gap:12px}}
+@media(max-width:520px){.pieces{grid-template-columns:1fr;gap:12px}}
 .piece{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r-l);padding:24px 20px 22px;
   transition:transform .4s var(--ease-out),box-shadow .4s,background .3s}
 .piece:hover{transform:translateY(-6px);box-shadow:var(--sh-m);background:#fff}
@@ -239,24 +241,24 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
   transition:transform .4s var(--ease-out)}
 .piece:hover .p-ico{transform:scale(1.08) rotate(-6deg)}
 .p-ico svg{width:22px;height:22px}
-.piece:nth-child(5) .p-ico{color:var(--green-ink)}
+.piece:nth-child(6) .p-ico{color:var(--green-ink)}
 .piece h3{font-size:17.5px;margin-bottom:7px}
 .piece p{font-size:14px;color:var(--ink-2);line-height:1.45}
 
 /* ===================== 04 · DEMO ===================== */
-.demo-sec{background:linear-gradient(178deg,#fff 0%,#faf9ff 45%,#f1eefd 100%);
+.demo-sec{background:linear-gradient(178deg,#fff 0%,#f5f4ff 45%,#ede9fe 100%);
   border-block:1px solid var(--rule);overflow:hidden}
 .console{background:#fff;border:1px solid var(--rule);border-radius:var(--r-xl);box-shadow:var(--sh-l);overflow:hidden}
-.c-bar{display:flex;align-items:center;gap:12px;padding:15px 20px;border-bottom:1px solid var(--rule-2);background:rgba(243,242,249,.6)}
+.c-bar{display:flex;align-items:center;gap:12px;padding:15px 20px;border-bottom:1px solid var(--rule-2);background:rgba(248,250,252,.8)}
 .c-bar .tl{display:flex;gap:6px}
 .c-bar .tl i{width:11px;height:11px;border-radius:50%;display:block}
-.c-bar .tl i:nth-child(1){background:#ff5f57}.c-bar .tl i:nth-child(2){background:#febc2e}.c-bar .tl i:nth-child(3){background:#28c840}
+.c-bar .tl i:nth-child(1){background:#ef4444}.c-bar .tl i:nth-child(2){background:#f59e0b}.c-bar .tl i:nth-child(3){background:#10b981}
 .c-bar b{font-size:13px;font-weight:700;color:var(--ink-3)}
 .c-state{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;
   letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);background:#fff;border:1px solid var(--rule);
   padding:6px 12px;border-radius:99px}
-.c-state.run{color:var(--brand);border-color:rgba(74,58,193,.3);background:var(--lilac-soft)}
-.c-state.done{color:var(--green-ink);border-color:rgba(25,195,86,.3);background:var(--green-soft)}
+.c-state.run{color:var(--brand);border-color:rgba(67,56,202,.3);background:var(--lilac-soft)}
+.c-state.done{color:var(--green-ink);border-color:rgba(5,150,105,.3);background:var(--green-soft)}
 .c-state .sd{width:7px;height:7px;border-radius:50%;background:currentColor}
 .c-state.run .sd{animation:blink .9s ease-in-out infinite}
 @keyframes blink{50%{opacity:.25}}
@@ -265,7 +267,7 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 .field input{flex:1;min-width:230px;padding:16px 19px;border-radius:15px;border:1.5px solid var(--rule);
   background:var(--paper);font-size:16px;font-family:inherit;color:var(--ink);outline:none;transition:.3s}
 .field input::placeholder{color:var(--ink-3)}
-.field input:focus{border-color:var(--brand);background:#fff;box-shadow:0 0 0 4px rgba(74,58,193,.12)}
+.field input:focus{border-color:var(--brand);background:#fff;box-shadow:0 0 0 4px rgba(67,56,202,.12)}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .chip{font-size:13px;font-weight:600;padding:8px 14px;border-radius:99px;cursor:pointer;
   background:#fff;border:1px solid var(--rule);color:var(--ink-2);transition:.25s var(--ease)}
@@ -289,12 +291,12 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 .ln.obs{border-left-color:var(--green)}
 .ln.obs .tag{background:var(--green-soft);color:var(--green-ink)}
 .ln.err{border-left-color:var(--amber)}
-.ln.err .tag{background:#fff2d8;color:#8a5d00}
+.ln.err .tag{background:#fff2d8;color:#92400e}
 .ln .txt{color:var(--ink-2);display:block;word-break:break-word}
 .ln.act .txt{color:var(--brand-ink);font-weight:600}
 .caret{display:inline-block;width:8px;height:14px;background:var(--brand);vertical-align:-2px;margin-left:2px;
   animation:blink .8s steps(2) infinite}
-.panel{border-left:1px solid var(--rule-2);background:rgba(243,242,249,.5);padding:22px 20px}
+.panel{border-left:1px solid var(--rule-2);background:rgba(248,250,252,.6);padding:22px 20px}
 @media(max-width:900px){.panel{border-left:none;border-top:1px solid var(--rule-2)}}
 .p-h{font-size:11.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
   margin-bottom:13px;display:flex;align-items:center;justify-content:space-between}
@@ -304,7 +306,7 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
   opacity:.85;transition:.45s var(--ease)}
 .tool .ti{width:26px;height:26px;border-radius:8px;background:var(--paper);display:grid;place-items:center;flex:none}
 .tool .ti svg{width:14px;height:14px}
-.tool.live{opacity:1;color:var(--ink);border-color:rgba(74,58,193,.3);transform:translateX(3px)}
+.tool.live{opacity:1;color:var(--ink);border-color:rgba(67,56,202,.3);transform:translateX(3px)}
 .tool.live .ti{background:var(--lilac-soft);color:var(--brand)}
 .tool.used{opacity:1;color:var(--ink-2)}
 .tool.used .ti{background:var(--green-soft);color:var(--green-ink)}
@@ -314,20 +316,21 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 .loop-l{font-size:12.5px;color:var(--ink-3);font-weight:600;margin-top:3px}
 .result{margin:0 clamp(18px,2.4vw,28px) clamp(20px,2.8vw,30px);
   background:linear-gradient(150deg,var(--green-soft),#fff 70%);
-  border:1px solid rgba(25,195,86,.3);border-radius:var(--r-l);padding:24px;animation:fu .7s var(--ease-out) both}
+  border:1px solid rgba(5,150,105,.3);border-radius:var(--r-l);padding:24px;animation:fu .7s var(--ease-out) both}
 .result h4{font-size:18px;display:flex;align-items:center;gap:9px;margin:0 0 12px;color:var(--green-ink)}
 .result h4 svg{width:20px;height:20px}
 .result ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
 .result li{font-size:14.5px;color:var(--ink-2);display:flex;gap:10px;align-items:flex-start;line-height:1.45}
 .result li svg{width:15px;height:15px;color:var(--green);flex:none;margin-top:4px}
-.result .ask{margin-top:16px;padding-top:14px;border-top:1px dashed rgba(25,195,86,.35);
+.result .ask{margin-top:16px;padding-top:14px;border-top:1px dashed rgba(5,150,105,.35);
   font-size:14px;color:var(--ink-2);display:flex;gap:10px;align-items:flex-start}
 .result .ask svg{width:16px;height:16px;color:var(--amber);flex:none;margin-top:3px}
 
-/* ===================== 05 · ARMARLO ===================== */
-.recipe{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-@media(max-width:900px){.recipe{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.recipe{grid-template-columns:1fr}}
+/* ===================== 07 · ARMARLO ===================== */
+.recipe{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media(max-width:1050px){.recipe{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){.recipe{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:440px){.recipe{grid-template-columns:1fr}}
 .rstep{background:#fff;border:1px solid var(--rule);border-radius:var(--r-m);padding:22px 20px;
   transition:transform .4s var(--ease-out),box-shadow .4s}
 .rstep:hover{transform:translateY(-5px);box-shadow:var(--sh-m)}
@@ -343,19 +346,19 @@ section{padding:clamp(62px,7.5vw,108px) clamp(18px,5vw,40px);position:relative}
 .logos .lbl{font-size:13.5px;color:var(--ink-3);font-weight:600;margin-right:4px}
 
 /* ===================== CIERRE ===================== */
-.close-sec{background:var(--lilac);border-top:1px solid rgba(74,58,193,.2);text-align:center}
+.close-sec{background:var(--lilac);border-top:1px solid rgba(67,56,202,.2);text-align:center}
 .close-sec h2{color:var(--brand-ink);font-size:clamp(30px,5.2vw,56px)}
 .close-sec p{color:#2f2470;font-size:clamp(16px,1.8vw,19px);margin:18px auto 0;max-width:52ch;font-weight:500}
 .close-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
-.close-sec .btn-ghost{background:rgba(255,255,255,.85);border-color:rgba(74,58,193,.25);color:var(--brand-ink)}
-footer{padding:30px clamp(18px,5vw,40px);background:var(--ink);color:rgba(255,255,255,.5);font-size:13.5px}
+.close-sec .btn-ghost{background:rgba(255,255,255,.9);border-color:rgba(67,56,202,.25);color:var(--brand-ink)}
+footer{padding:30px clamp(18px,5vw,40px);background:var(--ink);color:rgba(255,255,255,.6);font-size:13.5px}
 .foot-in{max-width:var(--maxw);margin:0 auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
 .foot-r{margin-left:auto}
 
 /* ===================== MICRO-INTERACCIÓN GLOBAL ===================== */
 :root{--ease-io:cubic-bezier(.77,0,.175,1)}
-:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+:focus-visible{outline:2.5px solid var(--brand);outline-offset:3px;border-radius:inherit}
 .btn:active,.chip:active,.ib:active,.rc:active,.qz-opt:active,.g-chip:active,
 .tip:active,.ck:active,.copybtn:active,.replay:active,.flip:active{transform:scale(.965)}
 .band:hover .band-t{animation-play-state:paused}
@@ -370,7 +373,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
 @keyframes shine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 .orbit{will-change:transform}
 
-/* números de capítulo con drift scroll-driven (progresivo, respeta reduced motion) */
+/* números de capítulo con drift scroll-driven */
 @media (prefers-reduced-motion: no-preference){
   @supports (animation-timeline: view()){
     .ch-n{animation:chdrift linear both;animation-timeline:view();animation-range:entry 0% cover 45%}
@@ -393,17 +396,17 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
 
 /* ===================== 03 · FLIP CARDS ===================== */
 .flip{perspective:1100px;background:none;border:0;padding:0;cursor:pointer;text-align:left;font-family:inherit;color:inherit}
-.flip-in{position:relative;width:100%;min-height:242px;transform-style:preserve-3d;transition:transform .65s var(--ease-io)}
+.flip-in{position:relative;width:100%;min-height:250px;transform-style:preserve-3d;transition:transform .65s var(--ease-io)}
 .flip.on .flip-in{transform:rotateY(180deg)}
 .f-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
   border-radius:var(--r-l);padding:22px 20px;display:flex;flex-direction:column;align-items:flex-start}
 .f-front{background:var(--paper);border:1px solid var(--rule);transition:border-color .3s,box-shadow .3s,transform .4s var(--ease-out)}
-.flip:hover .f-front{border-color:rgba(74,58,193,.35);box-shadow:var(--sh-s)}
+.flip:hover .f-front{border-color:rgba(67,56,202,.35);box-shadow:var(--sh-s)}
 .flip:hover .p-ico{transform:scale(1.08) rotate(-6deg)}
 .f-front .f-t{display:block;font-size:17.5px;font-weight:800;letter-spacing:-.035em;line-height:1.1;margin-bottom:7px}
 .f-front p{font-size:14px;color:var(--ink-2);line-height:1.45}
-.f-back{transform:rotateY(180deg);background:linear-gradient(150deg,var(--brand),#5b49dd);color:#fff}
-.f-back b{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;opacity:.7;display:block;margin-bottom:4px}
+.f-back{transform:rotateY(180deg);background:linear-gradient(150deg,var(--brand),#4F46E5);color:#fff}
+.f-back b{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;opacity:.8;display:block;margin-bottom:4px}
 .f-back p{font-size:13.5px;line-height:1.48;color:#fff}
 .f-back .fb2{margin-top:auto;padding-top:12px;border-top:1px dashed rgba(255,255,255,.35);width:100%}
 .f-hint{margin-top:auto;padding-top:12px;font-size:10.5px;font-weight:800;letter-spacing:.09em;
@@ -416,7 +419,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
   padding:5px 11px;border-radius:99px;background:var(--paper);border:1px solid var(--rule-2);
   color:var(--ink-3);transition:.3s var(--ease)}
 .ph.on{background:var(--brand);border-color:var(--brand);color:#fff;transform:translateY(-1px)}
-.ph.done{background:var(--green-soft);color:var(--green-ink);border-color:rgba(25,195,86,.3)}
+.ph.done{background:var(--green-soft);color:var(--green-ink);border-color:rgba(5,150,105,.3)}
 
 /* ===================== 05 · QUIZ ===================== */
 .qz{background:#fff;border:1px solid var(--rule);border-radius:var(--r-xl);box-shadow:var(--sh-m);
@@ -432,12 +435,12 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
 .qz-opt:hover:not(:disabled){border-color:var(--brand);color:var(--brand);background:#fff;transform:translateY(-2px)}
 .qz-opt:disabled{cursor:default}
 .qz-opt.ok{background:var(--green-soft);border-color:var(--green);color:var(--green-ink)}
-.qz-opt.bad{background:#fdecec;border-color:rgba(224,82,82,.55);color:#a02929;animation:shake .4s var(--ease)}
+.qz-opt.bad{background:#fdecec;border-color:rgba(220,38,38,.55);color:#991b1b;animation:shake .4s var(--ease)}
 @keyframes shake{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 .qz-fb{margin-top:18px;padding:16px 18px;border-radius:14px;font-size:14.5px;line-height:1.5;display:none;animation:fu .45s var(--ease-out) both}
 .qz-fb.show{display:block}
-.qz-fb.good{background:var(--green-soft);color:var(--green-ink);border:1px solid rgba(25,195,86,.25)}
-.qz-fb.miss{background:#fdf3e2;color:#8a5d00;border:1px solid rgba(232,163,23,.3)}
+.qz-fb.good{background:var(--green-soft);color:var(--green-ink);border:1px solid rgba(5,150,105,.25)}
+.qz-fb.miss{background:#fdf3e2;color:#92400e;border:1px solid rgba(217,119,6,.3)}
 .qz-fb b{display:block;margin-bottom:4px}
 .qz-bot{display:flex;align-items:center;gap:14px;margin-top:22px}
 .qz-dots{display:flex;gap:6px;flex:1}
@@ -454,16 +457,16 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
 .qz-final p{color:var(--ink-2);font-size:15.5px;max-width:44ch;margin:0 auto 22px}
 
 /* ===================== 06 · TRUCOS ===================== */
-.tips{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-@media(max-width:1000px){.tips{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:460px){.tips{grid-template-columns:1fr}}
+.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:800px){.tips{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.tips{grid-template-columns:1fr}}
 .tip{background:#fff;border:1px solid var(--rule);border-radius:var(--r-m);padding:16px 15px;
   cursor:pointer;text-align:left;font-family:inherit;transition:.3s var(--ease);color:var(--ink)}
-.tip:hover{transform:translateY(-3px);box-shadow:var(--sh-s);border-color:rgba(74,58,193,.3)}
+.tip:hover{transform:translateY(-3px);box-shadow:var(--sh-s);border-color:rgba(67,56,202,.3)}
 .tip i{font-style:normal;display:inline-grid;place-items:center;width:26px;height:26px;border-radius:8px;
   background:var(--lilac-soft);color:var(--brand);font-size:11.5px;font-weight:800;margin-bottom:10px;transition:.3s var(--ease)}
 .tip b{display:block;font-size:14.5px;letter-spacing:-.01em;line-height:1.25}
-.tip.on{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 12px 28px -12px rgba(74,58,193,.8)}
+.tip.on{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 12px 28px -12px rgba(67,56,202,.8)}
 .tip.on i{background:rgba(255,255,255,.18);color:#fff}
 .tipbox{margin-top:14px;background:#fff;border:1px solid var(--lilac-line);border-radius:var(--r-l);
   padding:clamp(20px,2.6vw,26px);box-shadow:var(--sh-s)}
@@ -481,7 +484,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
   font-size:12.5px;font-weight:800;padding:8px 13px;border-radius:99px;border:1px solid var(--rule);
   background:#fff;cursor:pointer;color:var(--ink-2);transition:.25s var(--ease);font-family:Manrope,sans-serif}
 .copybtn:hover{color:var(--brand);border-color:var(--brand)}
-.copybtn.done{color:var(--green-ink);border-color:rgba(25,195,86,.4);background:var(--green-soft)}
+.copybtn.done{color:var(--green-ink);border-color:rgba(5,150,105,.4);background:var(--green-soft)}
 .copybtn svg{width:13px;height:13px}
 
 /* ===================== 07 · CHECKLIST ===================== */
@@ -505,7 +508,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
 .ck.on .box svg{opacity:1;transform:none}
 .ck.on span:last-child{color:var(--ink-3)}
 .ck-done{display:none;margin-top:12px;text-align:center;font-weight:700;color:var(--green-ink);
-  background:var(--green-soft);border:1px solid rgba(25,195,86,.25);padding:13px;border-radius:13px}
+  background:var(--green-soft);border:1px solid rgba(5,150,105,.25);padding:13px;border-radius:13px}
 .ck-done.show{display:block;animation:fu .5s var(--ease-out) both}
 
 /* ===================== GLOSARIO ===================== */
@@ -513,7 +516,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
 .g-chip{font-size:14px;font-weight:700;padding:10px 17px;border-radius:99px;cursor:pointer;
   background:#fff;border:1px solid var(--rule);color:var(--ink-2);transition:.25s var(--ease);font-family:inherit}
 .g-chip:hover{border-color:var(--brand);color:var(--brand);transform:translateY(-1px)}
-.g-chip.on{background:var(--brand);color:#fff;border-color:var(--brand);box-shadow:0 8px 20px -8px rgba(74,58,193,.7)}
+.g-chip.on{background:var(--brand);color:#fff;border-color:var(--brand);box-shadow:0 8px 20px -8px rgba(67,56,202,.7)}
 .g-panel{margin-top:16px;background:#fff;border:1px solid var(--lilac-line);border-radius:var(--r-l);
   padding:20px 22px;min-height:120px;box-shadow:var(--sh-s)}
 .g-term{font-weight:800;font-size:17.5px;letter-spacing:-.01em}
@@ -536,17 +539,21 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
 <div class="atmo"><div class="blob b1"></div><div class="blob b2"></div></div>
 
 <nav id="nav">
-  <a href="../index.html" style="text-decoration:none;font-weight:800;color:var(--brand-ink);display:flex;align-items:center;gap:12px;font-size:15px;">
-    <img src="assets/logo.png" alt="RAVA S.A." style="height:32px;width:auto;display:block;">
-    <span><span style="opacity:0.5;font-weight:400;">|</span> Capacitación IA</span>
+  <a href="../index.html" style="text-decoration:none;font-weight:800;color:var(--brand-ink);display:flex;align-items:center;gap:12px;font-size:15px;" title="Volver a la plataforma principal de Capacitación IA">
+    <img src="assets/logo.png" alt="RAVA S.A." style="height:30px;width:auto;display:block;">
+    <span><span style="opacity:0.4;font-weight:400;margin-right:2px;">|</span> Capacitación IA</span>
   </a>
   <div class="nav-links">
+    <a href="../index.html" class="hide-s" style="color:var(--ink-2);display:inline-flex;align-items:center;gap:5px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="m15 18-6-6 6-6"/></svg>
+      Módulo 2 (Prompts)
+    </a>
     <a href="#diferencia" class="hide-s">01 Diferencia</a>
     <a href="#pasos" class="hide-s">02 Pasos</a>
-    <a href="#piezas" class="hide-s">03 Piezas</a>
+    <a href="#piezas" class="hide-s">03 Piezas & Skills</a>
     <a href="#quiz" class="hide-s">Quiz</a>
     <a href="#trucos" class="hide-s">Trucos</a>
-    <a href="#demo" class="btn btn-primary btn-sm" style="color:#fff">Demo</a>
+    <a href="#demo" class="btn btn-primary btn-sm" style="color:#fff">Demo en Vivo</a>
   </div>
 </nav>
 
@@ -556,8 +563,9 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
+      <div class="live rv"><span class="dot"></span> Módulo 3 · Agentes Autónomos & Skills</div>
       <h1 class="rv" data-d="1">Un chatbot responde.<br><span class="grad">Un agente hace el trabajo.</span></h1>
-      <p class="sub rv" data-d="2">Seis pasos, cinco piezas, una demo que corres tú, un quiz para comprobarlo y los trucos para armar el tuyo hoy.</p>
+      <p class="sub rv" data-d="2">Seis pasos, seis piezas clave con skills operativas, una consola interactiva que corres tú, un quiz para comprobarlo y los trucos para armar el tuyo hoy en RAVA S.A.</p>
       <div class="hero-cta rv" data-d="3">
         <a href="#pasos" class="btn btn-primary">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
@@ -588,7 +596,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
       <div class="ch-n rv">01</div>
       <div>
         <h2 class="rv" data-d="1">Le pides lo mismo</h2>
-        <p class="ch-s rv" data-d="2">Los dos entienden la frase. Solo uno sale de la ventana de chat.</p>
+        <p class="ch-s rv" data-d="2">Los dos entienden la frase. Solo uno sale de la ventana de chat y ejecuta el trabajo.</p>
       </div>
     </header>
     <div class="vs">
@@ -602,13 +610,14 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
         </div>
       </div>
       <div class="vs-card hot rv" data-d="2">
-        <div class="vs-k">Agente</div>
+        <div class="vs-k">Agente con Skills</div>
         <h3>Te devuelve el trabajo hecho</h3>
         <div class="chatline">
           <div class="bub me">Cruzá los remitos de áridos de esta semana</div>
-          <div class="bub act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg> leer_remitos()</div>
-          <div class="bub act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg> planilla.cruzar(remitos, OC)</div>
-          <div class="bub ai">Listo. 12 remitos cruzados con 3 OC. 2 desvíos detectados arriba del 2%.</div>
+          <div class="bub act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg> skill.auditar_remitos(tolerancia: ±2%)</div>
+          <div class="bub act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg> leer_remitos_ocr()</div>
+          <div class="bub act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg> erp.cruzar_con_oc(remitos, OC)</div>
+          <div class="bub ai">Listo. 12 remitos cruzados con 3 OC. 2 desvíos detectados arriba del 2% y acta de observación preparada.</div>
         </div>
       </div>
     </div>
@@ -622,7 +631,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
       <div class="ch-n rv">02</div>
       <div>
         <h2 class="rv" data-d="1">El paso a paso</h2>
-        <p class="ch-s rv" data-d="2">Siempre estos seis, en este orden. Cambia la tarea, no el recorrido.</p>
+        <p class="ch-s rv" data-d="2">Siempre estos seis, en este orden. Cambia la tarea o la skill, no el recorrido.</p>
       </div>
     </header>
 
@@ -656,8 +665,8 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
     <header class="chapter">
       <div class="ch-n rv">03</div>
       <div>
-        <h2 class="rv" data-d="1">Las cinco piezas</h2>
-        <p class="ch-s rv" data-d="2">Si te falta una, no es un agente. Ninguna exige saber programar. Gira cada carta para ver qué pasa cuando falta.</p>
+        <h2 class="rv" data-d="1">Las seis piezas esenciales</h2>
+        <p class="ch-s rv" data-d="2">Si te falta una, no es un agente autónomo eficiente. Ninguna exige saber programar. Gira cada carta para ver su analogía de obra y qué pasa cuando falta.</p>
       </div>
     </header>
     <div class="pieces">
@@ -669,7 +678,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
             <span class="f-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg> Girar</span>
           </div>
           <div class="f-face f-back" aria-hidden="true">
-            <div><b>Objetivo · analogía</b><p>El destino del taxi. Si le dices «avanza» sin dirección, gasta gasolina sin llegar a nada.</p></div>
+            <div><b>Objetivo · analogía</b><p>El destino del taxi. Si le dices «avanza» sin dirección, gasta combustible sin llegar a nada.</p></div>
             <div class="fb2"><b>Si falta</b><p>Da vueltas en círculos y te responde con texto vago.</p></div>
           </div>
         </div>
@@ -683,8 +692,8 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
             <span class="f-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg> Girar</span>
           </div>
           <div class="f-face f-back" aria-hidden="true">
-            <div><b>Instrucciones · analogía</b><p>El reglamento de tránsito. Por dónde puede ir y qué no debe cruzar jamás.</p></div>
-            <div class="fb2"><b>Si falta</b><p>Borra archivos o envía correos sin preguntarte.</p></div>
+            <div><b>Instrucciones · analogía</b><p>El reglamento de tránsito y seguridad de obra. Por dónde puede ir y qué no debe cruzar jamás.</p></div>
+            <div class="fb2"><b>Si falta</b><p>Borra archivos, acepta términos o envía correos sin preguntarte.</p></div>
           </div>
         </div>
       </button>
@@ -697,8 +706,8 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
             <span class="f-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg> Girar</span>
           </div>
           <div class="f-face f-back" aria-hidden="true">
-            <div><b>Memoria · analogía</b><p>El cuaderno del proyecto. Lo que le dijiste el lunes sigue ahí el viernes.</p></div>
-            <div class="fb2"><b>Si falta</b><p>Tenés que repetirle tu área y tus proveedores en cada mensaje.</p></div>
+            <div><b>Memoria · analogía</b><p>El libro diario y la bitácora de obra. Lo que le dijiste el lunes sigue ahí el viernes.</p></div>
+            <div class="fb2"><b>Si falta</b><p>Tenés que repetirle tu área, tus obras y tus proveedores en cada mensaje.</p></div>
           </div>
         </div>
       </button>
@@ -711,8 +720,8 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
             <span class="f-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg> Girar</span>
           </div>
           <div class="f-face f-back" aria-hidden="true">
-            <div><b>Herramientas · analogía</b><p>El kit de llaves del mecánico. Buscar, leer, escribir, calcular.</p></div>
-            <div class="fb2"><b>Si falta</b><p>Solo opina. Es un chatbot normal.</p></div>
+            <div><b>Herramientas · analogía</b><p>El kit de llaves, el escáner o el acceso al ERP. Buscar, leer, escribir, calcular.</p></div>
+            <div class="fb2"><b>Si falta</b><p>Solo opina. Es un chatbot normal sin capacidad de ejecución.</p></div>
           </div>
         </div>
       </button>
@@ -720,13 +729,27 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
       <button class="flip rv" data-d="4" aria-pressed="false">
         <div class="flip-in">
           <div class="f-face f-front">
+            <div class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/><path d="M6 14h6"/></svg></div>
+            <span class="f-t">Skills</span><p>Su manual de procedimiento.</p>
+            <span class="f-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg> Girar</span>
+          </div>
+          <div class="f-face f-back" aria-hidden="true">
+            <div><b>Skills · analogía</b><p>El protocolo técnico de ensayo o pavimentación. Le enseña el método experto paso a paso para resolver una tarea técnica.</p></div>
+            <div class="fb2"><b>Si falta</b><p>Tiene las herramientas pero improvisa los pasos: se saltea validaciones críticas y da resultados desalineados.</p></div>
+          </div>
+        </div>
+      </button>
+
+      <button class="flip rv" data-d="5" aria-pressed="false">
+        <div class="flip-in">
+          <div class="f-face f-front">
             <div class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.5 2v6h-6"/><path d="M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg></div>
             <span class="f-t">El bucle</span><p>La capacidad de corregirse.</p>
             <span class="f-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg> Girar</span>
           </div>
           <div class="f-face f-back" aria-hidden="true">
-            <div><b>El bucle · analogía</b><p>Probar la llave, ver que no entra, buscar otra en el kit y volver a intentar.</p></div>
-            <div class="fb2"><b>Si falta</b><p>Al primer error se rinde y te tira un mensaje crudo.</p></div>
+            <div><b>El bucle · analogía</b><p>Probar la llave, ver que no entra, buscar otra en el kit y volver a intentar hasta que quede perfecto.</p></div>
+            <div class="fb2"><b>Si falta</b><p>Al primer error se rinde y te tira un mensaje crudo sin resolver.</p></div>
           </div>
         </div>
       </button>
@@ -741,14 +764,14 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
       <div class="ch-n rv">04</div>
       <div>
         <h2 class="rv" data-d="1">La demo: corres el bucle</h2>
-        <p class="ch-s rv" data-d="2">Escribe una tarea o elige un ejemplo. Mira cómo decide, tropieza y se corrige.</p>
+        <p class="ch-s rv" data-d="2">Escribe una tarea o elige un caso real de RAVA. Mira cómo carga su skill, decide, tropieza y se corrige solo.</p>
       </div>
     </header>
 
     <div class="console rv" data-d="1">
       <div class="c-bar">
         <div class="tl"><i></i><i></i><i></i></div>
-        <b>Consola del Agente v1.0</b>
+        <b>Consola del Agente Corporativo v1.2</b>
         <div class="c-state" id="cstate"><span class="sd"></span><span id="cstateTxt">listo</span></div>
       </div>
       <div class="c-input">
@@ -771,7 +794,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
           </div>
         </div>
         <div class="panel">
-          <div class="p-h">Herramientas <span id="toolCount">0 / 0</span></div>
+          <div class="p-h">Herramientas & Skills <span id="toolCount">0 / 0</span></div>
           <div id="tools"></div>
           <div class="loopbox">
             <div class="loop-n" id="loopN">0</div>
@@ -791,7 +814,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
       <div class="ch-n rv">05</div>
       <div>
         <h2 class="rv" data-d="1">Quiz: ¿es o no un agente?</h2>
-        <p class="ch-s rv" data-d="2">Seis casos reales. El secreto está en buscar el bucle.</p>
+        <p class="ch-s rv" data-d="2">Seis casos reales de obra y administración. El secreto está en buscar el bucle y la autonomía procedimental.</p>
       </div>
     </header>
     <div class="qz rv" data-d="1" id="qz"></div>
@@ -805,7 +828,7 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
       <div class="ch-n rv">06</div>
       <div>
         <h2 class="rv" data-d="1">Trucos que valen oro</h2>
-        <p class="ch-s rv" data-d="2">Ocho reglas de la gente que ya trabaja con agentes. Cada una trae su prompt listo para copiar.</p>
+        <p class="ch-s rv" data-d="2">Nueve reglas clave para implementar agentes y skills en el día a día. Cada una trae su prompt listo para copiar.</p>
       </div>
     </header>
     <div class="tips rv" data-d="1" id="tips"></div>
@@ -820,14 +843,15 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
       <div class="ch-n rv">07</div>
       <div>
         <h2 class="rv" data-d="1">Cómo armas el tuyo</h2>
-        <p class="ch-s rv" data-d="2">Cuatro decisiones. Ninguna necesita servidor.</p>
+        <p class="ch-s rv" data-d="2">Cinco pasos claros para estructurar un agente con su skill. Ninguna necesita servidor propio.</p>
       </div>
     </header>
     <div class="recipe">
-      <div class="rstep rv"><i>01</i><b>El objetivo</b><p>En una frase. Si no te sale, todavía no sabes qué quieres.</p></div>
-      <div class="rstep rv" data-d="1"><i>02</i><b>Sus reglas</b><p>Cómo te habla y qué nunca hace sin preguntarte.</p></div>
-      <div class="rstep rv" data-d="2"><i>03</i><b>Una herramienta</b><p>Solo una: la que más tiempo te quita hoy.</p></div>
-      <div class="rstep rv" data-d="3"><i>04</i><b>Una tarea real</b><p>La primera corrida sale a medias. Ese error es tu información.</p></div>
+      <div class="rstep rv"><i>01</i><b>El objetivo</b><p>En una frase clara. Si no te sale, todavía no sabes qué resultado buscas.</p></div>
+      <div class="rstep rv" data-d="1"><i>02</i><b>Sus reglas</b><p>Cómo te habla y qué nunca hace sin tu autorización expresa.</p></div>
+      <div class="rstep rv" data-d="2"><i>03</i><b>Una herramienta</b><p>Solo una al inicio: la que más tiempo manual te quita hoy.</p></div>
+      <div class="rstep rv" data-d="3"><i>04</i><b>Su skill</b><p>El procedimiento paso a paso que debe seguir (manual o checklist).</p></div>
+      <div class="rstep rv" data-d="4"><i>05</i><b>Una tarea real</b><p>La primera corrida sale a medias. Ese error es tu información de ajuste.</p></div>
     </div>
     <div class="logos rv" data-d="2">
       <span class="lbl">Sirve cualquiera:</span>
@@ -838,31 +862,34 @@ footer img{height:20px;opacity:.9;filter:brightness(0) invert(1)}
     </div>
 
     <div class="plantilla rv" data-d="2">
-      <h3>La plantilla de arranque</h3>
+      <h3>La plantilla de arranque (con Skill procedimental)</h3>
       <p class="pl-sub">Cópiala tal cual en Claude, ChatGPT o Gemini. Solo cambia lo que está entre corchetes.</p>
-      <div class="prompt" id="plantillaTxt">Quiero que trabajes como mi agente.
+      <div class="prompt" id="plantillaTxt">Quiero que trabajes como mi agente operativo.
 
-OBJETIVO: [qué debe quedar hecho, en una frase]
+OBJETIVO: [qué debe quedar hecho, en una frase clara]
 
-TU FORMA DE TRABAJAR
+TU FORMA DE TRABAJAR Y REGLAS
 1. Muéstrame tu plan en 3 líneas antes de actuar.
-2. Trabaja solo con lo que yo te entregue aquí: los archivos
-   que adjunto y el texto que pego. Si necesitas otra
-   herramienta, pídemela.
-3. Si algo falla, dime qué intentaste y prueba otro camino.
-4. Nunca envíes, publishes ni borres nada sin mi ok.
-5. Al terminar: qué hiciste, qué falta y dónde quedó.
+2. Trabaja solo con lo que yo te entregue: archivos adjuntos y texto pegado. Si necesitas otra herramienta, pídemela.
+3. PROCEDIMIENTO / SKILL: Sigue este método paso a paso:
+   - Paso A: [Extraer y clasificar los datos de entrada]
+   - Paso B: [Cruzar o calcular según la norma de tolerancia]
+   - Paso C: [Detectar anomalías o desvíos mayores al 2%]
+   - Paso D: [Estructurar tabla de resultados y borrador de informe]
+4. Si algo falla, dime qué intentaste y prueba otro camino.
+5. Nunca envíes, publishes ni borres nada sin mi visto bueno explícito.
+6. Al terminar: qué hiciste, qué desvíos hallaste y dónde quedó guardado.
 
 MI CONTEXTO: [área, rol en RAVA S.A., la tarea que más tiempo te quita]
 
-PRIMERA TAREA: [algo que hoy te tome 15 minutos]<button class="copybtn" data-copy="plantillaTxt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copiar</button></div>
+PRIMERA TAREA: [un caso real de hoy que te tome 15 minutos]<button class="copybtn" data-copy="plantillaTxt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Copiar</button></div>
       <p class="tb-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg><span>Ojo: un chat no toca tu calendario ni tu correo por sí solo. Esas conexiones las activas tú en los ajustes de cada app cuando estés listo — mientras tanto, adjúntale los archivos y pídele borradores.</span></p>
     </div>
 
     <div class="ckwrap rv" data-d="3">
       <div class="ckbar"><i id="ckbar"></i></div>
       <div class="check" id="check"></div>
-      <div class="ck-done" id="ckdone">🎉 Eso es todo. Ya no estás leyendo sobre agentes: ya tienes uno.</div>
+      <div class="ck-done" id="ckdone">🎉 Eso es todo. Ya no estás leyendo sobre agentes: ya tienes tu primer agente con skill listo para producir.</div>
     </div>
   </div>
 </section>
@@ -874,7 +901,7 @@ PRIMERA TAREA: [algo que hoy te tome 15 minutos]<button class="copybtn" data-cop
       <div class="ch-n rv">··</div>
       <div>
         <h2 class="rv" data-d="1">Diccionario de bolsillo</h2>
-        <p class="ch-s rv" data-d="2">Las ocho palabras que vas a escuchar sí o sí. Toca una.</p>
+        <p class="ch-s rv" data-d="2">Las nueve palabras clave que vas a escuchar sí o sí. Toca una para ver su definición y analogía.</p>
       </div>
     </header>
     <div class="g-chips rv" data-d="1" id="gchips"></div>
@@ -886,9 +913,10 @@ PRIMERA TAREA: [algo que hoy te tome 15 minutos]<button class="copybtn" data-cop
 <section class="close-sec">
   <div class="wrap">
     <h2 class="rv">El agente lo armás hoy.</h2>
-    <p class="rv" data-d="1">Usá estas herramientas y plantillas como punto de partida para tu flujo de trabajo diario.</p>
+    <p class="rv" data-d="1">Usá estas herramientas, plantillas y skills como punto de partida para tu flujo de trabajo diario en RAVA S.A.</p>
     <div class="close-cta rv" data-d="2">
       <a class="btn btn-primary" href="#demo">Volver a la demo</a>
+      <a class="btn btn-ghost" href="../index.html">Ir a Prompt Engineering (Módulo 2)</a>
     </div>
   </div>
 </section>
@@ -923,7 +951,8 @@ const ICON = {
   check:'<path d="M20 6 9 17l-5-5"/>',
   alert:'<path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/>',
   loop:'<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>',
-  bot:'<path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>'
+  bot:'<path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>',
+  skill:'<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/><path d="M6 14h6"/>'
 };
 
 /* ---------- nav, progreso, reveal ---------- */
@@ -959,7 +988,7 @@ Object.keys(navMap).forEach(id=>{ const el=document.getElementById(id); if(el) n
     {c:'#4285f4',i:'<path d="M12 2c.6 5.3 4.7 9.4 10 10-5.3.6-9.4 4.7-10 10-.6-5.3-4.7-9.4-10-10 5.3-.6 9.4-4.7 10-10z"/>'},
     {c:'#0b0d16',i:ICON.notion}
   ];
-  const inner=[{c:'#4A3AC1',i:ICON.cal},{c:'#4A3AC1',i:ICON.mail},{c:'#19C356',i:ICON.doc}];
+  const inner=[{c:'#4338CA',i:ICON.cal},{c:'#4338CA',i:ICON.skill},{c:'#059669',i:ICON.doc}];
   const place=(host,arr,rad)=>arr.forEach((o,k)=>{
     const a=(k/arr.length)*Math.PI*2-Math.PI/2;
     const d=document.createElement('div');
@@ -976,7 +1005,7 @@ Object.keys(navMap).forEach(id=>{ const el=document.getElementById(id); if(el) n
 
 /* ---------- cinta = los seis pasos ---------- */
 (function(){
-  const w=['recibe','planifica','elige','ejecuta','corrige','entrega'];
+  const w=['recibe','planifica','elige skill','ejecuta','corrige','entrega'];
   const h=w.map(x=>'<span>'+x+'</span>').join('');
   $('#band').innerHTML=h+h+h+h;
 })();
@@ -986,47 +1015,47 @@ Object.keys(navMap).forEach(id=>{ const el=document.getElementById(id); if(el) n
 ============================================================ */
 const STEPS = [
   {k:'Recibe', t:'Recibe el objetivo',
-   d:'Escribes una frase normal. Él la guarda como meta, no como orden literal.',
+   d:'Escribes una frase normal. Él la guarda como meta operativa, no como orden literal sin contexto.',
    rows:[
-      {i:ICON.chat, txt:'«Cruzá los remitos de áridos de esta semana»'},
-      {i:ICON.target, txt:'Meta guardada', s:'ok', tag:'listo'},
-      {i:ICON.db, txt:'Memoria: Área de Compras, proveedores activos marzo 2026', s:'ok', tag:'leído'}
+      {i:ICON.chat, txt:'«Cruzá los remitos de áridos de esta semana con las OC»'},
+      {i:ICON.target, txt:'Meta guardada: cruce y auditoría de desvíos', s:'ok', tag:'listo'},
+      {i:ICON.db, txt:'Memoria: Área de Compras RAVA S.A., tolerancia ±2%', s:'ok', tag:'leído'}
     ]},
   {k:'Planifica', t:'Lo parte en tareas',
-   d:'Antes de tocar nada arma su plan. Cuatro tareas, en orden.',
+   d:'Antes de tocar nada arma su plan. Carga la Skill de procedimiento y define cuatro tareas en orden.',
    rows:[
-     {n:'1', txt:'Leer los remitos'},
-     {n:'2', txt:'Asociar cada remito con su OC'},
-     {n:'3', txt:'Calcular desvíos porcentuales'},
-     {n:'4', txt:'Generar tabla de alertas'}
+     {n:'1', txt:'Cargar Skill: auditoria_remitos_aridos'},
+     {n:'2', txt:'Leer los remitos por OCR y asociar con su OC'},
+     {n:'3', txt:'Calcular desvíos porcentuales con tolerancia'},
+     {n:'4', txt:'Generar tabla de alertas para el Jefe de Compras'}
    ]},
-  {k:'Elige', t:'Elige la herramienta',
-   d:'Cada tarea necesita una distinta. Buscar en internet no lee tu PDF.',
+  {k:'Elige', t:'Elige herramientas y skills',
+   d:'Cada tarea necesita una combinación distinta. Buscar en internet no lee tu PDF ni conoce las normas de Vialidad.',
    rows:[
-     {i:ICON.doc, txt:'leer_documento', s:'ok', tag:'elegida'},
-     {i:ICON.search, txt:'buscar_web', tag:'descartada'},
-     {i:ICON.mail, txt:'correo', tag:'descartada'}
+     {i:ICON.skill, txt:'skill_auditoria_remitos', s:'ok', tag:'activada'},
+     {i:ICON.doc, txt:'leer_documento_ocr', s:'ok', tag:'elegida'},
+     {i:ICON.search, txt:'buscar_web', tag:'descartada'}
    ]},
   {k:'Ejecuta', t:'Ejecuta y mira',
-   d:'Corre la acción y lee el resultado real. No asume que salió bien.',
+   d:'Corre la acción siguiendo la skill y lee el resultado real. No asume que salió bien sin comprobar.',
    rows:[
-      {i:ICON.check, txt:'12 remitos procesados', s:'ok', tag:'hecho'},
-      {i:ICON.check, txt:'3 órdenes de compra asociadas', s:'ok', tag:'hecho'},
-      {i:ICON.alert, txt:'2 desvíos superiores al 2%', s:'warn', tag:'problema'}
+      {i:ICON.check, txt:'12 remitos procesados por OCR', s:'ok', tag:'hecho'},
+      {i:ICON.check, txt:'3 órdenes de compra asociadas en el ERP', s:'ok', tag:'hecho'},
+      {i:ICON.alert, txt:'2 desvíos superiores al 2% detectados', s:'warn', tag:'problema'}
     ]},
   {k:'Corrige', t:'Corrige y repite',
-   d:'Encontró un choque. Vuelve al paso 3 con otra estrategia. Acá se gana el nombre.',
+   d:'Encontró un choque o merma superior. Vuelve al paso 3 aplicando la regla de tolerancia de la Skill. Acá se gana el nombre.',
    rows:[
-     {i:ICON.loop, txt:'Replantea el orden', s:'warn', tag:'reintento'},
-      {i:ICON.check, txt:'Proveedor B: desvío recalculado con tolerancia', s:'ok', tag:'resuelto'},
-     {i:ICON.check, txt:'Sin cruces', s:'ok', tag:'verificado'}
+     {i:ICON.loop, txt:'Aplica matriz de humedad de cantera', s:'warn', tag:'reintento'},
+     {i:ICON.check, txt:'Proveedor B: desvío recalculado con tolerancia', s:'ok', tag:'resuelto'},
+     {i:ICON.check, txt:'Proveedor A: desvío confirmado del 4.2%', s:'ok', tag:'verificado'}
    ]},
   {k:'Entrega', t:'Entrega y deja rastro',
    d:'Te muestra qué hizo, dónde lo dejó y qué no hizo sin tu permiso.',
    rows:[
-      {i:ICON.cal, txt:'Tabla comparativa generada', s:'ok', tag:'listo'},
-      {i:ICON.notion, txt:'Resumen de hallazgos en informe', s:'ok', tag:'listo'},
-      {i:ICON.mail, txt:'Alerta al Jefe de Compras', s:'warn', tag:'espera tu ok'}
+      {i:ICON.table, txt:'Tabla comparativa generada en planilla', s:'ok', tag:'listo'},
+      {i:ICON.notion, txt:'Acta de desvío guardada en la bitácora', s:'ok', tag:'listo'},
+      {i:ICON.mail, txt:'Borrador de alerta para Compras', s:'warn', tag:'espera tu ok'}
     ]}
 ];
 
@@ -1089,61 +1118,62 @@ paintStep(0);
    04 · DEMO — reproduce el bucle, no llama a ningún modelo
 ============================================================ */
 const TOOLS = {
-  buscar:{label:'buscar_web',icon:ICON.search},
-  doc:{label:'leer_documento',icon:ICON.doc},
-  cal:{label:'calendario',icon:ICON.cal},
-  notion:{label:'notion',icon:ICON.notion},
-  correo:{label:'correo',icon:ICON.mail},
-  wa:{label:'whatsapp',icon:ICON.chat},
-  hoja:{label:'hoja_de_calculo',icon:ICON.table},
-  slides:{label:'presentacion',icon:ICON.slides},
-  code:{label:'ejecutar_python',icon:ICON.code}
+  skill:{label:'cargar_skill_procedimiento',icon:ICON.skill},
+  doc:{label:'leer_documento_ocr',icon:ICON.doc},
+  buscar:{label:'buscar_normativa_web',icon:ICON.search},
+  hoja:{label:'hoja_de_calculo_erp',icon:ICON.table},
+  cal:{label:'cronograma_obra',icon:ICON.cal},
+  notion:{label:'bitacora_notion',icon:ICON.notion},
+  correo:{label:'borrador_correo',icon:ICON.mail},
+  wa:{label:'alerta_whatsapp',icon:ICON.chat},
+  slides:{label:'presentacion_informe',icon:ICON.slides},
+  code:{label:'ejecutar_script_control',icon:ICON.code}
 };
 
 const RECIPES = [
-  {k:'doc', m:/pdf|documento|archivo|libro|paper|informe|norma|manual|s[ií]labo|lectura|le[eé]r/,
-   think:'La respuesta está en tu archivo, no en mi memoria. Lo abro antes de opinar.',
-   act:t=>'leer_documento(fuente: "'+t+'")',
-   obs:'38 páginas leídas. 6 secciones tocan lo que pediste.'},
-  {k:'buscar', m:/busca|buscar|investig|precio|norma|reglamento|actual|hoy|2026|tendencia|comparar|referencia|dato/,
-   think:'Este dato cambia con el tiempo. No lo invento: lo busco.',
-   act:t=>'buscar_web(consulta: "'+t+'")',
-   obs:'9 resultados. Descarto 6 sin fuente. Me quedo con 3.'},
-  {k:'hoja', m:/calcul|metrado|presupuesto|excel|hoja|costo|cantidad|tabla|nota|promedio|acero|concreto|planilla|viga/,
-   think:'Acá hay números que tienen que cuadrar. Los calculo, no los estimo.',
-   act:t=>'hoja_de_calculo.calcular(caso: "'+t+'")',
-   obs:'Listo. 3 filas se salen del rango esperado, las marco.'},
-  {k:'cal', m:/entrega|semana|calendario|horario|fecha|cronograma|examen|parcial|plazo|recordar|agenda|organiza|planific/,
-   think:'Antes de escribir en tu calendario reviso qué ya tienes ocupado.',
-   act:t=>'calendario.programar(objetivo: "'+t+'")',
-   obs:'4 hitos reprogramados. 2 chocaban con la veda invernal, los corro.'},
+  {k:'skill', m:/remito|árido|arido|pliego|licitaci|auditor|control|tolerancia|desv[ií]o|partes|gasoil|equipo/,
+   think:'Esta tarea requiere un protocolo técnico estructurado. Cargo la Skill de auditoría bajo demanda.',
+   act:t=>'cargar_skill(procedimiento: "auditoria_operativa", tarea: "'+t+'")',
+   obs:'Skill de 4 pasos cargada con su matriz de tolerancias de obra.'},
+  {k:'doc', m:/pdf|documento|archivo|libro|paper|informe|norma|manual|s[ií]labo|lectura|le[eé]r|pliego/,
+   think:'La información técnica está en el archivo adjunto. Lo proceso antes de opinar.',
+   act:t=>'leer_documento_ocr(fuente: "'+t+'")',
+   obs:'38 páginas analizadas. Tablas de pesaje y cláusulas extraídas.'},
+  {k:'hoja', m:/calcul|metrado|presupuesto|excel|hoja|costo|cantidad|tabla|nota|promedio|acero|concreto|planilla|viga|precio/,
+   think:'Acá hay números que tienen que cuadrar matemáticamente. Los calculo con la fórmula oficial.',
+   act:t=>'hoja_de_calculo_erp.calcular(caso: "'+t+'")',
+   obs:'Cálculo completado. 2 líneas presentan desvíos por encima de la tolerancia.'},
+  {k:'cal', m:/entrega|semana|calendario|horario|fecha|cronograma|examen|parcial|plazo|recordar|agenda|organiza|planific|veda/,
+   think:'Antes de fijar hitos en el cronograma reviso la veda climática y los recursos asignados.',
+   act:t=>'cronograma_obra.programar(objetivo: "'+t+'")',
+   obs:'Hitos reprogramados sin colisión con frentes de trabajo activos.'},
   {k:'slides', m:/present|diapo|ppt|expon|sustent|l[aá]mina|slide/,
-   think:'Una exposición necesita hilo, no relleno. Armo primero el orden.',
-   act:t=>'presentacion.generar(tema: "'+t+'", laminas: 8)',
-   obs:'8 láminas con guion en las notas. La 6 quedó floja.'},
+   think:'Un informe de avance para la Dirección necesita datos clave y conclusiones claras.',
+   act:t=>'presentacion_informe.generar(tema: "'+t+'", laminas: 8)',
+   obs:'8 láminas con resumen ejecutivo e indicadores de obra listos.'},
   {k:'code', m:/c[oó]digo|script|python|program|automatiz|scrap|csv/,
-   think:'Esto se resuelve con código corto, no con explicaciones largas.',
-   act:t=>'ejecutar_python(tarea: "'+t+'")',
-   obs:'Corrió en 1.4 s. Sin errores. Salida guardada.'},
+   think:'Esto se resuelve con un script de control determinista sin riesgo de alucinación.',
+   act:t=>'ejecutar_script_control(tarea: "'+t+'")',
+   obs:'Script finalizado en 1.2 s. Resultados cruzados y validados.'},
   {k:'correo', m:/correo|email|mail|escrib[ií]r?le|redact|carta|solicit|proveedor|reclam/,
-   think:'Redacto el correo pero no lo mando: eso lo apruebas tú.',
-   act:t=>'correo.redactar(sobre: "'+t+'")',
-   obs:'Borrador de 120 palabras. Queda esperando tu visto bueno.'},
-  {k:'wa', m:/whatsapp|grupo|avisar|avisa|mensaje|compa[ñn]er|equipo|coordina/,
-   think:'Si esto involucra a otras personas, el mensaje va corto y claro.',
-   act:()=>'whatsapp.preparar(destino: "grupo de obra")',
-   obs:'Mensaje de 2 líneas listo. No lo envío hasta que lo leas.'},
-  {k:'notion', m:/notion|organiz|guarda|apunte|resumen|registro|orden|base de datos/,
-   think:'Si no queda escrito en un lugar fijo, la próxima semana se pierde.',
-   act:t=>'notion.crear_pagina(titulo: "'+t+'")',
-   obs:'Página creada con tabla de 5 filas y enlaces a las fuentes.'}
+   think:'Redacto la observación formal pero no la despacho: requiere tu aprobación.',
+   act:t=>'borrador_correo.redactar(sobre: "'+t+'")',
+   obs:'Borrador técnico listo. Queda pendiente de tu confirmación.'},
+  {k:'buscar', m:/busca|buscar|investig|precio|norma|reglamento|actual|hoy|2026|tendencia|comparar|referencia|dato/,
+   think:'Busco el valor oficial en la fuente normativa antes de validar.',
+   act:t=>'buscar_normativa_web(consulta: "'+t+'")',
+   obs:'Norma DNV vigente localizada y verificada.'},
+  {k:'notion', m:/notion|organiz|guarda|apunte|resumen|registro|orden|base de datos|bitacora/,
+   think:'Registro el resultado en la bitácora central para trazabilidad del equipo.',
+   act:t=>'bitacora_notion.crear_registro(titulo: "'+t+'")',
+   obs:'Registro guardado con enlaces a remitos y orden de compra.'}
 ];
 
 const EJEMPLOS = [
   'Cruzá los remitos de áridos de esta semana',
-  'Resumí el pliego de licitación del Tramo 4',
-  'Armá la presentación del informe de avance',
+  'Auditoría de pliego de licitación del Tramo 4',
   'Calculá el metrado de acero de la viga puente',
+  'Control de partes diarios y consumo de gasoil',
   'Redactá el reclamo al proveedor de cuchillas'
 ];
 
@@ -1171,13 +1201,14 @@ function setState(mode, txt){
 function planFor(task){
   const t = task.toLowerCase();
   let plan = RECIPES.filter(r=>r.m.test(t)).slice(0,3);
-  if(!plan.length) plan = [RECIPES[1]];
+  if(!plan.length) plan = [RECIPES[0], RECIPES[2], RECIPES[8]];
+  if(!plan.some(p=>p.k==='skill')) plan.unshift(RECIPES[0]);
   if(!plan.some(p=>p.k==='notion')) plan.push(RECIPES[8]);
   return plan.slice(0,3);
 }
 function renderTools(plan){
   toolsBox.innerHTML = plan.map(p=>{
-    const t = TOOLS[p.k];
+    const t = TOOLS[p.k] || TOOLS.doc;
     return '<div class="tool" data-t="'+p.k+'"><span class="ti">'+svg(t.icon,2)+'</span>'+t.label+'<span class="st"></span></div>';
   }).join('');
   toolCount.textContent = '0 / '+plan.length;
@@ -1227,14 +1258,14 @@ async function run(){
 
   await typeLine('think','Recibe','«'+task+'»', myRun);
   await sleep(280/speed);
-  await typeLine('think','Planifica','Lo parto en '+plan.length+' tarea'+(plan.length>1?'s':'')+' y decido qué herramienta necesita cada una.', myRun);
+  await typeLine('think','Planifica','Activo la Skill de procedimiento correspondiente y estructuro '+plan.length+' tareas operativas.', myRun);
   if(myRun!==cancel) return finish(myRun);
   await sleep(340/speed);
 
   let done = 0;
   for(let i=0;i<plan.length;i++){
     if(myRun!==cancel) return finish(myRun);
-    const p = plan[i], tool = TOOLS[p.k];
+    const p = plan[i], tool = TOOLS[p.k] || TOOLS.doc;
     loopN.textContent = String(i+1);
     loopL.textContent = 'de '+plan.length;
     markTool(p.k,'live','activa');
@@ -1247,14 +1278,14 @@ async function run(){
     if(myRun!==cancel) return finish(myRun);
 
     if(i===1){
-      await typeLine('err','Observa', tool.label+' devolvió vacío. Faltaba el permiso de lectura.', myRun);
+      await typeLine('err','Observa', tool.label+' detectó un desvío por encima de la tolerancia.', myRun);
       await sleep(300/speed);
       if(myRun!==cancel) return finish(myRun);
       markTool(p.k,'live','reintento');
-      await typeLine('think','Corrige','No me quedo con el error. Pido el permiso mínimo y repito solo esta tarea.', myRun);
+      await typeLine('think','Corrige','No me detengo en el error. Aplico la regla de contingencia de la Skill y recalculo con margen de cantera.', myRun);
       await sleep(220/speed);
       if(myRun!==cancel) return finish(myRun);
-      await typeLine('act','Ejecuta', p.act(task)+'  ·  reintento 2', myRun);
+      await typeLine('act','Ejecuta', p.act(task)+'  ·  reintento con factor de humedad', myRun);
       await sleep(460/speed);
       if(myRun!==cancel) return finish(myRun);
     }
@@ -1268,7 +1299,7 @@ async function run(){
   }
 
   if(myRun!==cancel) return finish(myRun);
-  await typeLine('think','Entrega','Reviso que todo lo que prometí exista de verdad antes de responderte.', myRun);
+  await typeLine('think','Entrega','Reviso que las tolerancias y cálculos cumplan el estándar antes de emitir el reporte final.', myRun);
   await sleep(380/speed);
   renderResult(task, plan);
   phasesDone();
@@ -1281,30 +1312,30 @@ function finish(myRun){
 }
 function renderResult(task, plan){
   const map = {
-    doc:'Documento leído, con lo que importa marcado.',
-    buscar:'Fuentes verificadas, sin dato inventado.',
-    hoja:'Números calculados, no estimados.',
-    cal:'Fechas en tu calendario, sin choques.',
-    slides:'Estructura y guion listos.',
-    code:'Script corrido y salida guardada.',
-    correo:'Borrador redactado en tu tono.',
-    wa:'Mensaje al grupo preparado.',
-    notion:'Todo escrito en Notion para que no se pierda.'
+    skill:'Skill de procedimiento ejecutada paso a paso.',
+    doc:'Documentos analizados por OCR con datos verificados.',
+    buscar:'Normativa oficial corroborada sin datos inventados.',
+    hoja:'Cálculos exactos ejecutados con tolerancias de obra.',
+    cal:'Cronograma ajustado evitando vedas climáticas.',
+    slides:'Estructura e informe de avance listos para Dirección.',
+    code:'Script de control ejecutado con salida verificada.',
+    correo:'Borrador formal preparado para el Jefe de Área.',
+    notion:'Registro completo guardado en la bitácora para trazabilidad.'
   };
-  const bullets = plan.map(p=>'<li>'+svg(ICON.check,2.6)+'<span><b>'+TOOLS[p.k].label+'</b> · '+map[p.k]+'</span></li>').join('');
+  const bullets = plan.map(p=>'<li>'+svg(ICON.check,2.6)+'<span><b>'+(TOOLS[p.k]||TOOLS.doc).label+'</b> · '+(map[p.k]||'Tarea completada')+'.</span></li>').join('');
   const escTask = task.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   const div = document.createElement('div');
   div.className = 'result';
   div.innerHTML =
-    '<h4>'+svg(ICON.check,2.6)+' Tarea cerrada</h4>'+
-    '<p style="font-size:14.5px;color:var(--ink-2);margin-bottom:14px">«'+escTask+'» · '+plan.length+(plan.length===1?' vuelta':' vueltas')+' del bucle'+(plan.length>1?', con un reintento por un permiso que faltaba':'')+'.</p>'+
+    '<h4>'+svg(ICON.check,2.6)+' Tarea auditada y cerrada</h4>'+
+    '<p style="font-size:14.5px;color:var(--ink-2);margin-bottom:14px">«'+escTask+'» · '+plan.length+(plan.length===1?' vuelta':' vueltas')+' del bucle con aplicación de Skill especializada'+(plan.length>1?', con un reintento y auto-corrección de tolerancia':'')+'.</p>'+
     '<ul>'+bullets+'</ul>'+
-    '<div class="ask">'+svg(ICON.alert,2)+'<span><b>Lo que no hizo solo:</b> nada que salga a otra persona. Enviar, publicar o borrar siempre pasa por ti.</span></div>';
+    '<div class="ask">'+svg(ICON.alert,2)+'<span><b>Gobernanza corporativa:</b> Acciones críticas como aprobar pagos, enviar correos a clientes o borrar datos siempre pasan por tu validación humana obligatoria.</span></div>';
   resultSlot.appendChild(div);
 }
 
 /* ============================================================
-   MEJORAS ×5 · fases del bucle, chats animados, flip cards,
+   MEJORAS · fases del bucle, chats animados, flip cards,
    quiz, trucos, plantilla, checklist, glosario, tilt, confetti
 ============================================================ */
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1312,7 +1343,7 @@ const COPY_ICO = svg('<rect width="14" height="14" x="8" y="8" rx="2"/><path d="
 const CHECK_ICO = svg(ICON.check,2.6);
 
 /* ---------- fases del bucle en la consola ---------- */
-const PH_LBL = ['recibe','planifica','elige','ejecuta','corrige','entrega'];
+const PH_LBL = ['recibe','planifica','elige skill','ejecuta','corrige','entrega'];
 const PH_MAP = {'Recibe':0,'Planifica':1,'Elige':2,'Ejecuta':3,'Observa':3,'Corrige':4,'Entrega':5};
 const phBox = document.getElementById('phases');
 if(phBox) phBox.innerHTML = PH_LBL.map(l=>'<span class="ph">'+l+'</span>').join('');
@@ -1448,10 +1479,10 @@ var phFull = EJEMPLOS[0];
   }
 })();
 
-/* ---------- confetti (transform/opacity, gated a reduced motion) ---------- */
+/* ---------- confetti ---------- */
 function confetti(n){
   if(RM) return;
-  const cols = ['#4A3AC1','#6B5BE6','#19C356','#E8A317','#B9ADF7'];
+  const cols = ['#4338CA','#6366F1','#059669','#D97706','#C7D2FE'];
   for(let i=0;i<(n||80);i++){
     const p = document.createElement('i');
     p.className = 'cf';
@@ -1466,7 +1497,7 @@ function confetti(n){
   }
 }
 
-/* ---------- copiar al portapapeles (delegado) ---------- */
+/* ---------- copiar al portapapeles ---------- */
 async function copyText(txt, btn){
   let ok = false;
   try{ await navigator.clipboard.writeText(txt); ok = true; }
@@ -1498,18 +1529,18 @@ document.addEventListener('click', e=>{
   const host = document.getElementById('qz');
   if(!host) return;
   const QUIZ = [
-    {q:'Le preguntas a una IA cómo se calcula el momento de inercia y te lo explica con ejemplos.', a:1,
-     why:'Solo produce texto: no toca nada fuera del chat. Es un chatbot — útil, pero el trabajo sigue siendo tuyo.'},
-    {q:'Un sistema revisa tu correo cada mañana, separa lo urgente, y si un adjunto no abre lo reintenta o te lo marca; el resumen te lo deja en Notion.', a:0,
-     why:'Objetivo, herramientas (correo y Notion) y, cuando algo falla, no se detiene: reintenta o avisa. Observa y corrige solo — las cinco piezas están.'},
-    {q:'Una macro de Excel copia datos de una hoja a otra cuando aprietas un botón.', a:1,
-     why:'Hace siempre lo mismo, no decide nada, y si algo cambió de sitio, falla y se queda ahí. Sin bucle no hay agente.'},
-    {q:'Le pedís «cruzá los remitos de piedra»: lee los remitos, detecta dos desvíos que superan la tolerancia, los marca y genera la alerta.', a:0,
-     why:'Encontró un problema que nadie le anunció y lo corrigió solo. Ese reintento es la firma del agente.'},
-    {q:'Una aspiradora robot mapea tu casa, se atasca con un cable, retrocede y prueba otra ruta.', a:0,
-     why:'Tiene las cinco piezas a su manera: objetivo (limpiar), instrucciones (su programa), memoria (el mapa), herramientas (ruedas y sensores) y el bucle — observa, actúa y corrige hasta lograrlo. Sin chat, pero agente.'},
-    {q:'Un bot de WhatsApp con menú: «marca 1 para ventas, 2 para soporte».', a:1,
-     why:'Es un árbol de opciones fijo. No entiende, no decide y no corrige: solo enruta llamadas.'}
+    {q:'Le preguntas a una IA cómo se calcula el momento de inercia de una viga y te lo explica con ejemplos teóricos.', a:1,
+     why:'Solo produce texto explicativo: no lee tus planos ni toca el cálculo en tu planilla. Es un chatbot — útil, pero el trabajo sigue siendo tuyo.'},
+    {q:'Un sistema revisa los correos de proveedores cada mañana, extrae los remitos adjuntos, valida el peso en balanza y deja el cuadro de desvíos en Notion.', a:0,
+     why:'Tiene objetivo, herramientas (correo y Notion), una Skill de control y, cuando un remito no abre, reintenta o marca la alerta. Es un agente con todas sus piezas.'},
+    {q:'Una macro de Excel copia datos de una columna a otra cuando aprietas un botón.', a:1,
+     why:'Ejecuta una orden fija paso a paso. Si el proveedor cambió el formato de celda, la macro falla y se detiene. Sin bucle de corrección ni razonamiento no hay agente.'},
+    {q:'Le pedís «cruzá los remitos de piedra»: lee los remitos por OCR, detecta 2 desvíos que superan el 2% de tolerancia, los recalcula y genera la observación.', a:0,
+     why:'Encontró una inconsistencia que nadie le anunció previamente y aplicó la regla de tolerancia para corregir. Esa capacidad de observar y reintentar es la firma del agente.'},
+    {q:'Un agente tiene un procedimiento de 5 pasos para auditar granulometrías de cantera según normas de Vialidad y calcular coeficientes de uniformidad antes de autorizar acopio.', a:0,
+     why:'Combina objetivo, herramientas de lectura/cálculo, una Skill técnica con el protocolo oficial y el bucle de verificación de calidad.'},
+    {q:'Un bot de WhatsApp con menú interactivo: «marcar 1 para Compras, 2 para Logística de Obra».', a:1,
+     why:'Es un árbol de decisiones rígido. No razona, no utiliza herramientas dinámicas ni corrige errores: solo enruta mensajes.'}
   ];
   const OPT = ['Es un agente','No es un agente'];
   let qi = 0, hits = 0, marks = [];
@@ -1552,9 +1583,9 @@ document.addEventListener('click', e=>{
   }
   function final(){
     let t,m;
-    if(hits===QUIZ.length){ t='Ojo de agente'; m='Perfecto. Ya piensas como hay que pensar: no preguntas si usa IA — preguntas si hay bucle.'; }
-    else if(hits>=4){ t='Casi calibrado'; m='Muy bien. El matiz que te faltó: no importa si usa IA ni si habla bonito — importa si observa lo que hizo y corrige solo.'; }
-    else { t='Segunda vuelta'; m='Quédate con una sola regla: si no observa y corrige solo, no es un agente. Repite el quiz con esa lente y lo clavas.'; }
+    if(hits===QUIZ.length){ t='Ojo de agente profesional'; m='Excelente. Distingues a la perfección la diferencia entre un chatbot de texto, una macro rígida y un agente con skills y bucle de auto-corrección.'; }
+    else if(hits>=4){ t='Casi calibrado'; m='Muy buen resultado. El matiz clave: un agente no solo responde bonito — observa el resultado real de sus herramientas y corrige el rumbo si algo falla.'; }
+    else { t='Segunda vuelta'; m='Quédate con esta regla de oro: si no tiene herramientas, skill procedimental y capacidad de corregirse solo, no es un agente. Repite el quiz y lo dominas.'; }
     host.innerHTML = '<div class="qz-final fade-in"><div class="qz-score">'+hits+'/'+QUIZ.length+'</div>'
       +'<h3>'+t+'</h3><p>'+m+'</p>'
       +'<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">'
@@ -1573,25 +1604,28 @@ document.addEventListener('click', e=>{
   if(!grid || !box) return;
   const TIPS = [
     {t:'Pide el resultado, no los pasos',
-     d:'El objetivo dice qué debe quedar hecho. La receta la inventa él — para eso existe el bucle.',
+     d:'El objetivo dice qué debe quedar hecho. La receta la formula él a través de su bucle y sus skills.',
      prompt:'Tu objetivo: que los remitos de esta semana queden cruzados con las OC, sin desvíos sin marcar.\nMuéstrame tu plan en 3 líneas antes de tocar nada.'},
+    {t:'Empaqueta el método (Skills)',
+     d:'Cuando una tarea exige pasos técnicos, no des una orden suelta: entrégale un procedimiento estándar con tolerancias y reglas de control.',
+     prompt:'Aplica esta SKILL de control de áridos:\n1. Extrae peso bruto, tara y neto del remito adjunto.\n2. Cruza contra la OC del proveedor en cuestión.\n3. Aplica tolerancia admisible de ±2% por humedad.\n4. Si el desvío supera el 2%, márcalo en rojo con el desvío en pesos.\n5. Entrega: tabla comparativa y acta de observación si corresponde.'},
     {t:'Una herramienta primero',
      d:'Un agente con diez herramientas falla de diez formas distintas. Con una sola, aprende rápido — y tú también.',
      prompt:'Por ahora, tu única herramienta es leer los archivos que yo te adjunte.\nSi crees que necesitas otra, dímelo. No la uses.'},
     {t:'Mostrar antes de enviar',
-     d:'La regla de oro. Todo lo que sale al mundo — correos, mensajes, publicaciones — pasa por tus ojos primero.',
-     prompt:'Regla fija: nunca envíes, publishes ni borres nada.\nPrepara el borrador, muéstramelo y espera mi ok.'},
+     d:'La regla de oro de gobernanza. Todo lo que sale al mundo — correos, mensajes, publicaciones — pasa por tus ojos primero.',
+     prompt:'Regla fija: nunca envíes, publishes ni borres nada.\nPrepara el borrador, muéstramelo y espera mi visto bueno.'},
     {t:'Contexto una vez, no mil veces',
      d:'Lo que le repites en cada chat debería vivir en su memoria. Dáselo una sola vez, por escrito.',
      prompt:'Recordá esto para todo lo que te pida:\ntrabajo en el Área de Compras de RAVA S.A., controlo facturación de áridos y mi día más cargado es el lunes.'},
     {t:'El error es información',
-     d:'Un agente que esconde sus fallos no mejora. Pídele el parte completo, no el «hubo un error».',
+     d:'Un agente que esconde sus fallos no mejora. Pídele el parte completo de lo que intentó.',
      prompt:'Si algo falla: dime qué intentaste, qué salió y qué vas a probar distinto.\nNunca me digas solo «hubo un error».'},
     {t:'Que revise su propio trabajo',
-     d:'La diferencia entre «terminé» y «terminé y lo comprobé». Pídesela siempre.',
-     prompt:'Antes de entregarme el resultado, revísalo tú mismo:\n¿cumple el objetivo? ¿falta algo? Dime qué verificaste.'},
+     d:'La diferencia entre «terminé» y «terminé y lo comprobé contra la norma». Pídesela siempre.',
+     prompt:'Antes de entregarme el resultado, revísalo tú mismo:\n¿cumple el objetivo? ¿están las tolerancias dentro del pliego? Dime qué verificaste.'},
     {t:'Empieza por los 15 minutos',
-     d:'No automatices lo difícil. Automatiza lo aburrido que repites cada semana — ahí está la ganancia real.',
+     d:'No automatices lo complejo de entrada. Automatiza lo repetitivo que haces cada semana — ahí está la ganancia inmediata.',
      prompt:'Esta tarea la repito cada semana y me toma 15 minutos: [descríbela].\nHazla tú y muéstrame el resultado para revisarlo.'},
     {t:'Límites por escrito',
      d:'Lo que nunca debe hacer solo se dice antes de empezar, no después del susto.',
@@ -1624,7 +1658,13 @@ document.addEventListener('click', e=>{
 (function(){
   const host = document.getElementById('check'), bar = document.getElementById('ckbar'), done = document.getElementById('ckdone');
   if(!host) return;
-  const ITEMS = ['Escribí el objetivo en una frase','Definí sus reglas y sus límites','Le di una sola herramienta','Le lancé una tarea real de hoy'];
+  const ITEMS = [
+    'Escribí el objetivo en una frase clara',
+    'Definí sus reglas y límites de seguridad',
+    'Le di una sola herramienta inicial',
+    'Le redacté su primer procedimiento o skill',
+    'Le lancé una tarea real de 15 minutos'
+  ];
   let st = [];
   try{ st = JSON.parse(localStorage.getItem('mpa-ck')||'[]'); }catch(e){}
   if(!Array.isArray(st) || st.length!==ITEMS.length) st = ITEMS.map(()=>false);
@@ -1657,14 +1697,15 @@ document.addEventListener('click', e=>{
   const chips = document.getElementById('gchips'), panel = document.getElementById('gpanel');
   if(!chips || !panel) return;
   const GLOS = [
-    {t:'LLM', def:'El motor: un modelo que aprendió a predecir texto tan bien que parece razonar. Es el cerebro del agente — no el agente completo.', ana:'El motor de un auto: potente, pero sin timón no va a ningún lado.'},
-    {t:'Prompt', def:'Lo que le escribes. En un agente, el prompt que más importa no es la tarea del día: es el que define su forma de trabajar.', ana:'La diferencia entre dar una orden y entrenar a alguien.'},
-    {t:'Contexto', def:'Todo lo que el modelo tiene «en mente» en este momento: tu mensaje, los archivos, la conversación. Si no está ahí, para él no existe.', ana:'Su escritorio: lo que no está sobre la mesa, no lo ve.'},
-    {t:'Token', def:'Los pedacitos en que el modelo corta el texto — unas 3 o 4 letras cada uno. Los límites de uso y los precios de la IA se miden en tokens.', ana:'Las sílabas con las que lee. Y también su taxímetro.'},
-    {t:'Herramienta', def:'Cualquier cosa que el agente puede ejecutar de verdad: buscar en internet, leer un PDF, escribir en tu calendario.', ana:'Las manos. Sin herramientas solo hay opinión.'},
-    {t:'El bucle', def:'Piensa → actúa → observa → corrige, hasta que sale bien. La pieza que separa a un agente de un chat con buena memoria.', ana:'Lo que hace un buen practicante sin que se lo pidas.'},
-    {t:'Alucinación', def:'Cuando el modelo inventa algo con total confianza. No se cura con fe: se cura con herramientas que verifican y con pedir la fuente.', ana:'Un amigo que nunca dice «no sé». Por eso se le pide el dato con fuente.'},
-    {t:'MCP', def:'Un estándar abierto para conectarle herramientas a un agente sin programar cada conexión desde cero.', ana:'El USB-C de los agentes: un solo enchufe para todo.'}
+    {t:'LLM', def:'El motor: un modelo que aprendió a predecir texto tan bien que parece razonar. Es el cerebro del agente — no el agente completo.', ana:'El motor de un camión: potente, pero sin conductor ni volante no va a ningún lado.'},
+    {t:'Skill', def:'Un manual de procedimiento empaquetado que el agente carga solo cuando lo necesita. Le enseña el método experto paso a paso para resolver un problema complejo, combinando herramientas y reglas.', ana:'La diferencia entre darle una caja de herramientas a un operario y entregarle además el manual oficial de mantenimiento de la máquina.'},
+    {t:'Prompt', def:'Lo que le escribes. En un agente, el prompt que más importa no es la orden del momento: es el que define su forma de trabajar y sus límites.', ana:'La diferencia entre dar una orden suelta y entrenar a un colaborador.'},
+    {t:'Contexto', def:'Todo lo que el modelo tiene en memoria en este instante: tu mensaje, los archivos y la conversación. Si no está en el contexto, no existe.', ana:'Su escritorio de trabajo: lo que no está sobre la mesa, no lo puede ver ni procesar.'},
+    {t:'Token', def:'Los fragmentos en que el modelo corta el texto (unas 3 o 4 letras cada uno). Los límites de uso y los costos se miden en tokens.', ana:'Las sílabas con las que lee y calcula su taxímetro computacional.'},
+    {t:'Herramienta', def:'Cualquier capacidad ejecutable en el mundo digital: leer un PDF por OCR, consultar una base de datos o abrir una planilla.', ana:'Las manos. Sin herramientas solo hay texto y opinión.'},
+    {t:'El bucle', def:'Piensa → actúa → observa → corrige, hasta que la tarea queda resuelta. La pieza que separa a un agente de un chatbot tradicional.', ana:'Lo que hace un buen técnico en taller sin que tengas que supervisarle cada movimiento.'},
+    {t:'Alucinación', def:'Cuando el modelo inventa un dato con total seguridad. Se combate con herramientas que verifican la fuente y cruzando datos reales.', ana:'Un compañero que nunca dice «no sé». Por eso se le exige siempre la fuente verificable.'},
+    {t:'MCP', def:'Protocolo estándar abierto para conectar herramientas a un agente sin programar cada integración desde cero.', ana:'El conector USB-C de los agentes de IA: un solo estándar universal para conectar todo.'}
   ];
   chips.innerHTML = GLOS.map((g,k)=>'<button class="g-chip" data-k="'+k+'">'+g.t+'</button>').join('');
   function sel(k){
